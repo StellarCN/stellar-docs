@@ -1,6 +1,8 @@
 Stellar Docs
 ============
 
+这是由 StellarCN 翻译的 [Stellar 开发文档中文版](https://docs.stellarcn.org/)。由于参与翻译的志愿者大多不是专业的文字工作者，所以难免有一些错误。如果您在阅读的过程中发现有不当之处，请提交一个 Pull Request 来协助我们完善这个文档。
+
 This repository is home to the Stellar documentation. These docs feed into the [Stellar developers site builder](https://github.com/stellar/developers) and are on display at [stellar.org/developers](https://www.stellar.org/developers/).
 
 ## How to write docs
