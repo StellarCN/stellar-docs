@@ -2,7 +2,7 @@
 title: 将 Stellar 添加到您的交易所中
 ---
 
-本文将向您介绍如何将 Stellar 网络中的令牌添加到您的交易所中。首先，我们将介绍 Stellar 的原生资产 Lumens，随后，我们将介绍其它类型的令牌。此示例使用 Node.js 和 [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk)，但您很容易地能使用其它语言来实现这些功能。
+本文将向您介绍如何将 Stellar 网络中的令牌添加到您的交易所中。首先，我们将介绍 Stellar 的原生资产 Lumens，随后，我们将介绍其它类型的令牌。此示例使用 Node.js 和 [JS Stellar SDK](https://github.com/stellar/js-stellar-sdk)，但您能很容易地使用其它语言来实现这些功能。
 
 交易所能采用的设计有很多种。本指南使用以下设计：
  - `issuing account(发行账户)`: 用于储存大部分用户存款的离线账户。
@@ -57,7 +57,7 @@ var config = {};
 config.baseAccount = "your base account address";
 config.baseAccountSecret = "your base account secret key";
 
-// 您可以使用 Stellar.org 提供的 Horizon 节点，也可以使用您自己搭建的
+// 您可以使用 Stellar.org 提供的 Horizon 节点，也可以使用您自己搭建的节点
 config.horizon = 'https://horizon-testnet.stellar.org';
 
 // 导入 js-stellar-sdk 库，通过它，客户端可以与 Horizon 通讯
@@ -276,7 +276,7 @@ function submitPendingTransactions(exchangeAccount) {
 ### 锚点
 如果您是一个交易所的话，那么很容易成为一个恒星锚点。锚点是人们信任的实体，用于持有存款并在 Stellar 网络中发放信贷。因此，它们在现有货币和 Stellar 网络之间起桥梁作用。成为锚点能够扩展您的业务。
 
-想要更多的了解成为一个锚点的意义，请参阅[锚点指南](./anchor/index.html)。
+想要更多地了解成为一个锚点的意义，请参阅[锚点指南](./anchor/index.html)。
 
 ### 接收其它类型资产
 如果您想接受其它类型的令牌，请按照这些说明操作。

@@ -4,7 +4,7 @@ title: 合规协议
 
 # 合规协议
 
-反洗钱法(AML)要求金融机构(FIs)不仅要知道客户向谁汇款，还要知道收款人是谁。在某些司法管辖区，银行可信赖其他持牌银行的反洗钱程序。但在另外一些司法管辖区，每家银行都必须自己对汇款人和收款人进行检查。合规协议用于处理上述场景。
+反洗钱法(AML)要求金融机构(FIs)不仅要知道客户向谁汇款，还要知道收款人是谁。在某些司法管辖区，银行可信赖其他持牌银行的反洗钱程序。但在另外一些司法管辖区，每家银行都必须对汇款人和收款人进行检查。合规协议用于处理上述场景。
 
 金融机构之间可以自己协定交换哪些客户信息，但一般需要以下信息：
  - 全名
@@ -33,7 +33,7 @@ data=<data value>&sig=<sig value>
 `sender` | string | 发送方的地址。例如：`bob*bank.com` 
 `need_info` | boolean | 是否需要提供收款方的反洗钱信息。 
 `tx` | string: base64 encoded [xdr.Transaction](https://github.com/stellar/stellar-core/blob/4961b8bb4a64c68838632c5865389867e9f02840/src/xdr/Stellar-transaction.x#L297-L322) | 发送机构希望以 XDR 格式提交的事务。此事务是未签署的，它的序列号应该为 0。 
-`attachment` | string | 附件全文。这个附件的 hash 被包含在事务的备注(Memo)中。该字段的内容应该符合 [Stellar 附件公约](./attachment.md)，并且应该提供了足够的信息以供收款机构能对发送方进行制裁检查。 
+`attachment` | string | 附件全文。这个附件的 hash 被包含在事务的备注(Memo)中。该字段的内容应该符合 [Stellar 附件公约](./attachment.md)，并且应该提供足够的信息以供收款机构能对发送方进行制裁检查。 
 
 **sig** 是发送机构对发送数据的签名。接送机构需要使用发送机构的签名公钥对签名进行检查，以确认数据的确是由发送方签署的。发送机构的签名公钥可以在 [stellar.toml](https://www.stellar.org/developers/guides/concepts/stellar-toml.html) 的 `SIGNING_KEY` 字段中找到。
 

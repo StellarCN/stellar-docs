@@ -6,7 +6,7 @@ title: 贡献指南
 
 您对恒星网络的贡献将帮助我们更快地改善世界金融基础设施。
 
-我们希望用户能够轻松地提交一个修改以帮助 Stellar 网络茁壮成长。以下是我们要求贡献者遵循的一些指导原则，以便我们能够快速地合并您的更改。
+我们希望用户能够轻松地提交一个修改，以帮助 Stellar 网络茁壮成长。以下是我们要求贡献者遵循的一些指导原则，以便我们能够快速地合并您的更改。
 
 ## 如何开始
 
@@ -36,7 +36,7 @@ title: 贡献指南
 * 所有的内容、评论和 pull requests 必须遵循 [Stellar 社区指南](https://www.stellar.org/community-guidelines/)。
 * 将更改推送到您 fork 的仓库的一个主题分支中。
 * 向 Stellar 提交一个 pull request。
- * [提交信息(commit message)](https://github.com/erlang/otp/wiki/Writing-good-commit-messages)应该描述您做了什么。
+ * [提交信息(commit message)](https://github.com/erlang/otp/wiki/Writing-good-commit-messages)应该描述您做了什么事情。
  * 一个通过 pull request 提供的更改应该只关注一个问题(issue)。
  * 确保您的 pull request 与当前代码库没有冲突。
 
