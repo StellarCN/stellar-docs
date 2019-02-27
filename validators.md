@@ -220,6 +220,16 @@ Peer | stellar0.numerotron.com
 Node ID | GC7WI424OUF6UVYOLVLZD7IOW7M6HTJTIGDX4USFMTAG3763PYOXGN7Q
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+
+------
+Name | Ocyan
+-----|--------
+Description | https://ocyan.com
+Contact | Evangelos Pappas <epappas@ocyan.com> - (keybase:epappas)
+Peer | stellar.ocyan.com
+Node ID | GA5MLJBI3PP4I66XZMZZDGOD4NFL3QM7B6EYHEWBWY67FYD3ZO4UZRWV
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 ------
 Name | paywith.glass (Ireland)
 -----|--------
@@ -261,7 +271,7 @@ Name        | SDF
 ------------|--------
 Description | https://www.stellar.org
 Contact     | hello@stellar.org
-Node ID     | GB7H5CNUNVCM6KGG6P2LAQE4YZP4D6CHFJRSSS34VNEPDDVIFAWRJ7ZA <br/> GCM6QMP3DLRPTAZW2UZPCPX2LF3SXWXKPMP3GKFZBDSF3QZGV2G5QSTK <br/> GABMKJM6I25XI4K7U6XWMULOUQIQ27BCTMLS6BYYSOWKTBUXVRJSXHYQ
+Node ID     | GCGB2S2KGYARPVIA37HYZXVRM2YZUEXA6S33ZU5BUDC6THSB62LZSTYH <br/> GCM6QMP3DLRPTAZW2UZPCPX2LF3SXWXKPMP3GKFZBDSF3QZGV2G5QSTK <br/> GABMKJM6I25XI4K7U6XWMULOUQIQ27BCTMLS6BYYSOWKTBUXVRJSXHYQ
 Peer        | core-live-a.stellar.org <br/> core-live-b.stellar.org <br/> core-live-c.stellar.org 
 Status      | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
@@ -302,11 +312,21 @@ Node 2 | GC5A5WKAPZU5ASNMLNCAMLW7CVHMLJJAKHSZZHE2KWGAJHZ4EW6TQ7PB<br/>(peer ohio
 Node 3 | GBRILQP7RHIEBJPLGZ5XP6YWTYFSOQARAKECACMEMGXR53X6IX75E2L5<br/>(peer ohio-3.stellar.stellarport.io)
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
+----
 Name | stellar.smoove.net
 -----|--------
 Contact | Chris Erice - cerice@pm.me
 Node 1 | GDCAQY2Q5VMMI4ZOX35GTL7X43LMP3RA5W4VCP6V2BB6IFOO76GACXZU<br/>(Toronto peer v1.stellar.smoove.net)
 Node 2 | GCXEKMPY6TDNNI2VBWFOEA23V22OZW2INSCGTKNEHIHJDPG2C53PURBG<br/>(Singapore peer v2.stellar.smoove.net)
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+----
+Name | stellar.sui.li
+-----|--------
+Description | https://stellar.sui.li
+Contact | [github.com/sui77](https://github.com/sui77/) - s@sui.li
+Peer | stellar.sui.li
+Node ID | GBHMXTHDK7R2IJFUIDIUWMR7VAKKDSIPC6PT5TDKLACEAU3FBAR2XSUI
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
