@@ -114,7 +114,7 @@ stellar.toml 是以 [TOML](https://github.com/toml-lang/toml) 格式（一种简
 
 ### 联系人信息
 
-将您的组织的主要联系人的信息放置在  TOML 文件的 [[ PRINCIPALS ]] **列表**中。您至少需要输入组织中的一个人的联系信息。如果您不这样做，交易所就无法核实您的令牌，买家也可能不会对您的令牌感兴趣。
+将您的组织的主要联系人的信息放置在  TOML 文件的 `[[ PRINCIPALS ]]` [表列](https://github.com/toml-lang/toml#array-of-tables)中。您至少需要输入组织中的一个人的联系信息。如果您不这样做，交易所就无法核实您的令牌，买家也可能不会对您的令牌感兴趣。多个联系人可以放置多个`[[ PRINCIPALS ]]`。
 
 **必需提供**：所有的发行方都应该提供以下信息：
 
@@ -152,7 +152,7 @@ stellar.toml 是以 [TOML](https://github.com/toml-lang/toml) 格式（一种简
 
 ### 令牌信息
 
-将您的组织的主要联系人的信息放置在 TOML 文件的 [[ CURRENCIES ]] **列表**中。如果您发行了多种令牌，您可以将这些令牌放置在一个 stellar.toml 文件中，每种令牌都有单独的`[[CURRENCIES]]` 列表。
+将您的组织的主要联系人的信息放置在 TOML 文件的 `[[ CURRENCIES ]]` [表列](https://github.com/toml-lang/toml#array-of-tables)中。如果您发行了多种令牌，您可以将这些令牌放置在一个 stellar.toml 文件中，每种令牌都有单独的`[[CURRENCIES]]` 条目。
 
 **必需提供**：所有的发行方都需要为它们发行的令牌提供以下信息：
 

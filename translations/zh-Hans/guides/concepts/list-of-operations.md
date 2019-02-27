@@ -219,9 +219,9 @@ title: 操作清单
 |Clear flags| integer| 指定您想要清除的标识位。想要详细了解标识位，请参阅[账户文档](./accounts.md)。位掩码整数从账户的现有标识中减去。这允许在不知道现有标志的情况下设置特定标识位。 |
 |Set flags| integer| 指定您想要设置的标识位。想要详细了解标识位，请参阅[账户文档](./accounts.md)。位掩码整数添加到账户的现有标识上。这允许在不知道现有标志的情况下设置特定标识位。 |
 |Master weight| integer| 主密钥的权重。此账户还可以使用 `signer` 参数添加用于签署事务的其他密钥。 |
-|Low threshold| integer| 0-255之间的数字，表示此账户在其执行的具有[低等阈值的](https://stellar-docs.overcat.me/guides/concepts/multi-sig.html)操作所需要的[阈值](https://stellar-docs.overcat.me/guides/concepts/multi-sig.html)。 |
-|Medium threshold| integer| 0-255之间的数字，表示此账户在其执行的具有[中等阈值的](https://stellar-docs.overcat.me/guides/concepts/multi-sig.html)操作所需要的[阈值](https://stellar-docs.overcat.me/guides/concepts/multi-sig.html)。 |
-|High threshold| integer| 0-255之间的数字，表示此账户在其执行的具有[高等阈值的](https://stellar-docs.overcat.me/guides/concepts/multi-sig.html)操作所需要的[阈值](https://stellar-docs.overcat.me/guides/concepts/multi-sig.html)。 |
+|Low threshold| integer| 0-255之间的数字，表示此账户在其执行的具有[低等阈值的](https://stellar-docs.overcat.me/guides/concepts/multi-sig.html)操作所需要的[阈值](https://stellar-docs.overcat.me/guides/concepts/multi-sig.md)。 |
+|Medium threshold| integer| 0-255之间的数字，表示此账户在其执行的具有[中等阈值的](https://stellar-docs.overcat.me/guides/concepts/multi-sig.html)操作所需要的[阈值](https://stellar-docs.overcat.me/guides/concepts/multi-sig.md)。 |
+|High threshold| integer| 0-255之间的数字，表示此账户在其执行的具有[高等阈值的](https://stellar-docs.overcat.me/guides/concepts/multi-sig.html)操作所需要的[阈值](https://stellar-docs.overcat.me/guides/concepts/multi-sig.md)。 |
 |Home domain| string| 为账户设置主域名。请参阅[联邦服务](./federation.md)。 |
 |Signer| {Public Key, weight}| 为账户添加，更新或删除签名者。如果将权重设为 0 的话，则删除签名者。 |
 
