@@ -49,7 +49,7 @@ Stellar 地址由用户名和域名组成，中间用 * 分隔开。
 
 支持的类型：
  - **name**: 示例： `https://YOUR_FEDERATION_SERVER/federation?q=jed*stellar.org&type=name`
- - **forward**: 用于转发付款到不同的网络或不同的金融机构。根据支付的最终目标是哪种机构以及您作为转发锚所支持的内容，查询所需的其他参数将会有所不同。您应该在 [stellar.toml](./stellar-toml.html) 文件中指定 `forward` 请求中需要提供的参数。如果您无法转发该请求或是请求中的参数不正确，则应返回错误消息。示例：`https://YOUR_FEDERATION_SERVER/federation?type=forward&forward_type=bank_account&swift=BOPBPHMM&acct=2382376`
+ - **forward**: 用于转发付款到不同的网络或不同的金融机构。根据支付的最终目标是哪种机构以及您作为转发锚所支持的内容，查询所需的其他参数将会有所不同。您应该在 [stellar.toml](./stellar-toml.md) 文件中指定 `forward` 请求中需要提供的参数。如果您无法转发该请求或是请求中的参数不正确，则应返回错误消息。示例：`https://YOUR_FEDERATION_SERVER/federation?type=forward&forward_type=bank_account&swift=BOPBPHMM&acct=2382376`
  - **id**: *没有被所有的联邦服务支持* 通过给定的账户 ID 查询 Stellar 地址。在某些情况下这种查询是不可靠的，例如锚点代替其用户提交事务，那么账户 ID 将是锚点账户，联邦服务器将无法解析出提交事务的特定用户。在这种情况下您应该使用 **txid**。示例：`https://YOUR_FEDERATION_SERVER/federation?q=GD6WU64OEP5C4LRBH6NK3MHYIA2ADN6K6II6EXPNVUR3ERBXT4AN4ACD&type=id`
  - **txid**: *没有被所有的联邦服务支持* 如果服务器记录了给定事务的提交者的联邦记录，那么服务器将会返回它。示例：`https://YOUR_FEDERATION_SERVER/federation?q=c1b368c00e9852351361e07cc58c54277e7a6366580044ab152b8db9cd8ec52a&type=txid`
 

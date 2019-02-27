@@ -48,7 +48,7 @@ Asset astroDollar = Asset.createNonNativeAsset("AstroDollar", issuer);
 
 账户可以通过使用 [changeTrust 操作](concepts/list-of-operations.md#change-trust)创建某个资产的*信任线*来信任它。您可以在信任线中设置自己能持有的该资产的上限，比如您不相信您的邻居拥有超过 200 个香蕉，那么您可以在信任线中将持有上限设置为 200。*注意：每添加一条新的信任线都会增加账户需要持有的最低账户余额（增加 0.5 XLM）。想要了解更多请参阅[费用](concepts/fees.html#minimum-balance)。*
 
-一旦您确定了资产代码并且其他人创建了包含您的资产的信任线，您就可以开始使用您的资产向他们发送付款了。如果您的收款对象不信任您的资产，您也可以使用[分布式交易所](https://stellar-docs.overcat.me/guides/concepts/exchange.html)将自己的资产兑换为他能接收的资产。
+一旦您确定了资产代码并且其他人创建了包含您的资产的信任线，您就可以开始使用您的资产向他们发送付款了。如果您的收款对象不信任您的资产，您也可以使用[分布式交易所](https://stellar-docs.overcat.me/guides/concepts/exchange.md)将自己的资产兑换为他能接收的资产。
 
 ### 来试一试吧
 

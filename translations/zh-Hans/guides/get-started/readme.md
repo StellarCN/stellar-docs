@@ -16,7 +16,7 @@ Stellar.org 官方维护了用于与 Horizon 交互的 [JavaScript](https://gith
 
 ## 网络核心：Stellar Core
 
-**[Stellar Core](../../stellar-core/learn/admin.html) 是整个 Stellar 网络的核心，每个 Horizon 都与它相连。** Stellar Core 软件通过 [Stellar Consensus Protocol](../concepts/scp.html) (SCP) 对每个事务的状态进行验证，并与其它的 Stellar Core 实例达成一致。 恒星网络本身是由世界各地不同的个人和实体运行相连的 Stellar Core 的集合。有些实例具有可以通信的 Horizon 服务器功能，也有些实例的存在只是为了增加整个网络的可靠性。
+**[Stellar Core](../../stellar-core/learn/admin.html) 是整个 Stellar 网络的核心，每个 Horizon 都与它相连。** Stellar Core 软件通过 [Stellar Consensus Protocol](../concepts/scp.md) (SCP) 对每个事务的状态进行验证，并与其它的 Stellar Core 实例达成一致。 恒星网络本身是由世界各地不同的个人和实体运行相连的 Stellar Core 的集合。有些实例具有可以通信的 Horizon 服务器功能，也有些实例的存在只是为了增加整个网络的可靠性。
 
 安装 Stellar Core 最简单的方法是使用 [**stellar/quickstart** Docker 镜像](https://hub.docker.com/r/stellar/quickstart/)。
 
