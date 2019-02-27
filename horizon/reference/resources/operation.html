@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+
+  Want to contribute to this site? Take a look at the GitHub repository for this
+  site: https://github.com/stellar/developers
+
+  -->
+  <title>Operation - Go SDK | Stellar Developers</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="author" content="Stellar.org and contributors">
+
+  <meta property="og:title" content="Operation - Go SDK | Stellar Developers">
+  <meta property="og:type" content="website">
+
+
+  <link rel="stylesheet" href="/styles/index-cff14d28bafbba60930f31b923b4e75b.css">
+
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/rocket-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/rocket-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/rocket-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicon/rocket-96x96.png" sizes="96x96">
+  <meta name="msapplication-TileImage" content="/images/favicon/rocket-144x144.png">
+
+  <script type="text/javascript">
+    var $mcGoal = {'settings':{'uuid':'c001d97369b7a10d224c23867','dc':'us9'}};
+    (function() {
+      var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+      sp.src = ('https:' == document.location.protocol ? 'https://s3.amazonaws.com/downloads.mailchimp.com' : 'http://downloads.mailchimp.com') + '/js/goal.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+    })();
+  </script>
+
+  <script>window.clientData = {};</script>
+
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0065/1320.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+</head>
+<body>
+<div class="header2016">
+  <div class="header2016__logo header2016__logo--spaced">
+    <div class="so-siteHeader">
+      <span class="so-logo">
+  <a href="https://www.stellar.org/" class="so-logo__main">Stellar</a><!--
+  --><span class="so-logo__separator"> </span><!--
+  --><a href="/" class="so-logo__subSite">developers</a>
+</span>
+    </div>
+  </div>
+  <nav class="header2016__nav mainNavMenu spu-padStart-30">
+    <a class="mainNavMenu__item " href="/guides/">&#x6307;&#x5357;</a>
+<a class="mainNavMenu__item is-currentItem" href="/reference/">API &#x53C2;&#x8003;&#x624B;&#x518C;</a>
+<a class="mainNavMenu__item " href="/software/">&#x8F6F;&#x4EF6;</a>
+<a class="mainNavMenu__item " href="/tools/">&#x5DE5;&#x5177;</a>
+  </nav>
+</div>
+
+<div class="S-flex-row">
+  <div class="siteSidebar pageNavListBounder">
+  <div class="mainSidebar">
+    <ul class="pageNavList">
+
+
+      <li class="pageNavList__subList collapsibleListSet js-collapsibleListSet">
+        <span class="pageNavList__title collapsibleListSet__label js-collapsibleListSet__label">REST API</span>
+        <ul class="collapsibleListSet__list js-collapsibleListSet__list is-collapsed">
+                    <li class="pageNavList__item"><a href="/horizon/reference/index.html">Overview</a></li>
+          <li class="pageNavList__item"><a href="/horizon/reference/errors.html">Errors</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/paging.html">Paging</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/rate-limiting.html">Rate Limiting</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/responses.html">Response Format</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/streaming.html">Streaming</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/xdr.html">XDR</a></li>
+        
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Tutorials</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/tutorials/follow-received-payments.html">Follow Received Payments</a></li>
+
+        </ul>
+      </li>
+            
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Endpoints</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/endpoints/accounts-single.html">Account Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/assets-all.html">All Assets</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/data-for-account.html">Data for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-all.html">All Effects</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-account.html">Effects for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-ledger.html">Effects for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-operation.html">Effects for Operation</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-transaction.html">Effects for Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/fee-stats.html">Fee Stats</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/ledgers-all.html">All Ledgers</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/ledgers-single.html">Ledger Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/metrics.html">Metrics</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/offers-for-account.html">Offers for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-all.html">All Operations</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-for-account.html">Operations for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-for-ledger.html">Operations for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-for-transaction.html">Operations for Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-single.html">Operation Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/orderbook-details.html">Orderbook Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/path-finding.html">Find Payment Paths</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-all.html">All Payments</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-for-account.html">Payments for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-for-ledger.html">Payments for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-for-transaction.html">Payments for Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trade_aggregations.html">Trade Aggregations</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trades-for-account.html">Trades for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trades-for-offer.html">Trades for Offer</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trades.html">Trades</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-all.html">All Transactions</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-create.html">Post Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-for-account.html">Transactions for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-for-ledger.html">Transactions for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-single.html">Transaction Details</a></li>
+
+        </ul>
+      </li>
+            
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Resources</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/resources/account.html">Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/asset.html">Asset</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/data.html">Data</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/effect.html">Effect</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/ledger.html">Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/offer.html">Offer</a></li>
+  <li class="pageNavList__item is-currentItem"><a href="/horizon/reference/resources/operation.html">Operation</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/orderbook.html">Orderbook</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/page.html">Page</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/path.html">Payment Path</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/trade.html">Trade</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/trade_aggregation.html">Trade Aggregation</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/transaction.html">Transaction</a></li>
+
+        </ul>
+      </li>
+            
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Errors</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/errors/bad-request.html">Bad Request</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/before-history.html">Before History</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/forbidden.html">Forbidden</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/not-acceptable.html">Not Acceptable</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/not-found.html">Not Found</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/not-implemented.html">Not Implemented</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/rate-limit-exceeded.html">Rate Limit Exceeded</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/server-error.html">Internal Server Error</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/stale-history.html">Stale History</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/timeout.html">Timeout</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/transaction-failed.html">Transaction Failed</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/transaction-malformed.html">Transaction Malformed</a></li>
+
+        </ul>
+      </li>
+    
+        </ul>
+      </li>
+    
+
+      <li class="pageNavList__subList collapsibleListSet js-collapsibleListSet">
+        <span class="pageNavList__title collapsibleListSet__label js-collapsibleListSet__label">JavaScript SDK</span>
+        <ul class="collapsibleListSet__list js-collapsibleListSet__list is-collapsed">
+                    <li class="pageNavList__item"><a href="/js-stellar-sdk/reference/index.html">Overview</a></li>
+          <li class="pageNavList__item"><a href="/js-stellar-base/reference/base-examples.html">Transaction Examples</a></li>
+  <li class="pageNavList__item"><a href="/js-stellar-base/reference/building-transactions.html">Building Transactions</a></li>
+          <li class="pageNavList__item"><a href="/js-stellar-sdk/reference/examples.html">Basic Examples</a></li>
+        <li class="pageNavList__item"><a href="https://stellar.github.io/js-stellar-sdk/" target="_blank" rel="noopener noreferrer">API Reference <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+
+        </ul>
+      </li>
+    
+
+      <li class="pageNavList__subList collapsibleListSet js-collapsibleListSet">
+        <span class="pageNavList__title collapsibleListSet__label js-collapsibleListSet__label">Go SDK</span>
+        <ul class="collapsibleListSet__list js-collapsibleListSet__list is-collapsed">
+                    <li class="pageNavList__item"><a href="/go/reference/index.html">Overview</a></li>
+          <li class="pageNavList__item"><a href="/go/reference/examples.html">Basic Examples</a></li>
+        <li class="pageNavList__item"><a href="https://godoc.org/github.com/stellar/go" target="_blank">Godoc <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+
+        </ul>
+      </li>
+    
+
+      <li class="pageNavList__item"><a href="https://github.com/stellar/java-stellar-sdk" target="_blank" rel="noopener noreferrer">Java SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+      <li class="pageNavList__item"><a href="https://github.com/stellar/ruby-stellar-sdk" target="_blank" rel="noopener noreferrer">Ruby SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+      <li class="pageNavList__item"><a href="https://github.com/StellarCN/py-stellar-base" target="_blank" rel="noopener noreferrer">Python SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+      <li class="pageNavList__item"><a href="https://github.com/QuantozTechnology/csharp-stellar-base" target="_blank" rel="noopener noreferrer">C# SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+
+    </ul>
+  </div>
+</div>
+  <div class="S-flexItem-share">
+  <div class="spu-padSE-30">
+    <h1 class="mainSectionTitle">
+      Operation
+      &#xA0;<span class="spu-color-neutral6">[Go SDK]</span>
+    </h1>
+  </div>
+  <div class="S-flex-rowWrap spu-borderTop-1 spu-borderColor-neutral7">
+    <s-read-md class="S-flexItem-share mainContent s-read-md--capped spu-padSE-30 spu-padTB-20 documentRead" link-process-md>
+      <p><a href="/learn/concepts/operations.html">Operations</a> are objects that represent a desired change to the ledger: payments,
+offers to exchange currency, changes made to account options, etc.  Operations
+are submitted to the Stellar network grouped in a <a href="./transaction.html">Transaction</a>.</p>
+<p>To learn more about the concept of operations in the Stellar network, take a look at the <a href="/learn/concepts/operations.html">Stellar operations concept guide</a>.</p>
+<h2 id="operation-types"><a class="anchorShortcut" href="#operation-types" aria-hidden="true"></a> Operation Types</h2>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>type_i</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#create-account">CREATE_ACCOUNT</a></td>
+<td>0</td>
+<td>Creates a new account in Stellar network.</td>
+</tr>
+<tr>
+<td><a href="#payment">PAYMENT</a></td>
+<td>1</td>
+<td>Sends a simple payment between two accounts in Stellar network.</td>
+</tr>
+<tr>
+<td><a href="#path-payment">PATH_PAYMENT</a></td>
+<td>2</td>
+<td>Sends a path payment between two accounts in the Stellar network.</td>
+</tr>
+<tr>
+<td><a href="#manage-offer">MANAGE_OFFER</a></td>
+<td>3</td>
+<td>Creates, updates or deletes an offer in the Stellar network.</td>
+</tr>
+<tr>
+<td><a href="#create-passive-offer">CREATE_PASSIVE_OFFER</a></td>
+<td>4</td>
+<td>Creates an offer that won&#x2019;t consume a counter offer that exactly matches this offer.</td>
+</tr>
+<tr>
+<td><a href="#set-options">SET_OPTIONS</a></td>
+<td>5</td>
+<td>Sets account options (inflation destination, adding signers, etc.)</td>
+</tr>
+<tr>
+<td><a href="#change-trust">CHANGE_TRUST</a></td>
+<td>6</td>
+<td>Creates, updates or deletes a trust line.</td>
+</tr>
+<tr>
+<td><a href="#allow-trust">ALLOW_TRUST</a></td>
+<td>7</td>
+<td>Updates the &#x201C;authorized&#x201D; flag of an existing trust line this is called by the issuer of the related asset.</td>
+</tr>
+<tr>
+<td><a href="#account-merge">ACCOUNT_MERGE</a></td>
+<td>8</td>
+<td>Deletes account and transfers remaining balance to destination account.</td>
+</tr>
+<tr>
+<td><a href="#inflation">INFLATION</a></td>
+<td>9</td>
+<td>Runs inflation.</td>
+</tr>
+<tr>
+<td><a href="#manage-data">MANAGE_DATA</a></td>
+<td>10</td>
+<td>Set, modify or delete a Data Entry (name/value pair) for an account.</td>
+</tr>
+<tr>
+<td><a href="#bump-sequence">BUMP_SEQUENCE</a></td>
+<td>11</td>
+<td>Bumps forward the sequence number of an account.</td>
+</tr>
+</tbody>
+</table>
+<p>Every operation type shares a set of common attributes and links, some operations also contain
+additional attributes and links specific to that operation type.</p>
+<h2 id="common-attributes"><a class="anchorShortcut" href="#common-attributes" aria-hidden="true"></a> Common Attributes</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Type</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>number</td>
+<td>The canonical id of this operation, suitable for use as the :id parameter for url templates that require an operation&#x2019;s ID.</td>
+</tr>
+<tr>
+<td>paging_token</td>
+<td>any</td>
+<td>A <a href="./page.html">paging token</a> suitable for use as a <code>cursor</code> parameter.</td>
+</tr>
+<tr>
+<td>transaction_successful</td>
+<td>bool</td>
+<td><em>From 0.17.0</em> Indicates if this operation is part of successful transaction.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>A string representation of the type of operation.</td>
+</tr>
+<tr>
+<td>type_i</td>
+<td>number</td>
+<td>Specifies the type of operation, See &#x201C;Types&#x201D; section below for reference.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-links"><a class="anchorShortcut" href="#common-links" aria-hidden="true"></a> Common Links</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Relation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>Relative link to the current operation</td>
+</tr>
+<tr>
+<td>succeeds</td>
+<td>Relative link to the list of operations succeeding the current operation.</td>
+</tr>
+<tr>
+<td>precedes</td>
+<td>Relative link to the list of operations preceding the current operation.</td>
+</tr>
+<tr>
+<td>effects</td>
+<td>The effects this operation triggered</td>
+</tr>
+<tr>
+<td>transaction</td>
+<td>The transaction this operation is part of</td>
+</tr>
+</tbody>
+</table>
+<p>Each operation type will have a different set of attributes, in addition to the
+common attributes listed above.</p>
+<p><a id="create-account"></a></p>
+<h3 id="create-account"><a class="anchorShortcut" href="#create-account" aria-hidden="true"></a> Create Account</h3>
+<p>Create Account operation represents a new account creation.</p>
+<h4 id="attributes"><a class="anchorShortcut" href="#attributes" aria-hidden="true"></a> Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td>string</td>
+<td>A new account that was funded.</td>
+</tr>
+<tr>
+<td>funder</td>
+<td>string</td>
+<td>Account that funded a new account.</td>
+</tr>
+<tr>
+<td>starting_balance</td>
+<td>string</td>
+<td>Amount the account was funded.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example"><a class="anchorShortcut" href="#example" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/402494270214144/effects/{?cursor,limit,order}&quot;,
+      &quot;templated&quot;: true
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=402494270214144&amp;order=asc&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/402494270214144&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=402494270214144&amp;order=desc&quot;
+    },
+    &quot;transactions&quot;: {
+      &quot;href&quot;: &quot;/transactions/402494270214144&quot;
+    }
+  },
+  &quot;account&quot;: &quot;GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ&quot;,
+  &quot;funder&quot;: &quot;GBIA4FH6TV64KSPDAJCNUQSM7PFL4ILGUVJDPCLUOPJ7ONMKBBVUQHRO&quot;,
+  &quot;id&quot;: 402494270214144,
+  &quot;paging_token&quot;: &quot;402494270214144&quot;,
+  &quot;starting_balance&quot;: &quot;10000.0&quot;,
+  &quot;type_i&quot;: 0,
+  &quot;type&quot;: &quot;create_account&quot;
+}
+</code></pre>
+<p><a id="payment"></a></p>
+<h3 id="payment"><a class="anchorShortcut" href="#payment" aria-hidden="true"></a> Payment</h3>
+<p>A payment operation represents a payment from one account to another.  This payment
+can be either a simple native asset payment or a fiat asset payment.</p>
+<h4 id="attributes-2"><a class="anchorShortcut" href="#attributes-2" aria-hidden="true"></a> Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>Sender of a payment.</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>Destination of a payment.</td>
+</tr>
+<tr>
+<td>asset_type</td>
+<td>string</td>
+<td>Asset type (native / alphanum4 / alphanum12)</td>
+</tr>
+<tr>
+<td>asset_code</td>
+<td>string</td>
+<td>Code of the destination asset.</td>
+</tr>
+<tr>
+<td>asset_issuer</td>
+<td>string</td>
+<td>Asset issuer.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Amount sent.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="links"><a class="anchorShortcut" href="#links" aria-hidden="true"></a> Links</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Example</th>
+<th>Relation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sender</td>
+<td>/accounts/GA5WBPYA5Y4WAEHXWR2UKO2UO4BUGHUQ74EUPKON2QHV4WRHOIRNKKH2</td>
+<td>Sending account</td>
+</tr>
+<tr>
+<td>receiver</td>
+<td>/accounts/GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ</td>
+<td>Receiving account</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-2"><a class="anchorShortcut" href="#example-2" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/58402965295104/effects/{?cursor,limit,order}&quot;,
+      &quot;templated&quot;: true
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=58402965295104&amp;order=asc&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/58402965295104&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=58402965295104&amp;order=desc&quot;
+    },
+    &quot;transactions&quot;: {
+      &quot;href&quot;: &quot;/transactions/58402965295104&quot;
+    }
+  },
+  &quot;amount&quot;: &quot;200.0&quot;,
+  &quot;asset_type&quot;: &quot;native&quot;,
+  &quot;from&quot;: &quot;GAKLBGHNHFQ3BMUYG5KU4BEWO6EYQHZHAXEWC33W34PH2RBHZDSQBD75&quot;,
+  &quot;id&quot;: 58402965295104,
+  &quot;paging_token&quot;: &quot;58402965295104&quot;,
+  &quot;to&quot;: &quot;GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ&quot;,
+  &quot;transaction_successful&quot;: true,
+  &quot;type_i&quot;: 1,
+  &quot;type&quot;: &quot;payment&quot;
+}
+</code></pre>
+<p><a id="path-payment"></a></p>
+<h3 id="path-payment"><a class="anchorShortcut" href="#path-payment" aria-hidden="true"></a> Path Payment</h3>
+<p>A path payment operation represents a payment from one account to another through a path.  This type of payment starts as one type of asset and ends as another type of asset. There can be other assets that are traded into and out of along the path.</p>
+<h4 id="attributes-3"><a class="anchorShortcut" href="#attributes-3" aria-hidden="true"></a> Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>Sender of a payment.</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>Destination of a payment.</td>
+</tr>
+<tr>
+<td>asset_code</td>
+<td>string</td>
+<td>Code of the destination asset.</td>
+</tr>
+<tr>
+<td>asset_issuer</td>
+<td>string</td>
+<td>Destination asset issuer.</td>
+</tr>
+<tr>
+<td>asset_type</td>
+<td>string</td>
+<td>Destination asset type (native / alphanum4 / alphanum12)</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Amount received.</td>
+</tr>
+<tr>
+<td>source_asset_code</td>
+<td>string</td>
+<td>Code of the source asset.</td>
+</tr>
+<tr>
+<td>source_asset_issuer</td>
+<td>string</td>
+<td>Source asset issuer.</td>
+</tr>
+<tr>
+<td>source_asset_type</td>
+<td>string</td>
+<td>Source asset type (native / alphanum4 / alphanum12)</td>
+</tr>
+<tr>
+<td>source_max</td>
+<td>string</td>
+<td>Max send amount.</td>
+</tr>
+<tr>
+<td>source_amount</td>
+<td>string</td>
+<td>Amount sent.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-3"><a class="anchorShortcut" href="#example-3" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/25769807873/effects/{?cursor,limit,order}&quot;,
+      &quot;templated&quot;: true
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=25769807873\u0026order=asc&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/25769807873&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=25769807873\u0026order=desc&quot;
+    },
+    &quot;transaction&quot;: {
+      &quot;href&quot;: &quot;/transactions/25769807872&quot;
+    }
+  },
+  &quot;amount&quot;: &quot;10.0&quot;,
+  &quot;asset_code&quot;: &quot;EUR&quot;,
+  &quot;asset_issuer&quot;: &quot;GCQPYGH4K57XBDENKKX55KDTWOTK5WDWRQOH2LHEDX3EKVIQRLMESGBG&quot;,
+  &quot;asset_type&quot;: &quot;credit_alphanum4&quot;,
+  &quot;from&quot;: &quot;GCXKG6RN4ONIEPCMNFB732A436Z5PNDSRLGWK7GBLCMQLIFO4S7EYWVU&quot;,
+  &quot;id&quot;: 25769807873,
+  &quot;paging_token&quot;: &quot;25769807873&quot;,
+  &quot;source_asset_code&quot;: &quot;USD&quot;,
+  &quot;source_asset_issuer&quot;: &quot;GC23QF2HUE52AMXUFUH3AYJAXXGXXV2VHXYYR6EYXETPKDXZSAW67XO4&quot;,
+  &quot;source_asset_type&quot;: &quot;credit_alphanum4&quot;,
+  &quot;source_amount&quot;: &quot;10.0&quot;,
+  &quot;source_max&quot;: &quot;10.0&quot;,
+  &quot;to&quot;: &quot;GA5WBPYA5Y4WAEHXWR2UKO2UO4BUGHUQ74EUPKON2QHV4WRHOIRNKKH2&quot;,
+  &quot;transaction_successful&quot;: true,
+  &quot;type_i&quot;: 2,
+  &quot;type&quot;: &quot;path_payment&quot;
+}
+</code></pre>
+<p><a id="manage-offer"></a></p>
+<h3 id="manage-offer"><a class="anchorShortcut" href="#manage-offer" aria-hidden="true"></a> Manage Offer</h3>
+<p>A &#x201C;Manage Offer&#x201D; operation can create, update or delete an
+offer to trade assets in the Stellar network.
+It specifies an issuer, a price and amount of a given asset to
+buy or sell.</p>
+<p>When this operation is applied to the ledger, trades can potentially be executed if
+this offer crosses others that already exist in the ledger.</p>
+<p>In the event that there are not enough crossing orders to fill the order completely
+a new &#x201C;Offer&#x201D; object will be created in the ledger.  As other accounts make
+offers or payments, this offer can potentially be filled.</p>
+<h4 id="attributes-4"><a class="anchorShortcut" href="#attributes-4" aria-hidden="true"></a> Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>offer_id</td>
+<td>number</td>
+<td>Offer ID.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>Amount of asset to be sold.</td>
+</tr>
+<tr>
+<td>buying_asset_code</td>
+<td>string</td>
+<td>The code of asset to buy.</td>
+</tr>
+<tr>
+<td>buying_asset_issuer</td>
+<td>string</td>
+<td>The issuer of asset to buy.</td>
+</tr>
+<tr>
+<td>buying_asset_type</td>
+<td>string</td>
+<td>Type of asset to buy (native / alphanum4 / alphanum12)</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>Price to buy a buying_asset</td>
+</tr>
+<tr>
+<td>price_r</td>
+<td>Object</td>
+<td>n: price numerator, d: price denominator</td>
+</tr>
+<tr>
+<td>selling_asset_code</td>
+<td>string</td>
+<td>The code of asset to sell.</td>
+</tr>
+<tr>
+<td>selling_asset_issuer</td>
+<td>string</td>
+<td>The issuer of asset to sell.</td>
+</tr>
+<tr>
+<td>selling_asset_type</td>
+<td>string</td>
+<td>Type of asset to sell (native / alphanum4 / alphanum12)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-4"><a class="anchorShortcut" href="#example-4" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/592323234762753/effects{?cursor,limit,order}&quot;,
+      &quot;templated&quot;: true
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=592323234762753\u0026order=asc&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/592323234762753&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=592323234762753\u0026order=desc&quot;
+    },
+    &quot;transaction&quot;: {
+      &quot;href&quot;: &quot;/transactions/592323234762752&quot;
+    }
+  },
+  &quot;amount&quot;: &quot;100.0&quot;,
+  &quot;buying_asset_code&quot;: &quot;CHP&quot;,
+  &quot;buying_asset_issuer&quot;: &quot;GAC2ZUXVI5266NMMGDPBMXHH4BTZKJ7MMTGXRZGX2R5YLMFRYLJ7U5EA&quot;,
+  &quot;buying_asset_type&quot;: &quot;credit_alphanum4&quot;,
+  &quot;id&quot;: 592323234762753,
+  &quot;offer_id&quot;: 8,
+  &quot;paging_token&quot;: &quot;592323234762753&quot;,
+  &quot;price&quot;: &quot;2.0&quot;,
+  &quot;price_r&quot;: {
+    &quot;d&quot;: 1,
+    &quot;n&quot;: 2
+  },
+  &quot;selling_asset_code&quot;: &quot;YEN&quot;,
+  &quot;selling_asset_issuer&quot;: &quot;GDVXG2FMFFSUMMMBIUEMWPZAIU2FNCH7QNGJMWRXRD6K5FZK5KJS4DDR&quot;,
+  &quot;selling_asset_type&quot;: &quot;credit_alphanum4&quot;,
+  &quot;transaction_successful&quot;: true,
+  &quot;type_i&quot;: 3,
+  &quot;type&quot;: &quot;manage_offer&quot;
+}
+</code></pre>
+<p><a id="create-passive-offer"></a></p>
+<h3 id="create-passive-offer"><a class="anchorShortcut" href="#create-passive-offer" aria-hidden="true"></a> Create Passive Offer</h3>
+<p>&#x201C;Create Passive Offer&#x201D; operation creates an offer that won&#x2019;t consume a counter offer that exactly matches this offer. This is useful for offers just used as 1:1 exchanges for path payments. Use Manage Offer to manage this offer after using this operation to create it.</p>
+<h4 id="attributes-5"><a class="anchorShortcut" href="#attributes-5" aria-hidden="true"></a> Attributes</h4>
+<p>As in <a href="#manage-offer">Manage Offer</a> operation.</p>
+<h4 id="example-5"><a class="anchorShortcut" href="#example-5" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/1127729562914817/effects{?cursor,limit,order}&quot;,
+      &quot;templated&quot;: true
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=1127729562914817\u0026order=asc&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/1127729562914817&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=1127729562914817\u0026order=desc&quot;
+    },
+    &quot;transaction&quot;: {
+      &quot;href&quot;: &quot;/transactions/1127729562914816&quot;
+    }
+  },
+  &quot;amount&quot;: &quot;11.27827&quot;,
+  &quot;buying_asset_code&quot;: &quot;USD&quot;,
+  &quot;buying_asset_issuer&quot;: &quot;GDS5JW5E6DRSSN5XK4LW7E6VUMFKKE2HU5WCOVFTO7P2RP7OXVCBLJ3Y&quot;,
+  &quot;buying_asset_type&quot;: &quot;credit_alphanum4&quot;,
+  &quot;id&quot;: 1127729562914817,
+  &quot;offer_id&quot;: 9,
+  &quot;paging_token&quot;: &quot;1127729562914817&quot;,
+  &quot;price&quot;: &quot;1.0&quot;,
+  &quot;price_r&quot;: {
+    &quot;d&quot;: 1,
+    &quot;n&quot;: 1
+  },
+  &quot;selling_asset_type&quot;: &quot;native&quot;,
+  &quot;transaction_successful&quot;: true,
+  &quot;type_i&quot;: 4,
+  &quot;type&quot;: &quot;create_passive_offer&quot;
+}
+</code></pre>
+<p><a id="set-options"></a></p>
+<h3 id="set-options"><a class="anchorShortcut" href="#set-options" aria-hidden="true"></a> Set Options</h3>
+<p>Use &#x201C;Set Options&#x201D; operation to set following options to your account:</p>
+<ul>
+<li>Set/clear account flags:
+<ul>
+<li>AUTH_REQUIRED_FLAG (0x1) - if set, TrustLines are created with authorized set to <code>false</code> requiring the issuer to set it for each TrustLine.</li>
+<li>AUTH_REVOCABLE_FLAG (0x2) - if set, the authorized flag in TrustLines can be cleared. Otherwise, authorization cannot be revoked.</li>
+</ul>
+</li>
+<li>Set the account&#x2019;s inflation destination.</li>
+<li>Add new signers to the account.</li>
+<li>Set home domain.</li>
+</ul>
+<h4 id="attributes-6"><a class="anchorShortcut" href="#attributes-6" aria-hidden="true"></a> Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>signer_key</td>
+<td>string</td>
+<td>The public key of the new signer.</td>
+</tr>
+<tr>
+<td>signer_weight</td>
+<td>int</td>
+<td>The weight of the new signer (1-255).</td>
+</tr>
+<tr>
+<td>master_key_weight</td>
+<td>int</td>
+<td>The weight of the master key (1-255).</td>
+</tr>
+<tr>
+<td>low_threshold</td>
+<td>int</td>
+<td>The sum weight for the low threshold.</td>
+</tr>
+<tr>
+<td>med_threshold</td>
+<td>int</td>
+<td>The sum weight for the medium threshold.</td>
+</tr>
+<tr>
+<td>high_threshold</td>
+<td>int</td>
+<td>The sum weight for the high threshold.</td>
+</tr>
+<tr>
+<td>home_domain</td>
+<td>string</td>
+<td>The home domain used for reverse federation lookup</td>
+</tr>
+<tr>
+<td>set_flags</td>
+<td>array</td>
+<td>The array of numeric values of flags that has been set in this operation</td>
+</tr>
+<tr>
+<td>set_flags_s</td>
+<td>array</td>
+<td>The array of string values of flags that has been set in this operation</td>
+</tr>
+<tr>
+<td>clear_flags</td>
+<td>array</td>
+<td>The array of numeric values of flags that has been cleared in this operation</td>
+</tr>
+<tr>
+<td>clear_flags_s</td>
+<td>array</td>
+<td>The array of string values of flags that has been cleared in this operation</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-6"><a class="anchorShortcut" href="#example-6" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/696867033714691/effects{?cursor,limit,order}&quot;,
+      &quot;templated&quot;: true
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=696867033714691\u0026order=asc&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/696867033714691&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=696867033714691\u0026order=desc&quot;
+    },
+    &quot;transaction&quot;: {
+      &quot;href&quot;: &quot;/transactions/696867033714688&quot;
+    }
+  },
+  &quot;high_threshold&quot;: 3,
+  &quot;home_domain&quot;: &quot;stellar.org&quot;,
+  &quot;id&quot;: 696867033714691,
+  &quot;low_threshold&quot;: 0,
+  &quot;med_threshold&quot;: 3,
+  &quot;paging_token&quot;: &quot;696867033714691&quot;,
+  &quot;set_flags&quot;: [
+    1
+  ],
+  &quot;set_flags_s&quot;: [
+    &quot;auth_required_flag&quot;
+  ],
+  &quot;transaction_successful&quot;: true,
+  &quot;type_i&quot;: 5,
+  &quot;type&quot;: &quot;set_options&quot;
+}
+</code></pre>
+<p><a id="change-trust"></a></p>
+<h3 id="change-trust"><a class="anchorShortcut" href="#change-trust" aria-hidden="true"></a> Change Trust</h3>
+<p>Use &#x201C;Change Trust&#x201D; operation to create/update/delete a trust line from the source account to another. The issuer being trusted and the asset code are in the given Asset object.</p>
+<h4 id="attributes-7"><a class="anchorShortcut" href="#attributes-7" aria-hidden="true"></a> Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>asset_code</td>
+<td>string</td>
+<td>Asset code.</td>
+</tr>
+<tr>
+<td>asset_issuer</td>
+<td>string</td>
+<td>Asset issuer.</td>
+</tr>
+<tr>
+<td>asset_type</td>
+<td>string</td>
+<td>Asset type (native / alphanum4 / alphanum12)</td>
+</tr>
+<tr>
+<td>trustee</td>
+<td>string</td>
+<td>Trustee account.</td>
+</tr>
+<tr>
+<td>trustor</td>
+<td>string</td>
+<td>Trustor account.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>string</td>
+<td>The limit for the asset.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-7"><a class="anchorShortcut" href="#example-7" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/574731048718337/effects{?cursor,limit,order}&quot;,
+      &quot;templated&quot;: true
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=574731048718337\u0026order=asc&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/574731048718337&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=574731048718337\u0026order=desc&quot;
+    },
+    &quot;transaction&quot;: {
+      &quot;href&quot;: &quot;/transactions/574731048718336&quot;
+    }
+  },
+  &quot;asset_code&quot;: &quot;CHP&quot;,
+  &quot;asset_issuer&quot;: &quot;GAC2ZUXVI5266NMMGDPBMXHH4BTZKJ7MMTGXRZGX2R5YLMFRYLJ7U5EA&quot;,
+  &quot;asset_type&quot;: &quot;credit_alphanum4&quot;,
+  &quot;id&quot;: 574731048718337,
+  &quot;limit&quot;: &quot;5.0&quot;,
+  &quot;paging_token&quot;: &quot;574731048718337&quot;,
+  &quot;trustee&quot;: &quot;GAC2ZUXVI5266NMMGDPBMXHH4BTZKJ7MMTGXRZGX2R5YLMFRYLJ7U5EA&quot;,
+  &quot;trustor&quot;: &quot;GDVXG2FMFFSUMMMBIUEMWPZAIU2FNCH7QNGJMWRXRD6K5FZK5KJS4DDR&quot;,
+  &quot;transaction_successful&quot;: true,
+  &quot;type_i&quot;: 6,
+  &quot;type&quot;: &quot;change_trust&quot;
+}
+</code></pre>
+<p><a id="allow-trust"></a></p>
+<h3 id="allow-trust"><a class="anchorShortcut" href="#allow-trust" aria-hidden="true"></a> Allow Trust</h3>
+<p>Updates the &#x201C;authorized&#x201D; flag of an existing trust line this is called by the issuer of the asset.</p>
+<p>Heads up! Unless the issuing account has <code>AUTH_REVOCABLE_FLAG</code> set than the &#x201C;authorized&#x201D; flag can only be set and never cleared.</p>
+<h4 id="attributes-8"><a class="anchorShortcut" href="#attributes-8" aria-hidden="true"></a> Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>asset_code</td>
+<td>string</td>
+<td>Asset code.</td>
+</tr>
+<tr>
+<td>asset_issuer</td>
+<td>string</td>
+<td>Asset issuer.</td>
+</tr>
+<tr>
+<td>asset_type</td>
+<td>string</td>
+<td>Asset type (native / alphanum4 / alphanum12)</td>
+</tr>
+<tr>
+<td>authorize</td>
+<td>bool</td>
+<td><code>true</code> when allowing trust, <code>false</code> when revoking trust</td>
+</tr>
+<tr>
+<td>trustee</td>
+<td>string</td>
+<td>Trustee account.</td>
+</tr>
+<tr>
+<td>trustor</td>
+<td>string</td>
+<td>Trustor account.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-8"><a class="anchorShortcut" href="#example-8" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/34359742465/effects/{?cursor,limit,order}&quot;,
+      &quot;templated&quot;: true
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=34359742465\u0026order=asc&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/34359742465&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=34359742465\u0026order=desc&quot;
+    },
+    &quot;transaction&quot;: {
+      &quot;href&quot;: &quot;/transactions/34359742464&quot;
+    }
+  },
+  &quot;asset_code&quot;: &quot;USD&quot;,
+  &quot;asset_issuer&quot;: &quot;GC23QF2HUE52AMXUFUH3AYJAXXGXXV2VHXYYR6EYXETPKDXZSAW67XO4&quot;,
+  &quot;asset_type&quot;: &quot;credit_alphanum4&quot;,
+  &quot;authorize&quot;: true,
+  &quot;id&quot;: 34359742465,
+  &quot;paging_token&quot;: &quot;34359742465&quot;,
+  &quot;trustee&quot;: &quot;GC23QF2HUE52AMXUFUH3AYJAXXGXXV2VHXYYR6EYXETPKDXZSAW67XO4&quot;,
+  &quot;trustor&quot;: &quot;GBXGQJWVLWOYHFLVTKWV5FGHA3LNYY2JQKM7OAJAUEQFU6LPCSEFVXON&quot;,
+  &quot;transaction_successful&quot;: true,
+  &quot;type_i&quot;: 7,
+  &quot;type&quot;: &quot;allow_trust&quot;
+}
+</code></pre>
+<p><a id="account-merge"></a></p>
+<h3 id="account-merge"><a class="anchorShortcut" href="#account-merge" aria-hidden="true"></a> Account Merge</h3>
+<p>Removes the account and transfers all remaining XLM to the destination account.</p>
+<h4 id="attributes-9"><a class="anchorShortcut" href="#attributes-9" aria-hidden="true"></a> Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>into</td>
+<td>string</td>
+<td>Account ID where funds of deleted account were transferred.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-9"><a class="anchorShortcut" href="#example-9" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/799357838299137/effects{?cursor,limit,order}&quot;,
+      &quot;templated&quot;: true
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=799357838299137\u0026order=asc&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/799357838299137&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=799357838299137\u0026order=desc&quot;
+    },
+    &quot;transaction&quot;: {
+      &quot;href&quot;: &quot;/transactions/799357838299136&quot;
+    }
+  },
+  &quot;account&quot;: &quot;GBCR5OVQ54S2EKHLBZMK6VYMTXZHXN3T45Y6PRX4PX4FXDMJJGY4FD42&quot;,
+  &quot;id&quot;: 799357838299137,
+  &quot;into&quot;: &quot;GBS43BF24ENNS3KPACUZVKK2VYPOZVBQO2CISGZ777RYGOPYC2FT6S3K&quot;,
+  &quot;paging_token&quot;: &quot;799357838299137&quot;,
+  &quot;transaction_successful&quot;: true,
+  &quot;type_i&quot;: 8,
+  &quot;type&quot;: &quot;account_merge&quot;
+}
+</code></pre>
+<p><a id="inflation"></a></p>
+<h3 id="inflation"><a class="anchorShortcut" href="#inflation" aria-hidden="true"></a> Inflation</h3>
+<p>Runs inflation.</p>
+<h4 id="example-10"><a class="anchorShortcut" href="#example-10" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/12884914177/effects/{?cursor,limit,order}&quot;,
+      &quot;templated&quot;: true
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=12884914177\u0026order=asc&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/12884914177&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/operations?cursor=12884914177\u0026order=desc&quot;
+    },
+    &quot;transaction&quot;: {
+      &quot;href&quot;: &quot;/transactions/12884914176&quot;
+    }
+  },
+  &quot;id&quot;: 12884914177,
+  &quot;paging_token&quot;: &quot;12884914177&quot;,
+  &quot;transaction_successful&quot;: true,
+  &quot;type_i&quot;: 9,
+  &quot;type&quot;: &quot;inflation&quot;
+}
+</code></pre>
+<p><a id="manage-data"></a></p>
+<h3 id="manage-data"><a class="anchorShortcut" href="#manage-data" aria-hidden="true"></a> Manage Data</h3>
+<p>Set, modify or delete a Data Entry (name/value pair) for an account.</p>
+<h4 id="example-11"><a class="anchorShortcut" href="#example-11" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/5250180907536385&quot;
+    },
+    &quot;transaction&quot;: {
+      &quot;href&quot;: &quot;/transactions/e0710d3e410fe6b1ba77fcfec9e3789e94ff29b2424f1f4bf51e530dbbdf221c&quot;
+    },
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/5250180907536385/effects&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/effects?order=desc&amp;cursor=5250180907536385&quot;
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/effects?order=asc&amp;cursor=5250180907536385&quot;
+    }
+  },
+  &quot;id&quot;: &quot;5250180907536385&quot;,
+  &quot;paging_token&quot;: &quot;5250180907536385&quot;,
+  &quot;source_account&quot;: &quot;GCGG3CIRBG2TTBR4HYZJ7JLDRFKZIYOAHFXRWLU62CA2QN52P2SUQNPJ&quot;,
+  &quot;type&quot;: &quot;manage_data&quot;,
+  &quot;type_i&quot;: 10,
+  &quot;transaction_successful&quot;: true,
+  &quot;name&quot;: &quot;lang&quot;,
+  &quot;value&quot;: &quot;aW5kb25lc2lhbg==&quot;
+}
+</code></pre>
+<p><a id="bump-sequence"></a></p>
+<h3 id="bump-sequence"><a class="anchorShortcut" href="#bump-sequence" aria-hidden="true"></a> Bump Sequence</h3>
+<p>Bumps forward the sequence number of the source account of the operation, allowing it to invalidate any transactions with a smaller sequence number.</p>
+<h4 id="attributes-10"><a class="anchorShortcut" href="#attributes-10" aria-hidden="true"></a> Attributes</h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bumpTo</td>
+<td>number</td>
+<td>Desired value for the operation&#x2019;s source account sequence number.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-12"><a class="anchorShortcut" href="#example-12" aria-hidden="true"></a> Example</h4>
+<pre><code class="language-json">{
+  &quot;_links&quot;: {
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/operations/1743756726273&quot;
+    },
+    &quot;transaction&quot;: {
+      &quot;href&quot;: &quot;/transactions/328436a8dffaf6ca33c08a93279234c7d3eaf1c028804152614187dc76b7168d&quot;
+    },
+    &quot;effects&quot;: {
+      &quot;href&quot;: &quot;/operations/1743756726273/effects&quot;
+    },
+    &quot;succeeds&quot;: {
+      &quot;href&quot;: &quot;/effects?order=desc&amp;cursor=1743756726273&quot;
+    },
+    &quot;precedes&quot;: {
+      &quot;href&quot;: &quot;/effects?order=asc&amp;cursor=1743756726273&quot;
+    }
+  },
+  &quot;id&quot;: &quot;1743756726273&quot;,
+  &quot;paging_token&quot;: &quot;1743756726273&quot;,
+  &quot;source_account&quot;: &quot;GBHPJ3VMVT3X7Y6HIIAPK7YPTZCF3CWO4557BKGX2GVO4O7EZHIBELLH&quot;,
+  &quot;type&quot;: &quot;bump_sequence&quot;,
+  &quot;type_i&quot;: 11,
+  &quot;transaction_hash&quot;: &quot;328436a8dffaf6ca33c08a93279234c7d3eaf1c028804152614187dc76b7168d&quot;,
+  &quot;bump_to&quot;: &quot;1273737228&quot;
+}
+</code></pre>
+<h2 id="endpoints"><a class="anchorShortcut" href="#endpoints" aria-hidden="true"></a> Endpoints</h2>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Type</th>
+<th>Resource URI Template</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../operations-all.html">All Operations</a></td>
+<td>Collection</td>
+<td><code>/operations</code></td>
+</tr>
+<tr>
+<td><a href="../operations-single.html">Operations Details</a></td>
+<td>Single</td>
+<td><code>/operations/:id</code></td>
+</tr>
+<tr>
+<td><a href="../operations-for-ledger.html">Ledger Operations</a></td>
+<td>Collection</td>
+<td><code>/ledgers/{id}/operations{?cursor,limit,order}</code></td>
+</tr>
+<tr>
+<td><a href="../operations-for-account.html">Account Operations</a></td>
+<td>Collection</td>
+<td><code>/accounts/:account_id/operations</code></td>
+</tr>
+<tr>
+<td><a href="../payments-for-account.html">Account Payments</a></td>
+<td>Collection</td>
+<td><code>/accounts/:account_id/payments</code></td>
+</tr>
+</tbody>
+</table>
+
+      <br>
+      <a href="https://github.com/stellar/go/blob/master/services/horizon/internal/docs/reference/resources/operation.md" class="spu-color-neutral6">&#x5728; GitHub &#x4E0A;&#x7F16;&#x8F91;&#x6B64;&#x9875;&#x9762;</a>
+    </s-read-md>
+    <s-read-md class="endpointRef-exampleBar spu-background-neutral2 spu-color-neutral9 js-endpointRef-exampleBar">
+      <nav class="s-buttonList js-endpointRef-menu"></nav>
+
+      <div class="endpointRef-exampleRequest spu-padTop-20 js-endpointRef-exampleRequest"></div>
+      <div class="endpointRef-exampleResponse spu-padTop-20 js-endpointRef-exampleResponse"></div>
+    </s-read-md>
+  
+  </div>
+</div>
+</div>
+
+<div class="so-back spu-borderTop-1 spu-borderColor-neutral7 spu-padTB-15">
+  <div class="so-chunk">
+    <div class="siteFooter">
+      <div class="siteFooter__list">
+        <a class="siteFooter__list__item" href="https://www.stellar.org/"><span class="graphic-backArrow-9"></span>&#xA0;&#xA0;Stellar.org</a>
+        <span class="siteFooter__list__sep">|</span>
+        <a class="siteFooter__list__item" href="https://www.stellar.org/bug-bounty-program/">Bug &#x60AC;&#x8D4F;</a>
+        <a class="siteFooter__list__item" href="/stellar-core/software/admin.html">&#x8FD0;&#x884C;&#x8282;&#x70B9;</a>
+        <a class="siteFooter__list__item" href="/guides/things-to-build.html">&#x6784;&#x5EFA;&#x5E94;&#x7528;</a>
+        <a class="siteFooter__list__item" href="https://github.com/stellar/">GitHub</a>
+        <a class="siteFooter__list__item" href="http://slack.stellar.org/">&#x6765;&#x793E;&#x533A;&#x7545;&#x8C08;</a>
+      </div>
+      <div class="siteFooter__list siteFooter__list--aux">
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/terms-of-service/">&#x670D;&#x52A1;&#x6761;&#x6B3E;</a>
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/privacy-policy/">&#x9690;&#x79C1;&#x653F;&#x7B56;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/js/app-9b8f1b0df3650f3a8dabc0e0b08ccab9.js"></script>
+<script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("U8cLXTFMPm");
+analytics.page()
+}}();
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5V3WNNP');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V3WNNP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</html>

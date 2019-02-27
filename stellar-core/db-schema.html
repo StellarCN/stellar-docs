@@ -1,0 +1,551 @@
+<p>stellar-core maintains the current state of the ledger in a SQL DB. Currently
+it can be configured to use either sqlite or postgres.</p>
+<p>This database is the main way a dependent service such as Horizon can gather information on the current ledger state or transaction history.</p>
+<p>Most objects are the straight representation of the equivalent XDR object.
+See <a href="/src/ledger/readme.md"><code>src/ledger/readme.md</code></a> for a detailed description of those.</p>
+<p>Types used in the tables:</p>
+<table>
+<thead>
+<tr>
+<th>Type Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HEX</td>
+<td>Hex encoded binary blob</td>
+</tr>
+<tr>
+<td>BASE64</td>
+<td>Base 64 encoded binary blob</td>
+</tr>
+<tr>
+<td>XDR</td>
+<td>Base 64 encoded object serialized in XDR form</td>
+</tr>
+<tr>
+<td>STRKEY</td>
+<td>Custom encoding for public/private keys. See <a href="/src/crypto/readme.md"><code>src/crypto/readme.md</code></a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="ledgerheaders"><a class="anchorShortcut" href="#ledgerheaders" aria-hidden="true"></a> ledgerheaders</h2>
+<p>Defined in <a href="/src/ledger/LedgerHeaderUtils.cpp"><code>src/ledger/LedgerHeaderUtils.cpp</code></a></p>
+<p>Equivalent to <em>LedgerHeader</em></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ledgerhash</td>
+<td>CHARACTER(64) PRIMARY KEY</td>
+<td>Hash of the ledger header (HEX)</td>
+</tr>
+<tr>
+<td>prevhash</td>
+<td>CHARACTER(64) NOT NULL</td>
+<td>previousLedgerHash (HEX)</td>
+</tr>
+<tr>
+<td>bucketlisthash</td>
+<td>CHARACTER(64) NOT NULL</td>
+<td>(HEX)</td>
+</tr>
+<tr>
+<td>ledgerseq</td>
+<td>INT UNIQUE CHECK (ledgerseq &gt;= 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>closetime</td>
+<td>BIGINT NOT NULL CHECK (closetime &gt;= 0)</td>
+<td>scpValue.closeTime</td>
+</tr>
+<tr>
+<td>data</td>
+<td>TEXT NOT NULL</td>
+<td>Entire LedgerHeader (XDR)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="accounts"><a class="anchorShortcut" href="#accounts" aria-hidden="true"></a> accounts</h2>
+<p>Defined in <a href="/src/ledger/LedgerTxnAccountSQL.cpp"><code>src/ledger/LedgerTxnAccountSQL.cpp</code></a></p>
+<p>Equivalent to <em>AccountEntry</em></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accountid</td>
+<td>VARCHAR(56)  PRIMARY KEY</td>
+<td>(STRKEY)</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>BIGINT NOT NULL CHECK (balance &gt;= 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>seqnum</td>
+<td>BIGINT NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>numsubentries</td>
+<td>INT NOT NULL CHECK (numsubentries &gt;= 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>inflationdest</td>
+<td>VARCHAR(56)</td>
+<td>(STRKEY)</td>
+</tr>
+<tr>
+<td>homedomain</td>
+<td>VARCHAR(44)</td>
+<td>(BASE64)</td>
+</tr>
+<tr>
+<td>thresholds</td>
+<td>TEXT</td>
+<td>(BASE64)</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>INT NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>lastmodified</td>
+<td>INT NOT NULL</td>
+<td>lastModifiedLedgerSeq</td>
+</tr>
+<tr>
+<td>buyingliabilities</td>
+<td>BIGINT CHECK (buyingliabilities &gt;= 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>sellingliabilities</td>
+<td>BIGINT CHECK (sellingliabilities &gt;= 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>signers</td>
+<td>TEXT</td>
+<td>(XDR)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="offers"><a class="anchorShortcut" href="#offers" aria-hidden="true"></a> offers</h2>
+<p>Defined in <a href="/src/ledger/LedgerTxnOfferSQL.cpp.cpp"><code>src/ledger/LedgerTxnOfferSQL.cpp.cpp</code></a></p>
+<p>Equivalent to <em>OfferEntry</em></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sellerid</td>
+<td>VARCHAR(56) NOT NULL</td>
+<td>(STRKEY)</td>
+</tr>
+<tr>
+<td>offerid</td>
+<td>BIGINT NOT NULL CHECK (offerid &gt;= 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>sellingassettype</td>
+<td>INT</td>
+<td>selling.type</td>
+</tr>
+<tr>
+<td>sellingassetcode</td>
+<td>VARCHAR(12)</td>
+<td>selling.*.assetCode</td>
+</tr>
+<tr>
+<td>sellingissuer</td>
+<td>VARCHAR(56)</td>
+<td>selling.*.issuer</td>
+</tr>
+<tr>
+<td>buyingassettype</td>
+<td>INT</td>
+<td>buying.type</td>
+</tr>
+<tr>
+<td>buyingassetcode</td>
+<td>VARCHAR(12)</td>
+<td>buying.*.assetCode</td>
+</tr>
+<tr>
+<td>buyingissuer</td>
+<td>VARCHAR(56)</td>
+<td>buying.*.issuer</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>BIGINT NOT NULL CHECK (amount &gt;= 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>pricen</td>
+<td>INT NOT NULL</td>
+<td>Price.n</td>
+</tr>
+<tr>
+<td>priced</td>
+<td>INT NOT NULL</td>
+<td>Price.d</td>
+</tr>
+<tr>
+<td>price</td>
+<td>DOUBLE PRECISION NOT NULL</td>
+<td>computed price n/d, used for ordering offers</td>
+</tr>
+<tr>
+<td>flags</td>
+<td>INT NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>lastmodified</td>
+<td>INT NOT NULL</td>
+<td>lastModifiedLedgerSeq</td>
+</tr>
+</tbody>
+</table>
+<h2 id="trustlines"><a class="anchorShortcut" href="#trustlines" aria-hidden="true"></a> trustlines</h2>
+<p>Defined in <a href="/src/ledger/LedgerTxnTrustLineSQL.cpp"><code>src/ledger/LedgerTxnTrustLineSQL.cpp</code></a></p>
+<p>Equivalent to <em>TrustLineEntry</em></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accountid</td>
+<td>VARCHAR(56) NOT NULL</td>
+<td>(STRKEY)</td>
+</tr>
+<tr>
+<td>assettype</td>
+<td>INT NOT NULL</td>
+<td>asset.type</td>
+</tr>
+<tr>
+<td>issuer</td>
+<td>VARCHAR(56) NOT NULL</td>
+<td>asset.*.issuer</td>
+</tr>
+<tr>
+<td>assetcode</td>
+<td>VARCHAR(12) NOT NULL</td>
+<td>asset.*.assetCode</td>
+</tr>
+<tr>
+<td>tlimit</td>
+<td>BIGINT NOT NULL DEFAULT 0 CHECK (tlimit &gt;= 0)</td>
+<td>limit</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>BIGINT NOT NULL DEFAULT 0 CHECK (balance &gt;= 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>flags</td>
+<td>INT NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>lastmodified</td>
+<td>INT NOT NULL</td>
+<td>lastModifiedLedgerSeq</td>
+</tr>
+<tr>
+<td>buyingliabilities</td>
+<td>BIGINT CHECK (buyingliabilities &gt;= 0)</td>
+<td></td>
+</tr>
+<tr>
+<td>sellingliabilities</td>
+<td>BIGINT CHECK (sellingliabilities &gt;= 0)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="accountdata"><a class="anchorShortcut" href="#accountdata" aria-hidden="true"></a> accountdata</h2>
+<p>Defined in <a href="/src/ledger/LedgerTxnDataSQL.cpp"><code>src/ledger/LedgerTxnDataSQL.cpp</code></a></p>
+<p>Equivalent to <em>DataEntry</em></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accountid</td>
+<td>VARCHAR(56) NOT NULL</td>
+<td>(STRKEY)</td>
+</tr>
+<tr>
+<td>dataname</td>
+<td>VARCHAR(88) NOT NULL</td>
+<td>(BASE64)</td>
+</tr>
+<tr>
+<td>datavalue</td>
+<td>VARCHAR(112) NOT NULL</td>
+<td>(BASE64)</td>
+</tr>
+<tr>
+<td>lastmodified</td>
+<td>INT NOT NULL</td>
+<td>lastModifiedLedgerSeq</td>
+</tr>
+</tbody>
+</table>
+<h2 id="txhistory"><a class="anchorShortcut" href="#txhistory" aria-hidden="true"></a> txhistory</h2>
+<p>Defined in <a href="/src/transactions/TransactionFrame.cpp"><code>src/transactions/TransactionFrame.cpp</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>txid</td>
+<td>CHARACTER(64) NOT NULL</td>
+<td>Hash of the transaction (excluding signatures) (HEX)</td>
+</tr>
+<tr>
+<td>ledgerseq</td>
+<td>INT NOT NULL CHECK (ledgerseq &gt;= 0)</td>
+<td>Ledger this transaction got applied</td>
+</tr>
+<tr>
+<td>txindex</td>
+<td>INT NOT NULL</td>
+<td>Apply order (per ledger, 1)</td>
+</tr>
+<tr>
+<td>txbody</td>
+<td>TEXT NOT NULL</td>
+<td>TransactionEnvelope (XDR)</td>
+</tr>
+<tr>
+<td>txresult</td>
+<td>TEXT NOT NULL</td>
+<td>TransactionResultPair (XDR)</td>
+</tr>
+<tr>
+<td>txmeta</td>
+<td>TEXT NOT NULL</td>
+<td>TransactionMeta (XDR)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="txfeehistory"><a class="anchorShortcut" href="#txfeehistory" aria-hidden="true"></a> txfeehistory</h2>
+<p>Defined in <a href="/src/transactions/TransactionFrame.cpp"><code>src/transactions/TransactionFrame.cpp</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>txid</td>
+<td>CHARACTER(64) NOT NULL</td>
+<td>Hash of the transaction (excluding signatures) (HEX)</td>
+</tr>
+<tr>
+<td>ledgerseq</td>
+<td>INT NOT NULL CHECK (ledgerseq &gt;= 0)</td>
+<td>Ledger this transaction got applied</td>
+</tr>
+<tr>
+<td>txindex</td>
+<td>INT NOT NULL</td>
+<td>Apply order (per ledger, 1)</td>
+</tr>
+<tr>
+<td>txchanges</td>
+<td>TEXT NOT NULL</td>
+<td>LedgerEntryChanges (XDR)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="scphistory"><a class="anchorShortcut" href="#scphistory" aria-hidden="true"></a> scphistory</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nodeid</td>
+<td>CHARACTER(56) NOT NULL</td>
+<td>(STRKEY)</td>
+</tr>
+<tr>
+<td>ledgerseq</td>
+<td>INT NOT NULL CHECK (ledgerseq &gt;= 0)</td>
+<td>Ledger this transaction got applied</td>
+</tr>
+<tr>
+<td>envelope</td>
+<td>TEXT NOT NULL</td>
+<td>(XDR)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="scpquorums"><a class="anchorShortcut" href="#scpquorums" aria-hidden="true"></a> scpquorums</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>qsethash</td>
+<td>CHARACTER(64) NOT NULL</td>
+<td>hash of quorum set (HEX)</td>
+</tr>
+<tr>
+<td>lastledgerseq</td>
+<td>INT NOT NULL CHECK (ledgerseq &gt;= 0)</td>
+<td>Ledger this quorum set was last seen</td>
+</tr>
+<tr>
+<td>qset</td>
+<td>TEXT NOT NULL</td>
+<td>(XDR)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="storestate"><a class="anchorShortcut" href="#storestate" aria-hidden="true"></a> storestate</h2>
+<p>Defined in <a href="/src/main/PersistantState.cpp"><code>src/main/PersistantState.cpp</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>statename</td>
+<td>CHARACTER(32) PRIMARY KEY</td>
+<td>Key</td>
+</tr>
+<tr>
+<td>state</td>
+<td>TEXT</td>
+<td>Value</td>
+</tr>
+</tbody>
+</table>
+<h2 id="peers"><a class="anchorShortcut" href="#peers" aria-hidden="true"></a> peers</h2>
+<p>Defined in <a href="/src/overlay/PeerRecord.cpp"><code>src/overlay/PeerRecord.cpp</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ip</td>
+<td>VARCHAR(15) NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>port</td>
+<td>INT DEFAULT 0 CHECK (port &gt; 0 AND port &lt;= 65535) NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>nextattempt</td>
+<td>TIMESTAMP NOT NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>numfailures</td>
+<td>INT DEFAULT 0 CHECK (numfailures &gt;= 0) NOT NULL</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="upgradehistory"><a class="anchorShortcut" href="#upgradehistory" aria-hidden="true"></a> upgradehistory</h2>
+<p>Defined in <a href="/src/herder/Upgrades.cpp"><code>src/herder/Upgrades.cpp</code></a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ledgerseq</td>
+<td>INT NOT NULL CHECK (ledgerseq &gt;= 0)</td>
+<td>Ledger this upgrade got applied</td>
+</tr>
+<tr>
+<td>upgradeindex</td>
+<td>INT NOT NULL</td>
+<td>Apply order (per ledger, 1)</td>
+</tr>
+<tr>
+<td>upgrade</td>
+<td>TEXT NOT NULL</td>
+<td>The upgrade (XDR)</td>
+</tr>
+<tr>
+<td>changes</td>
+<td>TEXT NOT NULL</td>
+<td>LedgerEntryChanges (XDR)</td>
+</tr>
+</tbody>
+</table>

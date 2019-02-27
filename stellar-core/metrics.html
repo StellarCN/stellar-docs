@@ -1,0 +1,413 @@
+<p>stellar-core uses libmedida for computing metrics, a detailed description can
+be found at <a href="http://dln.github.io/medida/">http://dln.github.io/medida/</a></p>
+<h3 id="counters"><a class="anchorShortcut" href="#counters" aria-hidden="true"></a> Counters (<code>NewCounter</code>)</h3>
+<p>Tracks a value in absolute terms of a base unit.</p>
+<h3 id="histograms"><a class="anchorShortcut" href="#histograms" aria-hidden="true"></a> Histograms (<code>NewHistogram</code>)</h3>
+<p>Tracks aggregates (count, min, max, mean, percentiles, etc) for samples
+expressed in arbitrary base unit.</p>
+<h3 id="timers"><a class="anchorShortcut" href="#timers" aria-hidden="true"></a> Timers (<code>NewTimer</code>)</h3>
+<p>Tracks aggregates (count, min, max, mean, percentiles, etc) of samples expressed in units of time.</p>
+<h3 id="meters"><a class="anchorShortcut" href="#meters" aria-hidden="true"></a> Meters (<code>NewMeter</code>)</h3>
+<p>Tracks aggregates (count, min, max, mean, etc),  rate (1m, 5m, 15m) for samples
+expressed in base unit.</p>
+<table>
+<thead>
+<tr>
+<th>Metric name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bucket.snap.merge</td>
+<td>timer</td>
+<td>time to merge two buckets</td>
+</tr>
+<tr>
+<td>bucket.batch.objectsadded</td>
+<td>meter</td>
+<td>number of objects added per batch</td>
+</tr>
+<tr>
+<td>bucket.batch.addtime</td>
+<td>timer</td>
+<td>time to add a batch</td>
+</tr>
+<tr>
+<td>bucket.memory.shared</td>
+<td>counter</td>
+<td>number of buckets referenced (excluding publish queue)</td>
+</tr>
+<tr>
+<td>scp.sync.lost</td>
+<td>meter</td>
+<td>validator lost sync</td>
+</tr>
+<tr>
+<td>scp.envelope.emit</td>
+<td>meter</td>
+<td>SCP message sent</td>
+</tr>
+<tr>
+<td>scp.envelope.receive</td>
+<td>meter</td>
+<td>SCP message received</td>
+</tr>
+<tr>
+<td>scp.memory.cumulative-statements</td>
+<td>counter</td>
+<td>number of known SCP statements known</td>
+</tr>
+<tr>
+<td>herder.pending-txs.age0</td>
+<td>counter</td>
+<td>number of gen0 pending transactions</td>
+</tr>
+<tr>
+<td>herder.pending-txs.age1</td>
+<td>counter</td>
+<td>number of gen1 pending transactions</td>
+</tr>
+<tr>
+<td>herder.pending-txs.age2</td>
+<td>counter</td>
+<td>number of gen2 pending transactions</td>
+</tr>
+<tr>
+<td>herder.pending-txs.age3</td>
+<td>counter</td>
+<td>number of gen3 pending transactions</td>
+</tr>
+<tr>
+<td>scp.envelope.sign</td>
+<td>meter</td>
+<td>envelope signed</td>
+</tr>
+<tr>
+<td>scp.envelope.validsig</td>
+<td>meter</td>
+<td>envelope signature verified</td>
+</tr>
+<tr>
+<td>scp.envelope.invalidsig</td>
+<td>meter</td>
+<td>envelope failed signature verification</td>
+</tr>
+<tr>
+<td>scp.value.valid</td>
+<td>meter</td>
+<td>SCP value is valid</td>
+</tr>
+<tr>
+<td>scp.value.invalid</td>
+<td>meter</td>
+<td>SCP value is invalid</td>
+</tr>
+<tr>
+<td>scp.nomination.combinecandidates</td>
+<td>meter</td>
+<td>number of candidates per call</td>
+</tr>
+<tr>
+<td>scp.timing.nominated</td>
+<td>timer</td>
+<td>time spent in nomination</td>
+</tr>
+<tr>
+<td>scp.timing.externalized</td>
+<td>timer</td>
+<td>time spent in ballot protocol</td>
+</tr>
+<tr>
+<td>scp.pending.processed</td>
+<td>counter</td>
+<td>number of already processed envelopes</td>
+</tr>
+<tr>
+<td>scp.pending.discarded</td>
+<td>counter</td>
+<td>number of discarded envelopes</td>
+</tr>
+<tr>
+<td>scp.pending.fetching</td>
+<td>counter</td>
+<td>number of incomplete envelopes</td>
+</tr>
+<tr>
+<td>scp.pending.ready</td>
+<td>counter</td>
+<td>number of envelopes ready to process</td>
+</tr>
+<tr>
+<td>history.apply-ledger-chain.success</td>
+<td>meter</td>
+<td>apply ledger chain completed successfuly</td>
+</tr>
+<tr>
+<td>history.apply-ledger-chain.failure</td>
+<td>meter</td>
+<td>apply ledger chain failed</td>
+</tr>
+<tr>
+<td>history.publish.success</td>
+<td>meter</td>
+<td>published completed successfuly</td>
+</tr>
+<tr>
+<td>history.publish.failure</td>
+<td>meter</td>
+<td>published failed</td>
+</tr>
+<tr>
+<td>history.download-<x>.success</x></td>
+<td>meter</td>
+<td>download of <x> completed successfuly</x></td>
+</tr>
+<tr>
+<td>history.download-<x>.failure</x></td>
+<td>meter</td>
+<td>download of <x> failed</x></td>
+</tr>
+<tr>
+<td>history.verify-<x>.success</x></td>
+<td>meter</td>
+<td>verification of <x> succeeded</x></td>
+</tr>
+<tr>
+<td>history.verify-<x>.failure</x></td>
+<td>meter</td>
+<td>verification of <x> failed</x></td>
+</tr>
+<tr>
+<td>history-archive.<x>.success</x></td>
+<td>meter</td>
+<td>accessing history archive <x> succeeded</x></td>
+</tr>
+<tr>
+<td>history-archive.<x>.failure</x></td>
+<td>meter</td>
+<td>accessing history archive <x> failed</x></td>
+</tr>
+<tr>
+<td>ledger.invariant.failure</td>
+<td>counter</td>
+<td>number of times invariants failed</td>
+</tr>
+<tr>
+<td>ledger.transaction.apply</td>
+<td>timer</td>
+<td>time to apply one transaction</td>
+</tr>
+<tr>
+<td>ledger.transaction.count</td>
+<td>histogram</td>
+<td>number of transactions per ledger</td>
+</tr>
+<tr>
+<td>ledger.transaction.internal-error</td>
+<td>counter</td>
+<td>number of internal errors since start</td>
+</tr>
+<tr>
+<td>ledger.operation.count</td>
+<td>histogram</td>
+<td>number of operations per ledger</td>
+</tr>
+<tr>
+<td>ledger.operation.apply</td>
+<td>timer</td>
+<td>time applying an operation</td>
+</tr>
+<tr>
+<td>ledger.ledger.close</td>
+<td>timer</td>
+<td>time to close a ledger (excluding consensus)</td>
+</tr>
+<tr>
+<td>ledger.age.closed</td>
+<td>timer</td>
+<td>time between ledgers</td>
+</tr>
+<tr>
+<td>ledger.age.current-seconds</td>
+<td>counter</td>
+<td>gap between last close ledger time and current time</td>
+</tr>
+<tr>
+<td>ledger.memory.queued-ledgers</td>
+<td>counter</td>
+<td>number of ledgers queued in memory for replay</td>
+</tr>
+<tr>
+<td>app.state.current</td>
+<td>counter</td>
+<td>state (BOOTING=0, JOIN_SCP=1, LEDGER_SYNC=2, CATCHING_UP=3, SYNCED=4, STOPPING=5)</td>
+</tr>
+<tr>
+<td>app.post-on-main-thread.delay</td>
+<td>timer</td>
+<td>time to start task posted to current crank of main thread</td>
+</tr>
+<tr>
+<td>app.post-on-main-thread-with-delay.delay</td>
+<td>timer</td>
+<td>time to start task posted to next crank of main thread</td>
+</tr>
+<tr>
+<td>app.post-on-background-thread.delay</td>
+<td>timer</td>
+<td>time to start task posted to background threadoverlay.memory.flood-known</td>
+</tr>
+<tr>
+<td>overlay.flood.broadcast</td>
+<td>meter</td>
+<td>message sent as broadcast per peer</td>
+</tr>
+<tr>
+<td>overlay.message.broadcast</td>
+<td>meter</td>
+<td>message broadcasted</td>
+</tr>
+<tr>
+<td>overlay.inbound.attempt</td>
+<td>meter</td>
+<td>inbound connection attempted (accepted on socket)</td>
+</tr>
+<tr>
+<td>overlay.inbound.establish</td>
+<td>meter</td>
+<td>inbound connection established (added to pending)</td>
+</tr>
+<tr>
+<td>overlay.inbound.drop</td>
+<td>meter</td>
+<td>inbound connection dropped</td>
+</tr>
+<tr>
+<td>overlay.inbound.reject</td>
+<td>meter</td>
+<td>inbound connection rejected</td>
+</tr>
+<tr>
+<td>overlay.outbound.attempt</td>
+<td>meter</td>
+<td>outbound connection attempted (socket opened)</td>
+</tr>
+<tr>
+<td>overlay.outbound.establish</td>
+<td>meter</td>
+<td>outbound connection established (added to pending)</td>
+</tr>
+<tr>
+<td>overlay.outbound.drop</td>
+<td>meter</td>
+<td>outbound connection dropped</td>
+</tr>
+<tr>
+<td>overlay.outbound.cancel</td>
+<td>meter</td>
+<td>outbound connection cancelled</td>
+</tr>
+<tr>
+<td>overlay.connection.pending</td>
+<td>counter</td>
+<td>number of pending connections</td>
+</tr>
+<tr>
+<td>overlay.connection.authenticated</td>
+<td>counter</td>
+<td>number of authenticated peers</td>
+</tr>
+<tr>
+<td>overlay.byte.read</td>
+<td>meter</td>
+<td>number of bytes received</td>
+</tr>
+<tr>
+<td>overlay.byte.write</td>
+<td>meter</td>
+<td>number of bytes sent</td>
+</tr>
+<tr>
+<td>overlay.message.read</td>
+<td>meter</td>
+<td>message received</td>
+</tr>
+<tr>
+<td>overlay.message.write</td>
+<td>meter</td>
+<td>message sent</td>
+</tr>
+<tr>
+<td>overlay.error.read</td>
+<td>meter</td>
+<td>error while receiving a message</td>
+</tr>
+<tr>
+<td>overlay.error.write</td>
+<td>meter</td>
+<td>error while sending a message</td>
+</tr>
+<tr>
+<td>overlay.timeout.idle</td>
+<td>meter</td>
+<td>idle peer timeout</td>
+</tr>
+<tr>
+<td>overlay.recv.<x></x></td>
+<td>timer</td>
+<td>received message <x></x></td>
+</tr>
+<tr>
+<td>overlay.send.<x></x></td>
+<td>meter</td>
+<td>sent message <x></x></td>
+</tr>
+<tr>
+<td>overlay.item-fetcher.next-peer</td>
+<td>meter</td>
+<td>ask for item past the first one</td>
+</tr>
+<tr>
+<td>loadgen.step.count</td>
+<td>meter</td>
+<td>loadgenerator: generated some transactions</td>
+</tr>
+<tr>
+<td>loadgen.step.submit</td>
+<td>timer</td>
+<td>loadgenerator: time spent submiting transactions per step</td>
+</tr>
+<tr>
+<td>loadgen.run.complete</td>
+<td>meter</td>
+<td>loadgenerator: run complete</td>
+</tr>
+<tr>
+<td>loadgen.account.created</td>
+<td>meter</td>
+<td>loadgenerator: account created</td>
+</tr>
+<tr>
+<td>loadgen.payment.native</td>
+<td>meter</td>
+<td>loadgenerator: native payment submited</td>
+</tr>
+<tr>
+<td>loadgen.txn.attempted</td>
+<td>meter</td>
+<td>loadgenerator: transaction submitted</td>
+</tr>
+<tr>
+<td>loadgen.txn.rejected</td>
+<td>meter</td>
+<td>loadgenerator: transaction rejected</td>
+</tr>
+<tr>
+<td>loadgen.txn.bytes</td>
+<td>meter</td>
+<td>loadgenerator: size of transactions submitted</td>
+</tr>
+</tbody>
+</table>

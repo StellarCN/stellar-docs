@@ -1,0 +1,123 @@
+<h2 id="notes-for-developers"><a class="anchorShortcut" href="#notes-for-developers" aria-hidden="true"></a> Notes for Developers</h2>
+<p>This document contains additional information related to the development of Horizon. For a detailed discussion of how to build and develop against Horizon, see the <a href="developing.md">Horizon development guide</a>.</p>
+<ul>
+<li><a href="#setup">Initial set up</a></li>
+<li><a href="#regen">Regenerating generated code</a></li>
+<li><a href="#scenarios">Adding and rebuilding test scenarios</a></li>
+<li><a href="#tests">Running tests</a></li>
+<li><a href="#logging">Logging</a></li>
+</ul>
+<hr>
+<h2 id="initial-set-up"><a class="anchorShortcut" href="#initial-set-up" aria-hidden="true"></a> <a name="setup"></a> Initial set up</h2>
+<p>Compile and install Horizon as described in the <a href="developing.md">Horizon development guide</a>.</p>
+<h2 id="regenerating-generated-code"><a class="anchorShortcut" href="#regenerating-generated-code" aria-hidden="true"></a> <a name="regen"></a> Regenerating generated code</h2>
+<p>Horizon uses two Go tools you&#x2019;ll need to install:</p>
+<ol>
+<li><a href="https://github.com/jteeuwen/go-bindata">go-bindata</a> is used to bundle test data</li>
+<li><a href="https://github.com/nullstyle/go-codegen">go-codegen</a> is used to generate some boilerplate code</li>
+</ol>
+<p>After the above are installed, run <code>go generate github.com/stellar/go/services/horizon/...</code>. This will look for any <code>.tmpl</code> files in the directory and use them to generate code when annotated structs are found in the package source.</p>
+<h2 id="adding-rebuilding-and-using-test-scenarios"><a class="anchorShortcut" href="#adding-rebuilding-and-using-test-scenarios" aria-hidden="true"></a> <a name="scenarios"></a> Adding, rebuilding and using test scenarios</h2>
+<p>In order to simulate ledgers Horizon uses <a href="https://github.com/stellar/stellar_core_commander"><code>stellar-core-commander</code></a> recipe files to add transactions and operations to ledgers using the stellar-core test framework.</p>
+<p>In order to add a new scenario or rebuild existing scenarios you need:</p>
+<ol>
+<li><a href="https://github.com/stellar/stellar_core_commander"><code>stellar-core-commander</code></a> (in short: <code>scc</code>) installed and <a href="https://github.com/stellar/stellar_core_commander#assumptions-about-environment">configured</a>.</li>
+<li><a href="https://github.com/stellar/stellar-core"><code>stellar-core</code></a> binary.</li>
+<li>This repository cloned locally.</li>
+</ol>
+<p><code>scc</code> allows you to write scripts/recipes that are later executed in <code>stellar-core</code> isolated network. After executing a recipe you can then export the <code>stellar-core</code> database to be able to run Horizon ingestion system against it (this repository contains a script that does this for you - read below).</p>
+<h3 id="example-recipe"><a class="anchorShortcut" href="#example-recipe" aria-hidden="true"></a> Example recipe</h3>
+<p>Here&#x2019;s an example of recipe file with comments:</p>
+<pre><code class="language-rb"># Define two accounts test accounts
+account :scott, Stellar::KeyPair.from_seed(&quot;SBZWG33UOQQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAPSA&quot;)
+account :bartek, Stellar::KeyPair.from_seed(&quot;SBRGC4TUMVVSAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEAQCBDHV&quot;)
+
+# use_manual_close causes scc to run a process with MANUAL_CLOSE=true
+use_manual_close
+
+# Create 2 accounts `scott` and `bartek`
+create_account :scott,  :master, 100
+create_account :bartek, :master, 100
+
+# Close ledger
+close_ledger
+
+# Send 5 XLM from `scott` to `bartek`
+payment :scott, :bartek,  [:native, 5]
+</code></pre>
+<p>You can find more recipes in <a href="https://github.com/stellar/stellar_core_commander/tree/84d5ffb97202ecc3a0ed34a739c98e69536c0c2c/examples"><code>scc</code> examples</a> and <a href="https://github.com/stellar/go/tree/master/services/horizon/internal/test/scenarios">horizon test scenarios</a>.</p>
+<h3 id="rebuilding-scenarios"><a class="anchorShortcut" href="#rebuilding-scenarios" aria-hidden="true"></a> Rebuilding scenarios</h3>
+<ol>
+<li>Create a new or modify existing recipe. All new recipes should be added to <a href="https://github.com/stellar/go/tree/master/services/horizon/internal/test/scenarios">horizon test scenarios</a> directory.</li>
+<li>In <code>stellar/go</code> repository root directory run <code>./services/horizon/internal/scripts/build_test_scenarios.bash</code>.</li>
+<li>The command above will rebuild all test scenarios. If you need to rebuild only one scenario modify <code>PACKAGES</code> environment variable temporarily in the script.</li>
+</ol>
+<h3 id="using-test-scenarios"><a class="anchorShortcut" href="#using-test-scenarios" aria-hidden="true"></a> Using test scenarios</h3>
+<p>In your <code>Test*</code> function execute:</p>
+<pre><code class="language-go">ht := StartHTTPTest(t, scenarioName)
+defer ht.Finish()
+</code></pre>
+<p>where <code>scenarioName</code> is the name of the scenario you want to use. This will start test Horizon server with data loaded from the recipe.</p>
+<p>When testing ingestion you can load scenario data without Horizon database like:</p>
+<pre><code class="language-go">tt := test.Start(t).ScenarioWithoutHorizon(&quot;kahuna&quot;)
+defer tt.Finish()
+s := ingest(tt, true)
+</code></pre>
+<p>Check existing tests for more examples.</p>
+<h2 id="running-tests"><a class="anchorShortcut" href="#running-tests" aria-hidden="true"></a> <a name="tests"></a> Running Tests</h2>
+<p>start a redis server on port <code>6379</code></p>
+<pre><code class="language-bash">redis-server
+</code></pre>
+<p>then, run the all the Go monorepo tests like so (assuming you are at stellar/go, or run from stellar/go/services/horizon for just the Horizon subset):</p>
+<pre><code class="language-bash">bash ./support/scripts/run_tests
+</code></pre>
+<p>or run individual Horizon tests like so, providing the expected arguments:</p>
+<pre><code class="language-bash">go test github.com/stellar/go/services/horizon/...
+</code></pre>
+<h2 id="logging"><a class="anchorShortcut" href="#logging" aria-hidden="true"></a> <a name="logging"></a> Logging</h2>
+<p>All logging infrastructure is in the <code>github.com/stellar/go/tree/master/services/horizon/internal/log</code> package.  This package provides &#x201C;level-based&#x201D; logging:  Each logging statement has a severity, one of &#x201C;Debug&#x201D;, &#x201C;Info&#x201D;, &#x201C;Warn&#x201D;, &#x201C;Error&#x201D; or &#x201C;Panic&#x201D;.  The Horizon server has a configured level &#x201C;filter&#x201D;, specified either using the <code>--log-level</code> command line flag or the <code>LOG_LEVEL</code> environment variable.  When a logging statement is executed, the statements declared severity is checked against the filter and will only be emitted if the severity of the statement is equal or higher severity than the filter.</p>
+<p>In addition, the logging subsystem has support for fields: Arbitrary key-value pairs that will be associated with an entry to allow for filtering and additional contextual information.</p>
+<h3 id="making-logging-statements"><a class="anchorShortcut" href="#making-logging-statements" aria-hidden="true"></a> Making logging statements</h3>
+<p>Assuming that you&#x2019;ve imports the log package, making a simple logging call is just:</p>
+<pre><code class="language-go">
+log.Info(&quot;my log line&quot;)
+log.Infof(&quot;I take a %s&quot;, &quot;format string&quot;)
+
+</code></pre>
+<p>Adding fields to a statement happens with a call to <code>WithField</code> or <code>WithFields</code></p>
+<pre><code class="language-go">log.WithField(&quot;pid&quot;, 1234).Warn(&quot;i&apos;m scared&quot;)
+
+log.WithFields(log.F{
+	&quot;some_field&quot;: 123,
+	&quot;second_field&quot;: &quot;hello&quot;,
+}).Debug(&quot;here&quot;)
+</code></pre>
+<p>The return value from <code>WithField</code> or <code>WithFields</code> is a <code>*log.Entry</code>, which you can save to emit multiple logging
+statements that all share the same field.  For example, the action system for Horizon attaches a log entry to <code>action.Log</code> on every request that can be used to emit log entries that have the request&#x2019;s id attached as a field.</p>
+<h3 id="logging-and-context"><a class="anchorShortcut" href="#logging-and-context" aria-hidden="true"></a> Logging and Context</h3>
+<p>The logging package provides the root logger at <code>log.DefaultLogger</code> and the package level funcs such as <code>log.Info</code> operate against the default logger.  However, often it is important to include request-specific fields in a logging statement that are not available in the local scope.  For example, it is useful to include an http request&#x2019;s id in every log statement that is emitted by code running on behalf of the request.  This allows for easier debugging, as an operator can filter the log stream to a specific request id and not have to wade through the entirety of the log.</p>
+<p>Unfortunately, it is not prudent to thread an <code>*http.Request</code> parameter to every downstream subroutine and so we need another way to make that information available.  The idiomatic way to do this in Go is with a context parameter, as describe <a href="https://blog.golang.org/context">on the Go blog</a>.  The logging provides a func to bind a logger to a context using <code>log.Set</code> and allows you to retrieve a bound logger using <code>log.Ctx(ctx)</code>.  Functions that need to log on behalf of an server request should take a context parameter.</p>
+<p>Here&#x2019;s an example of using context:</p>
+<pre><code class="language-go">
+// create a new sublogger
+sub := log.WithField(&quot;val&quot;, 1)
+
+// bind it to a context
+ctx := log.Set(context.Background(), sub)
+
+log.Info(&quot;no fields on this statement&quot;)
+log.Ctx(ctx).Info(&quot;This statement will use the sub logger&quot;)
+
+</code></pre>
+<h3 id="logging-best-practices"><a class="anchorShortcut" href="#logging-best-practices" aria-hidden="true"></a> Logging Best Practices</h3>
+<p>It&#x2019;s recommended that you try to avoid contextual information in your logging messages.  Instead, use fields to establish context and use a static string for your message.  This practice allows Horizon operators to more easily filter log lines to provide better insight into the health of the server.  Lets take an example:</p>
+<pre><code class="language-go">// BAD
+log.Infof(&quot;running initializer: %s&quot;, i.Name)
+
+//GOOD
+log.WithField(&quot;init_name&quot;, i.Name).Info(&quot;running initializer&quot;)
+</code></pre>
+<p>With the &#x201C;bad&#x201D; form of the logging example above, an operator can filter on both the message as well as the initializer name independently.  This gets more powerful when multiple fields are combined, allowing for all sorts of slicing and dicing.</p>
+<h2 id="enabling-tls-on-your-local-workstation"><a class="anchorShortcut" href="#enabling-tls-on-your-local-workstation" aria-hidden="true"></a> <a name="TLS"></a> Enabling TLS on your local workstation</h2>
+<p>Horizon support HTTP/2 when served using TLS.  To enable TLS on your local workstation, you must generate a certificate and configure Horizon to use it.  We&#x2019;ve written a helper script at <code>tls/regen.sh</code> to make this simple.  Run the script from your terminal, and simply choose all the default options.  This will create two files: <code>tls/server.crt</code> and <code>tls/server.key</code>.</p>
+<p>Now you must configure Horizon to use them: You can simply add <code>--tls-cert tls/server.crt --tls-key tls/server.key</code> to your command line invocations of Horizon, or you may specify <code>TLS_CERT</code> and <code>TLS_KEY</code> environment variables.</p>

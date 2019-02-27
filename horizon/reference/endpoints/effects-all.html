@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+
+  Want to contribute to this site? Take a look at the GitHub repository for this
+  site: https://github.com/stellar/developers
+
+  -->
+  <title>All Effects - Go SDK | Stellar Developers</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="author" content="Stellar.org and contributors">
+
+  <meta property="og:title" content="All Effects - Go SDK | Stellar Developers">
+  <meta property="og:type" content="website">
+
+
+  <link rel="stylesheet" href="/styles/index-cff14d28bafbba60930f31b923b4e75b.css">
+
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/rocket-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/rocket-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/rocket-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicon/rocket-96x96.png" sizes="96x96">
+  <meta name="msapplication-TileImage" content="/images/favicon/rocket-144x144.png">
+
+  <script type="text/javascript">
+    var $mcGoal = {'settings':{'uuid':'c001d97369b7a10d224c23867','dc':'us9'}};
+    (function() {
+      var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+      sp.src = ('https:' == document.location.protocol ? 'https://s3.amazonaws.com/downloads.mailchimp.com' : 'http://downloads.mailchimp.com') + '/js/goal.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+    })();
+  </script>
+
+  <script>window.clientData = {"laboratoryUrl":"https://www.stellar.org/laboratory/#explorer?resource=effects&endpoint=all"};</script>
+
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0065/1320.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+</head>
+<body>
+<div class="header2016">
+  <div class="header2016__logo header2016__logo--spaced">
+    <div class="so-siteHeader">
+      <span class="so-logo">
+  <a href="https://www.stellar.org/" class="so-logo__main">Stellar</a><!--
+  --><span class="so-logo__separator"> </span><!--
+  --><a href="/" class="so-logo__subSite">developers</a>
+</span>
+    </div>
+  </div>
+  <nav class="header2016__nav mainNavMenu spu-padStart-30">
+    <a class="mainNavMenu__item " href="/guides/">&#x6307;&#x5357;</a>
+<a class="mainNavMenu__item is-currentItem" href="/reference/">API &#x53C2;&#x8003;&#x624B;&#x518C;</a>
+<a class="mainNavMenu__item " href="/software/">&#x8F6F;&#x4EF6;</a>
+<a class="mainNavMenu__item " href="/tools/">&#x5DE5;&#x5177;</a>
+  </nav>
+</div>
+
+<div class="S-flex-row">
+  <div class="siteSidebar pageNavListBounder">
+  <div class="mainSidebar">
+    <ul class="pageNavList">
+
+
+      <li class="pageNavList__subList collapsibleListSet js-collapsibleListSet">
+        <span class="pageNavList__title collapsibleListSet__label js-collapsibleListSet__label">REST API</span>
+        <ul class="collapsibleListSet__list js-collapsibleListSet__list is-collapsed">
+                    <li class="pageNavList__item"><a href="/horizon/reference/index.html">Overview</a></li>
+          <li class="pageNavList__item"><a href="/horizon/reference/errors.html">Errors</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/paging.html">Paging</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/rate-limiting.html">Rate Limiting</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/responses.html">Response Format</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/streaming.html">Streaming</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/xdr.html">XDR</a></li>
+        
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Tutorials</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/tutorials/follow-received-payments.html">Follow Received Payments</a></li>
+
+        </ul>
+      </li>
+            
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Endpoints</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/endpoints/accounts-single.html">Account Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/assets-all.html">All Assets</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/data-for-account.html">Data for Account</a></li>
+  <li class="pageNavList__item is-currentItem"><a href="/horizon/reference/endpoints/effects-all.html">All Effects</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-account.html">Effects for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-ledger.html">Effects for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-operation.html">Effects for Operation</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-transaction.html">Effects for Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/fee-stats.html">Fee Stats</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/ledgers-all.html">All Ledgers</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/ledgers-single.html">Ledger Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/metrics.html">Metrics</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/offers-for-account.html">Offers for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-all.html">All Operations</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-for-account.html">Operations for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-for-ledger.html">Operations for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-for-transaction.html">Operations for Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-single.html">Operation Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/orderbook-details.html">Orderbook Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/path-finding.html">Find Payment Paths</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-all.html">All Payments</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-for-account.html">Payments for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-for-ledger.html">Payments for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-for-transaction.html">Payments for Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trade_aggregations.html">Trade Aggregations</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trades-for-account.html">Trades for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trades-for-offer.html">Trades for Offer</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trades.html">Trades</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-all.html">All Transactions</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-create.html">Post Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-for-account.html">Transactions for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-for-ledger.html">Transactions for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-single.html">Transaction Details</a></li>
+
+        </ul>
+      </li>
+            
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Resources</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/resources/account.html">Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/asset.html">Asset</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/data.html">Data</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/effect.html">Effect</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/ledger.html">Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/offer.html">Offer</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/operation.html">Operation</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/orderbook.html">Orderbook</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/page.html">Page</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/path.html">Payment Path</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/trade.html">Trade</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/trade_aggregation.html">Trade Aggregation</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/transaction.html">Transaction</a></li>
+
+        </ul>
+      </li>
+            
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Errors</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/errors/bad-request.html">Bad Request</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/before-history.html">Before History</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/forbidden.html">Forbidden</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/not-acceptable.html">Not Acceptable</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/not-found.html">Not Found</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/not-implemented.html">Not Implemented</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/rate-limit-exceeded.html">Rate Limit Exceeded</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/server-error.html">Internal Server Error</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/stale-history.html">Stale History</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/timeout.html">Timeout</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/transaction-failed.html">Transaction Failed</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/transaction-malformed.html">Transaction Malformed</a></li>
+
+        </ul>
+      </li>
+    
+        </ul>
+      </li>
+    
+
+      <li class="pageNavList__subList collapsibleListSet js-collapsibleListSet">
+        <span class="pageNavList__title collapsibleListSet__label js-collapsibleListSet__label">JavaScript SDK</span>
+        <ul class="collapsibleListSet__list js-collapsibleListSet__list is-collapsed">
+                    <li class="pageNavList__item"><a href="/js-stellar-sdk/reference/index.html">Overview</a></li>
+          <li class="pageNavList__item"><a href="/js-stellar-base/reference/base-examples.html">Transaction Examples</a></li>
+  <li class="pageNavList__item"><a href="/js-stellar-base/reference/building-transactions.html">Building Transactions</a></li>
+          <li class="pageNavList__item"><a href="/js-stellar-sdk/reference/examples.html">Basic Examples</a></li>
+        <li class="pageNavList__item"><a href="https://stellar.github.io/js-stellar-sdk/" target="_blank" rel="noopener noreferrer">API Reference <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+
+        </ul>
+      </li>
+    
+
+      <li class="pageNavList__subList collapsibleListSet js-collapsibleListSet">
+        <span class="pageNavList__title collapsibleListSet__label js-collapsibleListSet__label">Go SDK</span>
+        <ul class="collapsibleListSet__list js-collapsibleListSet__list is-collapsed">
+                    <li class="pageNavList__item"><a href="/go/reference/index.html">Overview</a></li>
+          <li class="pageNavList__item"><a href="/go/reference/examples.html">Basic Examples</a></li>
+        <li class="pageNavList__item"><a href="https://godoc.org/github.com/stellar/go" target="_blank">Godoc <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+
+        </ul>
+      </li>
+    
+
+      <li class="pageNavList__item"><a href="https://github.com/stellar/java-stellar-sdk" target="_blank" rel="noopener noreferrer">Java SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+      <li class="pageNavList__item"><a href="https://github.com/stellar/ruby-stellar-sdk" target="_blank" rel="noopener noreferrer">Ruby SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+      <li class="pageNavList__item"><a href="https://github.com/StellarCN/py-stellar-base" target="_blank" rel="noopener noreferrer">Python SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+      <li class="pageNavList__item"><a href="https://github.com/QuantozTechnology/csharp-stellar-base" target="_blank" rel="noopener noreferrer">C# SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+
+    </ul>
+  </div>
+</div>
+  <div class="S-flexItem-share">
+  <div class="spu-padSE-30">
+    <h1 class="mainSectionTitle">
+      All Effects
+      &#xA0;<span class="spu-color-neutral6">[Go SDK]</span>
+    </h1>
+  </div>
+  <div class="S-flex-rowWrap spu-borderTop-1 spu-borderColor-neutral7">
+    <s-read-md class="S-flexItem-share mainContent s-read-md--capped spu-padSE-30 spu-padTB-20 documentRead" link-process-md>
+      <p>This endpoint represents all <a href="../resources/effect.html">effects</a>.</p>
+<p>This endpoint can also be used in <a href="../streaming.html">streaming</a> mode so it is possible to use it to listen for new effects as transactions happen in the Stellar network.
+If called in streaming mode Horizon will start at the earliest known effect unless a <code>cursor</code> is set. In that case it will start from the <code>cursor</code>. You can also set <code>cursor</code> value to <code>now</code> to only stream effects created since your request time.</p>
+<h2 id="request"><a class="anchorShortcut" href="#request" aria-hidden="true"></a> Request</h2>
+<pre><code>GET /effects{?cursor,limit,order}
+</code></pre>
+<h2 id="arguments"><a class="anchorShortcut" href="#arguments" aria-hidden="true"></a> Arguments</h2>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>notes</th>
+<th>description</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>?cursor</code></td>
+<td>optional, default <em>null</em></td>
+<td>A paging token, specifying where to start returning records from. When streaming this can be set to <code>now</code> to stream object created since your request time.</td>
+<td><code>12884905984</code></td>
+</tr>
+<tr>
+<td><code>?order</code></td>
+<td>optional, string, default <code>asc</code></td>
+<td>The order in which to return rows, &#x201C;asc&#x201D; or &#x201C;desc&#x201D;.</td>
+<td><code>asc</code></td>
+</tr>
+<tr>
+<td><code>?limit</code></td>
+<td>optional, number, default <code>10</code></td>
+<td>Maximum number of records to return.</td>
+<td><code>200</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="curl-example-request"><a class="anchorShortcut" href="#curl-example-request" aria-hidden="true"></a> curl Example Request</h3>
+<pre><code class="language-sh">curl &quot;https://horizon-testnet.stellar.org/effects&quot;
+</code></pre>
+<h3 id="javascript-example-request"><a class="anchorShortcut" href="#javascript-example-request" aria-hidden="true"></a> JavaScript Example Request</h3>
+<pre><code class="language-javascript">var StellarSdk = require(&apos;stellar-sdk&apos;);
+var server = new StellarSdk.Server(&apos;https://horizon-testnet.stellar.org&apos;);
+
+server.effects()
+  .call()
+  .then(function (effectResults) {
+    //page 1
+    console.log(effectResults.records)
+  })
+  .catch(function (err) {
+    console.log(err)
+  })
+
+</code></pre>
+<h2 id="response"><a class="anchorShortcut" href="#response" aria-hidden="true"></a> Response</h2>
+<p>The list of effects.</p>
+<h3 id="example-response"><a class="anchorShortcut" href="#example-response" aria-hidden="true"></a> Example Response</h3>
+<pre><code class="language-json">{
+  &quot;_embedded&quot;: {
+    &quot;records&quot;: [
+      {
+        &quot;_links&quot;: {
+          &quot;operation&quot;: {
+            &quot;href&quot;: &quot;/operations/279172878337&quot;
+          },
+          &quot;precedes&quot;: {
+            &quot;href&quot;: &quot;/effects?cursor=279172878337-1\u0026order=asc&quot;
+          },
+          &quot;succeeds&quot;: {
+            &quot;href&quot;: &quot;/effects?cursor=279172878337-1\u0026order=desc&quot;
+          }
+        },
+        &quot;account&quot;: &quot;GBS43BF24ENNS3KPACUZVKK2VYPOZVBQO2CISGZ777RYGOPYC2FT6S3K&quot;,
+        &quot;paging_token&quot;: &quot;279172878337-1&quot;,
+        &quot;starting_balance&quot;: &quot;10000000.0&quot;,
+        &quot;type_i&quot;: 0,
+        &quot;type&quot;: &quot;account_created&quot;
+      },
+      {
+        &quot;_links&quot;: {
+          &quot;operation&quot;: {
+            &quot;href&quot;: &quot;/operations/279172878337&quot;
+          },
+          &quot;precedes&quot;: {
+            &quot;href&quot;: &quot;/effects?cursor=279172878337-2\u0026order=asc&quot;
+          },
+          &quot;succeeds&quot;: {
+            &quot;href&quot;: &quot;/effects?cursor=279172878337-2\u0026order=desc&quot;
+          }
+        },
+        &quot;account&quot;: &quot;GBRPYHIL2CI3FNQ4BXLFMNDLFJUNPU2HY3ZMFSHONUCEOASW7QC7OX2H&quot;,
+        &quot;amount&quot;: &quot;10000000.0&quot;,
+        &quot;asset_type&quot;: &quot;native&quot;,
+        &quot;paging_token&quot;: &quot;279172878337-2&quot;,
+        &quot;type_i&quot;: 3,
+        &quot;type&quot;: &quot;account_debited&quot;
+      }
+    ]
+  },
+  &quot;_links&quot;: {
+    &quot;next&quot;: {
+      &quot;href&quot;: &quot;/effects?order=asc\u0026limit=2\u0026cursor=279172878337-2&quot;
+    },
+    &quot;prev&quot;: {
+      &quot;href&quot;: &quot;/effects?order=desc\u0026limit=2\u0026cursor=279172878337-1&quot;
+    },
+    &quot;self&quot;: {
+      &quot;href&quot;: &quot;/effects?order=asc\u0026limit=2\u0026cursor=&quot;
+    }
+  }
+}
+</code></pre>
+<h2 id="possible-errors"><a class="anchorShortcut" href="#possible-errors" aria-hidden="true"></a> Possible Errors</h2>
+<ul>
+<li>The <a href="../errors.html#Standard-Errors">standard errors</a>.</li>
+<li><a href="../errors/not-found.html">not_found</a>: A <code>not_found</code> error will be returned if there are no effects for the given account.</li>
+</ul>
+
+      <br>
+      <a href="https://github.com/stellar/go/blob/master/services/horizon/internal/docs/reference/endpoints/effects-all.md" class="spu-color-neutral6">&#x5728; GitHub &#x4E0A;&#x7F16;&#x8F91;&#x6B64;&#x9875;&#x9762;</a>
+    </s-read-md>
+    <s-read-md class="endpointRef-exampleBar spu-background-neutral2 spu-color-neutral9 js-endpointRef-exampleBar">
+      <nav class="s-buttonList js-endpointRef-menu"></nav>
+
+      <div class="endpointRef-exampleRequest spu-padTop-20 js-endpointRef-exampleRequest"></div>
+      <div class="endpointRef-exampleResponse spu-padTop-20 js-endpointRef-exampleResponse"></div>
+    </s-read-md>
+  
+  </div>
+</div>
+</div>
+
+<div class="so-back spu-borderTop-1 spu-borderColor-neutral7 spu-padTB-15">
+  <div class="so-chunk">
+    <div class="siteFooter">
+      <div class="siteFooter__list">
+        <a class="siteFooter__list__item" href="https://www.stellar.org/"><span class="graphic-backArrow-9"></span>&#xA0;&#xA0;Stellar.org</a>
+        <span class="siteFooter__list__sep">|</span>
+        <a class="siteFooter__list__item" href="https://www.stellar.org/bug-bounty-program/">Bug &#x60AC;&#x8D4F;</a>
+        <a class="siteFooter__list__item" href="/stellar-core/software/admin.html">&#x8FD0;&#x884C;&#x8282;&#x70B9;</a>
+        <a class="siteFooter__list__item" href="/guides/things-to-build.html">&#x6784;&#x5EFA;&#x5E94;&#x7528;</a>
+        <a class="siteFooter__list__item" href="https://github.com/stellar/">GitHub</a>
+        <a class="siteFooter__list__item" href="http://slack.stellar.org/">&#x6765;&#x793E;&#x533A;&#x7545;&#x8C08;</a>
+      </div>
+      <div class="siteFooter__list siteFooter__list--aux">
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/terms-of-service/">&#x670D;&#x52A1;&#x6761;&#x6B3E;</a>
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/privacy-policy/">&#x9690;&#x79C1;&#x653F;&#x7B56;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/js/app-9b8f1b0df3650f3a8dabc0e0b08ccab9.js"></script>
+<script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("U8cLXTFMPm");
+analytics.page()
+}}();
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5V3WNNP');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V3WNNP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</html>

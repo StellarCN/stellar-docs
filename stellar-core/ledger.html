@@ -1,0 +1,62 @@
+<ul>
+<li>
+<p><strong>Ledger</strong>: A ledger is the state of the distributed Stellar database at a
+particular point in time. It is composed of a set of <em>ledger entries</em>,
+including (1) accounts and their balances, (2) buy and sell offers, (3) and
+trust lines, as well as a <em>ledger header</em> that records some additional meta
+data. Ledgers are linked together in a <em>ledger chain</em>. Each ledger has a
+sequence number that tells you where in the chain it falls.</p>
+</li>
+<li>
+<p><strong>Ledger chain</strong>: This is an ever increasing list of ledgers. Each ledger
+points to the previous one thus forming a chain of history stretching back in
+time.</p>
+</li>
+<li>
+<p><strong>Ledger header</strong>: The ledger&#x2019;s header contains meta data about the ledger,
+including the hash of the previous ledger (thus recording the chain) and its
+own hash. (See <a href="/src/xdr/Stellar-ledger.x"><code>src/xdr/Stellar-ledger.x</code></a>)</p>
+</li>
+</ul>
+<p><code>Stellar-core</code> maintains the content of the latest ledger and of the ledger
+chain in a number of different representations in order to satisfy competing
+performance needs.</p>
+<ol>
+<li>
+<p>The latest ledger is stored in a postgresql or sqlite database in order to
+provide full &#x201C;acid&#x201D; safety and fast access to current state, notably to make
+it possible to determine efficiently whether a newly submitted operation is
+valid. (See the <code>load</code> and <code>store</code> functions in the subclasses of
+<code>EntryFrame</code>: <code>AccountFrame</code>, <code>TrustFrame</code>, and <code>OfferFrame</code> in
+<a href="/src/ledger"><code>src/ledger</code></a>).</p>
+</li>
+<li>
+<p>The ledger chain is represented in the the ledger headers as hashes linking
+each hedger to the previous one. The spine of the chain is lightweight data
+structure that can be scanned quickly to confirm that the current ledger is
+part of a trusted unbroken chain.</p>
+</li>
+<li>
+<p>In addition to being stored in the database, ledgers entries are stored on
+disk in a linearized format using a specific arrangement of
+exponentially-larger buckets, called the <em>bucket list</em>. This representation
+achieves two different goals. First, it makes it possible to compute the
+hashes of new ledgers incrementally and quickly, especially in the case
+where a minority of the accounts see the majority of the operations. Second,
+it participates in providing nodes that have fallen behind with the ledger
+data they need to catch-up with the current state of the chain. (See
+<a href="/src/bucket/readme.md"><code>src/bucket/readme.md</code></a>). While the hash computed
+by the bucket list is functionally equivalent to a hash obtained
+concatenating all the entries, it is not the same value since the bucket
+list deduplicates changed entries incrementally.</p>
+</li>
+<li>
+<p>Finally, <code>stellar-core</code> can be configured to upload detailed historical
+records of all the transactions, including all or most of the ledgers&#x2019;
+content, to persistent long-term storage. This record can be used to audit
+the full ledger chain&#x2019;s history, and is used to catch-up new nodes and nodes
+that have fallen far behind the rest of the network without imposing an
+undue burden on the nodes participating in the consensus protocol (See
+<a href="/src/history/readme.md"><code>src/history/readme.md</code></a>).</p>
+</li>
+</ol>

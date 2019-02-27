@@ -1,0 +1,109 @@
+<p>This is a little howto on using the <a href="http://lcamtuf.coredump.cx/afl/">AFL</a> (<a href="http://rabbitbreeders.us/american-fuzzy-lop-rabbits">&#x201C;American Fuzzy Lop&#x201D;</a>)
+fuzzer with stellar-core. Support for this is still preliminary but it has
+already shaken a couple bugs out and will no doubt find more the further down
+this road we go, so you&#x2019;re encouraged to give this a try.</p>
+<h2 id="theory-of-operation"><a class="anchorShortcut" href="#theory-of-operation" aria-hidden="true"></a> Theory of operation</h2>
+<p>AFL is a black-box fuzzer &#x2013; it knows nothing much about the thing it&#x2019;s fuzzing
+&#x2013; that uses an evolutionary algorithm to breed malicious input under a bunch of
+heuristic mutations (bit flips and such). It thus uses a corpus of small inputs
+to the victim program, which it expands as it finds inputs that take the program
+into new portions of its control-flow space and/or trigger crashes. It writes
+elements of its corpus to disk in an output directory any time it finds one that
+crashes the program in a new control-flow path.</p>
+<p>It identifies control-flow paths by instrumenting basic blocks and storing an
+in-memory, very dense set of counters associated with control-flow tuples. When
+the victim program takes a branch, it&#x2019;s instrumented to bump a counter based on
+the (src, dst) pair of PC addresses making up a branch-edge, and the set of
+branch-tuple counts produces a control-flow &#x201C;signature&#x201D; for a run, which is used
+to differentiate runs / explore the control-flow space.</p>
+<p>Every run of the program starts anew and is fed a small binary input from the
+corpus. So to make this all work the program has to (a) run quickly and (b) take
+small inputs in binary form. We&#x2019;ve modified stellar-core to have a mode for (b)
+but (a) is still unsatisfactory; the binary-input mode starts up a pair of
+Application objects in loopback configuration, and reads-and-receives a
+StellarMessage into them. This is quite a lot of setup and the fuzzing speed of
+AFL suffers as a result (it actually complains that the target is too slow).</p>
+<h2 id="installing-afl"><a class="anchorShortcut" href="#installing-afl" aria-hidden="true"></a> Installing AFL</h2>
+<p>Go to the <a href="http://lcamtuf.coredump.cx/afl/">AFL website</a>, download the <a href="http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz">tarball</a>, unpack and run <code>make</code>,
+then <code>sudo make install</code>. This will install both <code>afl-fuzz</code>, the fuzzer itself,
+and <code>afl-gcc</code> and <code>afl-clang</code>, which are compiler-wrappers that instrument
+binaries they compile with the fuzzer&#x2019;s branch-tracking machinery.</p>
+<h2 id="building-an-instrumented-stellar-core"><a class="anchorShortcut" href="#building-an-instrumented-stellar-core" aria-hidden="true"></a> Building an instrumented stellar-core</h2>
+<p>Start with a clean workspace, <code>make clean</code> or cleaner; then just do <code>./configure --enable-afl &amp;&amp; make</code> and make sure you have not enabled <code>asan</code> and <code>ccache</code>;
+the former is incompatible, and the latter doesn&#x2019;t interoperate with the
+compiler wrappers.</p>
+<h2 id="running-the-fuzzer"><a class="anchorShortcut" href="#running-the-fuzzer" aria-hidden="true"></a> Running the fuzzer</h2>
+<p>The simplest way is <code>make fuzz</code>; this will do the following:</p>
+<ul>
+<li>Create a directory <code>fuzz-testcases</code> for storing the corpus input</li>
+<li>Run <code>stellar-core --genfuzz fuzz-testcases/fuzz$i.xdr</code> ten times to produce
+some basic seed input for the corpus.</li>
+<li>Create a directory <code>fuzz-findings</code> for storing crash-producing inputs.</li>
+<li>Run <code>afl-fuzz</code> on <code>stellar-core --fuzz</code>, using those corpus directories.</li>
+</ul>
+<p>You should get a nice old-school textmode TUI to monitor the fuzzer&#x2019;s progress;
+it might be partly hidden depending on the color scheme of your terminal, as it
+makes use of bold color highlighting.</p>
+<p>While it runs, it will write new crashes to files in <code>fuzz-findings</code>; before
+pouncing on these as definite evidence of a flaw, you should confirm the crash
+by feeding it to an instance of <code>stellar-core --fuzz</code> run by hand, elsewhere (in
+particular, not fighting for control over tmpdirs with the fuzzer&#x2019;s
+<code>stellar-core</code> instances). Often a fuzzer &#x201C;crash&#x201D; is just the subprocess hitting
+a ulimit; by default we use an 8GB virtual-address ulimit, but it is still
+possible to exceed this. It is also useful to keep a separate build of
+<code>stellar-core</code> in a different directory with <code>--enable-asan</code>, or valgrind, in
+order to diagnose crashes.</p>
+<h2 id="future-directions"><a class="anchorShortcut" href="#future-directions" aria-hidden="true"></a> Future directions</h2>
+<p>Aside from &#x201C;continuous fuzzing&#x201D; and &#x201C;fuzzing for a certain amount of time as
+part of staging-tests&#x201D;, here are some directions I think we should take fuzzing:</p>
+<ul>
+<li>
+<p>Enable AFL_HARDEN, adds some runtime memory checks that trap more errors.</p>
+</li>
+<li>
+<p>Try AFL_NO_VAR_CHECK and see if it speeds things up.</p>
+</li>
+<li>
+<p>Try limiting the instrumentation to <code>stellar-core</code> itself, not libsodium,
+soci, sqlite, medida, and so forth.</p>
+</li>
+<li>
+<p>Measure and shave-down the startup path for fuzzing so it&#x2019;s as fast as
+possible. The fewer instructions there are from <code>main()</code> to &#x201C;doing something
+with input&#x201D;, the better.</p>
+</li>
+<li>
+<p>Try to use LibFuzzer or manual fork-mode to fork from an initialized state
+that is further along in memory; the difficult part is that <code>VirtualClock</code>
+and the associated IO loop is stateful and not friendly to forking, so
+we would need to tease apart portions of the program that can get their
+clock/IO service supplied late.</p>
+</li>
+<li>
+<p>Make startup-modes at different points in the process: instantiate an
+application and feed it transactions to run directly, not full
+<code>StellarMessage</code>s. Let the fuzzer generte bucket ledger entries, and try to
+apply them to the database as one would during catchup. This sort of thing.</p>
+</li>
+<li>
+<p>Add a mode &#x2013; with a giant red flashing TESTING_ONLY light on it &#x2013; that
+makes crypto signatures always pass. A lot of bad fuzzer-input will be
+caught and rejected by mismatched Ed25519 signatures; this is not ideal,
+as an attacker who figures out how to break <code>stellar-core</code> will be able
+to sign their bad input to make it past that check. So we should omit it
+in at least some, if not all, fuzzing modes.</p>
+</li>
+<li>
+<p>Make a &#x201C;postprocessor&#x201D; using the AFL_POST_LIBRARY facility. This permits
+cleaning up or otherwise transforming fuzzer-generated data into data for
+the program, but it needs to be extremely robust.</p>
+</li>
+<li>
+<p>Alternatively, make a &#x201C;fuzzer-friendly&#x201D; XDR message type that describes,
+using simple integer codes that the fuzzer will find it easy to perturb, a
+complete <em>test scenario</em> or set of actions to apply to the program. In terms
+of setting up a network of nodes, a topology among them, a number of
+accounts and amounts, and a set of transactions to apply. Drive <em>that</em> by
+the fuzzer, rather than single-action messages.</p>
+</li>
+</ul>

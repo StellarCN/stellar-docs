@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+
+  Want to contribute to this site? Take a look at the GitHub repository for this
+  site: https://github.com/stellar/developers
+
+  -->
+  <title>Commands - Stellar Core | Stellar Developers</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="author" content="Stellar.org and contributors">
+
+  <meta property="og:title" content="Commands - Stellar Core | Stellar Developers">
+  <meta property="og:type" content="website">
+
+
+  <link rel="stylesheet" href="/styles/index-cff14d28bafbba60930f31b923b4e75b.css">
+
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/rocket-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/rocket-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/rocket-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicon/rocket-96x96.png" sizes="96x96">
+  <meta name="msapplication-TileImage" content="/images/favicon/rocket-144x144.png">
+
+  <script type="text/javascript">
+    var $mcGoal = {'settings':{'uuid':'c001d97369b7a10d224c23867','dc':'us9'}};
+    (function() {
+      var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+      sp.src = ('https:' == document.location.protocol ? 'https://s3.amazonaws.com/downloads.mailchimp.com' : 'http://downloads.mailchimp.com') + '/js/goal.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+    })();
+  </script>
+
+  <script>window.clientData = {};</script>
+
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0065/1320.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+</head>
+<body>
+<div class="header2016">
+  <div class="header2016__logo header2016__logo--spaced">
+    <div class="so-siteHeader">
+      <span class="so-logo">
+  <a href="https://www.stellar.org/" class="so-logo__main">Stellar</a><!--
+  --><span class="so-logo__separator"> </span><!--
+  --><a href="/" class="so-logo__subSite">developers</a>
+</span>
+    </div>
+  </div>
+  <nav class="header2016__nav mainNavMenu spu-padStart-30">
+    <a class="mainNavMenu__item " href="/guides/">&#x6307;&#x5357;</a>
+<a class="mainNavMenu__item " href="/reference/">API &#x53C2;&#x8003;&#x624B;&#x518C;</a>
+<a class="mainNavMenu__item is-currentItem" href="/software/">&#x8F6F;&#x4EF6;</a>
+<a class="mainNavMenu__item " href="/tools/">&#x5DE5;&#x5177;</a>
+  </nav>
+</div>
+
+<div class="S-flex-row">
+  <div class="siteSidebar pageNavListBounder">
+  <div class="mainSidebar">
+    <ul class="pageNavList">
+
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Stellar Core</span>
+        <ul class="collapsibleListSet__list">
+                    <li class="pageNavList__item"><a href="/stellar-core/software/admin.html">Administration</a></li>
+  <li class="pageNavList__item is-currentItem"><a href="/stellar-core/software/commands.html">Commands</a></li>
+  <li class="pageNavList__item"><a href="/stellar-core/software/security-protocol-release-notes.html">Security and Protocol release notes</a></li>
+  <li class="pageNavList__item"><a href="/stellar-core/software/testnet.html">Testnet</a></li>
+          <li class="pageNavList__item"><a href="/stellar-core/software/core-data-flow.pdf">Core Data Flow</a></li>
+
+        </ul>
+      </li>
+    
+      <li class="pageNavList__item"><a href="https://github.com/stellar/go/tree/master/services/federation">Federation Server</a></li>
+      <li class="pageNavList__item"><a href="https://github.com/stellar/bridge-server">Bridge Server</a></li>
+      <li class="pageNavList__item"><a href="https://github.com/stellar/go/tree/master/tools/stellar-archivist">Archivist</a></li>
+      <li class="pageNavList__item"><a href="https://github.com/stellar/go/tree/master/services/horizon">Horizon</a></li>
+      <li class="pageNavList__item"><a href="/developers/software/known-issues.html">Known Issues</a></li>
+    </ul>
+  </div>
+</div>
+  <div class="S-flexItem-share">
+  <div class="spu-padSE-30">
+    <h1 class="mainSectionTitle">
+      Commands
+      &#xA0;<span class="spu-color-neutral6">[Stellar Core]</span>
+    </h1>
+  </div>
+  <div class="S-flex-rowWrap spu-borderTop-1 spu-borderColor-neutral7">
+    <s-read-md class="S-flexItem-share mainContent s-read-md--capped spu-padSE-30 spu-padTB-20 documentRead" link-process-md>
+      <p>stellar-core can be controlled via the following commands.</p>
+<h2 id="common-options"><a class="anchorShortcut" href="#common-options" aria-hidden="true"></a> Common options</h2>
+<p>Common options can be placed at any place in the command line.</p>
+<ul>
+<li><strong>&#x2013;conf <file-name></file-name></strong>: Specify a config file to use. You can use &#x2018;-&#x2019; and
+provide the config file via STDIN. <em>default &#x2018;stellar-core.cfg&#x2019;</em></li>
+<li><strong>&#x2013;ll <level></level></strong>: Set the log level. It is redundant with <code>http-command ll</code>
+but we need this form if you want to change the log level during test runs.</li>
+<li><strong>&#x2013;metric <metric-name></metric-name></strong>: Report metric METRIC on exit. Used for gathering
+a metric cumulatively during a test run.</li>
+<li><strong>&#x2013;help</strong>: Show help message for given command.</li>
+</ul>
+<h2 id="command-line-options"><a class="anchorShortcut" href="#command-line-options" aria-hidden="true"></a> Command line options</h2>
+<p>Command options can only by placed after command.</p>
+<ul>
+<li><strong>catchup &lt;DESTINATION-LEDGER/LEDGER-COUNT&gt;</strong>: Perform catchup from history
+archives without connecting to network. This option will catchup to
+DESTINATION-LEDGER keeping history from DESTINATION-LEDGER-LEDGER-COUNT or
+from the last closed ledger (whichever value is biggest).</li>
+<li><strong>check-quorum</strong>:   Check quorum intersection from history to ensure there is
+closure over all the validators in the network.</li>
+<li><strong>convert-id <id></id></strong>: Will output the passed ID in all known forms and then
+exit. Useful for determining the public key that corresponds to a given
+private key. For example:</li>
+</ul>
+<p><code>$ stellar-core convert-id SDQVDISRYN2JXBS7ICL7QJAEKB3HWBJFP2QECXG7GZICAHBK4UNJCWK2</code></p>
+<ul>
+<li><strong>dump-xdr <file-name></file-name></strong>:  Dumps the given XDR file and then exits.</li>
+<li><strong>force-scp</strong>: This command is used to start a network from scratch or when a
+network has lost quorum because of failed nodes or otherwise. It sets a flag
+in the database. The next time stellar-core is run, stellar-core will start
+emitting SCP messages based on its last known ledger. Without this flag
+stellar-core waits to hear a ledger close from the network before starting
+SCP.<br> force-scp doesn&#x2019;t change the requirements for quorum so although
+this node will emit SCP messages SCP won&#x2019;t complete until there are also a
+quorum of other nodes also emitting SCP messages on this same ledger. Value
+of force-scp can be reset with --reset flag.</li>
+<li><strong>fuzz <file-name></file-name></strong>: Run a single fuzz input and exit.</li>
+<li><strong>gen-fuzz <file-name></file-name></strong>:  Generate a random fuzzer input file.</li>
+<li><strong>gen-seed</strong>: Generate and print a random public/private key and then exit.</li>
+<li><strong>help</strong>: Print the available command line options and then exit&#x2026;</li>
+<li><strong>http-command <command></strong> Send an <a href="#http-commands">HTTP command</a> to an
+already running local instance of stellar-core and then exit. For example:</li>
+</ul>
+<p><code>$ stellar-core http-command info</code></p>
+<ul>
+<li><strong>infer-quorum</strong>:   Print a potential quorum set inferred from history.</li>
+<li><strong>load-xdr <file-name></file-name></strong>:  Load an XDR bucket file, for testing.</li>
+<li><strong>new-db</strong>: Clears the local database and resets it to the genesis ledger. If
+you connect to the network after that it will catch up from scratch.</li>
+<li><strong>new-hist <history-label> &#x2026;</history-label></strong>:  Initialize the named history archives
+HISTORY-LABEL. HISTORY-LABEL should be one of the history archives you have
+specified in the stellar-core.cfg. This will write a
+<code>.well-known/stellar-history.json</code> file in the archive root.</li>
+<li><strong>offline-info</strong>: Returns an output similar to <code>--c info</code> for an offline
+instance</li>
+<li><strong>print-xdr <file-name></file-name></strong>:  Pretty-print a binary file containing an XDR
+object. If FILE-NAME is &#x201C;-&#x201D;, the XDR object is read from standard input.<br>
+Option --filetype [auto|ledgerheader|meta|result|resultpair|tx|txfee]**
+controls type used for printing (default: auto).<br>
+Option --base64 alters the behavior to work on base64-encoded XDR rather than
+raw XDR.</li>
+<li><strong>publish</strong>: Execute publish of all items remaining in publish queue without
+connecting to network. May not publish last checkpoint if last closed ledger
+is on checkpoint boundary.</li>
+<li><strong>report-last-history-checkpoint</strong>: Download and report last history
+checkpoint from a history archive.</li>
+<li><strong>run</strong>: Runs stellar-core service.</li>
+<li><strong>sec-to-pub</strong>:  Reads a secret key on standard input and outputs the
+corresponding public key.  Both keys are in Stellar&#x2019;s standard
+base-32 ASCII format.</li>
+<li><strong>sign-transaction <file-name></file-name></strong>:  Add a digital signature to a transaction
+envelope stored in binary format in <file-name>, and send the result to
+standard output (which should be redirected to a file or piped through a tool
+such as <code>base64</code>).  The private signing key is read from standard input,
+unless <file-name> is &#x201C;-&#x201D; in which case the transaction envelope is read from
+standard input and the signing key is read from <code>/dev/tty</code>.  In either event,
+if the signing key appears to be coming from a terminal, stellar-core
+disables echo. Note that if you do not have a STELLAR_NETWORK_ID environment
+variable, then before this argument you must specify the --netid option. For
+example, the production stellar network is &#x201C;<code>Public Global Stellar Network ; September 2015</code>&#x201D; while the test network is &#x201C;<code>Test SDF Network ; September 2015</code>&#x201D;.<br>
+Option --base64 alters the behavior to work on base64-encoded XDR rather than
+raw XDR.</file-name></file-name></li>
+<li><strong>test</strong>: Run all the unit tests.
+<ul>
+<li>Suboptions specific to stellar-core:
+<ul>
+<li><code>--all-versions</code> : run with all possible protocol versions</li>
+<li><code>--version &lt;N&gt;</code> : run tests for protocol version N, can be specified
+multiple times (default latest)</li>
+<li><code>--base-instance &lt;N&gt;</code> : run tests with instance numbers offset by N,
+used to run tests in parallel</li>
+</ul>
+</li>
+<li>For <a href="https://github.com/philsquared/Catch/blob/master/docs/command-line.md">further info</a>
+on possible options for test.</li>
+<li>For example this will run just the tests tagged with <code>[tx]</code> using protocol
+versions 9 and 10 and stop after the first failure:
+<code>stellar-core --test -a --version 9 --version 10 &quot;[tx]&quot;</code></li>
+</ul>
+</li>
+<li><strong>version</strong>: Print version info and then exit.</li>
+<li><strong>write-quorum</strong>: Print a quorum set graph from history.</li>
+</ul>
+<h2 id="http-commands"><a class="anchorShortcut" href="#http-commands" aria-hidden="true"></a> HTTP Commands</h2>
+<p>By default stellar-core listens for connections from localhost on port 11626.
+You can send commands to stellar-core via a web browser, curl, or using the --c
+command line option (see above). Most commands return their results in JSON
+format.</p>
+<ul>
+<li>
+<p><strong>help</strong>
+Prints a list of currently supported commands.</p>
+</li>
+<li>
+<p><strong>catchup</strong>
+<code>/catchup?ledger=NNN[&amp;mode=MODE]</code><br>
+Triggers the instance to catch up to ledger NNN from history;
+Mode is either &#x2018;minimal&#x2019; (the default, if omitted) or &#x2018;complete&#x2019;.</p>
+</li>
+<li>
+<p><strong>checkdb</strong>
+Triggers the instance to perform a background check of the database&#x2019;s state.</p>
+</li>
+<li>
+<p><strong>checkpoint</strong>
+Triggers the instance to write an immediate history checkpoint. And uploads
+it to the archive.</p>
+</li>
+<li>
+<p><strong>connect</strong>
+<code>/connect?peer=NAME&amp;port=NNN</code><br>
+Triggers the instance to connect to peer NAME at port NNN.</p>
+</li>
+<li>
+<p><strong>dropcursor</strong><br>
+<code>/dropcursor?id=XYZ</code><br>
+deletes the tracking cursor with identified by <code>id</code>. See <code>setcursor</code> for
+more information.</p>
+</li>
+<li>
+<p><strong>info</strong>
+Returns information about the server in JSON format (sync state, connected
+peers, etc).</p>
+</li>
+<li>
+<p><strong>ll</strong><br>
+<code>/ll?level=L[&amp;partition=P]</code><br>
+Adjust the log level for partition P where P is one of Bucket, Database, Fs,
+Herder, History, Ledger, Overlay, Process, SCP, Tx (or all if no partition is
+specified). Level is one of FATAL, ERROR, WARNING, INFO, DEBUG, VERBOSE,
+TRACE.</p>
+</li>
+<li>
+<p><strong>maintenance</strong>
+<code>/maintenance?[queue=true]</code><br>
+Performs maintenance tasks on the instance.</p>
+<ul>
+<li><code>queue</code> performs deletion of queue data. See <code>setcursor</code> for more information.</li>
+</ul>
+</li>
+<li>
+<p><strong>metrics</strong>
+Returns a snapshot of the metrics registry (for monitoring and debugging
+purpose).</p>
+</li>
+<li>
+<p><strong>clearmetrics</strong>
+<code>/clearmetrics?[domain=DOMAIN]</code><br>
+Clear metrics for a specified domain. If no domain specified, clear all
+metrics (for testing purposes).</p>
+</li>
+<li>
+<p><strong>peers</strong>
+Returns the list of known peers in JSON format.</p>
+</li>
+<li>
+<p><strong>quorum</strong>
+<code>/quorum?[node=NODE_ID][&amp;compact=true]</code><br>
+returns information about the quorum for node NODE_ID (this node by default).
+NODE_ID is either a full key (<code>GABCD...</code>), an alias (<code>$name</code>) or an
+abbreviated ID (<code>@GABCD</code>). If compact is set, only returns a summary version.</p>
+</li>
+<li>
+<p><strong>setcursor</strong>
+<code>/setcursor?id=ID&amp;cursor=N</code><br>
+sets or creates a cursor identified by <code>ID</code> with value <code>N</code>. ID is an
+uppercase AlphaNum, N is an uint32 that represents the last ledger sequence
+number that the instance ID processed. Cursors are used by dependent services
+to tell stellar-core which data can be safely deleted by the instance. The
+data is historical data stored in the SQL tables such as txhistory or
+ledgerheaders. When all consumers processed the data for ledger sequence N
+the data can be safely removed by the instance. The actual deletion is
+performed by invoking the <code>maintenance</code> endpoint or on startup. See also
+<code>dropcursor</code>.</p>
+</li>
+<li>
+<p><strong>getcursor</strong>
+<code>/getcursor?[id=ID]</code><br>
+gets the cursor identified by <code>ID</code>. If ID is not defined then all cursors
+will be returned.</p>
+</li>
+<li>
+<p><strong>scp</strong>
+<code>/scp?[limit=n]</code><br>
+Returns a JSON object with the internal state of the SCP engine for the last
+n (default 2) ledgers.</p>
+</li>
+<li>
+<p><strong>tx</strong>
+<code>/tx?blob=Base64</code><br>
+submit a <a href="../../learn/concepts/transactions.html">transaction</a> to the network.
+blob is a base64 encoded XDR serialized &#x2018;TransactionEnvelope&#x2019;, and it
+returns a JSON object with the following properties
+status:</p>
+<ul>
+<li>&#x201C;PENDING&#x201D; - transaction is being considered by consensus</li>
+<li>&#x201C;DUPLICATE&#x201D; - transaction is already PENDING</li>
+<li>&#x201C;ERROR&#x201D; - transaction rejected by transaction engine
+error: set when status is &#x201C;ERROR&#x201D;.
+Base64 encoded, XDR serialized &#x2018;TransactionResult&#x2019;</li>
+</ul>
+</li>
+<li>
+<p><strong>upgrades</strong></p>
+<ul>
+<li><code>/upgrades?mode=get</code><br>
+retrieves the currently configured upgrade settings<br></li>
+<li><code>/upgrades?mode=clear</code><br>
+clears any upgrade settings<br></li>
+<li><code>/upgrades?mode=set&amp;upgradetime=DATETIME&amp;[basefee=NUM]&amp;[basereserve=NUM]&amp;[maxtxsize=NUM]&amp;[protocolversion=NUM]</code><br>
+<ul>
+<li>upgradetime is a required date (UTC) in the form <code>1970-01-01T00:00:00Z</code>.
+It is the time the upgrade will be scheduled for. If it is in the past,
+the upgrade will occur immediately.<br></li>
+<li>fee (uint32) This is what you would prefer the base fee to be. It is in
+stroops<br></li>
+<li>basereserve (uint32) This is what you would prefer the base reserve to
+be. It is in stroops.<br></li>
+<li>maxtxsize (uint32) This defines the maximum number of transactions to
+include in a ledger. When too many transactions are pending, surge
+pricing is applied. The instance picks the top maxtxsize transactions
+locally to be considered in the next ledger. Where transactions are
+ordered by transaction fee(lower fee transactions are held for later).
+<br></li>
+<li>protocolversion (uint32) defines the protocol version to upgrade to.
+When specified it must match one of the protocol versions supported
+by the node and should be greater than ledgerVersion from the current
+ledger<br></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-following-http-commands-are-exposed-on-test-instances"><a class="anchorShortcut" href="#the-following-http-commands-are-exposed-on-test-instances" aria-hidden="true"></a> The following HTTP commands are exposed on test instances</h3>
+<ul>
+<li>
+<p><strong>generateload</strong>
+<code>/generateload[?mode=(create|pay)&amp;accounts=N&amp;offset=K&amp;txs=M&amp;txrate=(R|auto)&amp;batchsize=L]</code><br>
+Artificially generate load for testing; must be used with
+<code>ARTIFICIALLY_GENERATE_LOAD_FOR_TESTING</code> set to true. Depending on the mode,
+either creates new accounts or generates payments on accounts specified
+(where number of accounts can be offset). Additionally, allows batching up to
+100 account creations per transaction via &#x2018;batchsize&#x2019;.</p>
+</li>
+<li>
+<p><strong>manualclose</strong>
+If MANUAL_CLOSE is set to true in the .cfg file. This will cause the current
+ledger to close.</p>
+</li>
+<li>
+<p><strong>testacc</strong>
+<code>/testacc?name=N</code><br>
+Returns basic information about the account identified by name. Note that N
+is a string used as seed, but &#x201C;root&#x201D; can be used as well to specify the root
+account used for the test instance.</p>
+</li>
+<li>
+<p><strong>testtx</strong>
+<code>/testtx?from=F&amp;to=T&amp;amount=N&amp;[create=true]</code><br>
+Injects a payment transaction (or a create transaction if &#x201C;create&#x201D; is
+specified) from the account F to the account T, sending N XLM to the account.
+Note that F and T are seed strings but can also be specified as &#x201C;root&#x201D; as
+shorthand for the root account for the test instance.</p>
+</li>
+</ul>
+
+      <br>
+      <a href="https://github.com/stellar/stellar-core/blob/master/docs/software/commands.md" class="spu-color-neutral6">&#x5728; GitHub &#x4E0A;&#x7F16;&#x8F91;&#x6B64;&#x9875;&#x9762;</a>
+    </s-read-md>
+  
+  </div>
+</div>
+</div>
+
+<div class="so-back spu-borderTop-1 spu-borderColor-neutral7 spu-padTB-15">
+  <div class="so-chunk">
+    <div class="siteFooter">
+      <div class="siteFooter__list">
+        <a class="siteFooter__list__item" href="https://www.stellar.org/"><span class="graphic-backArrow-9"></span>&#xA0;&#xA0;Stellar.org</a>
+        <span class="siteFooter__list__sep">|</span>
+        <a class="siteFooter__list__item" href="https://www.stellar.org/bug-bounty-program/">Bug &#x60AC;&#x8D4F;</a>
+        <a class="siteFooter__list__item" href="/stellar-core/software/admin.html">&#x8FD0;&#x884C;&#x8282;&#x70B9;</a>
+        <a class="siteFooter__list__item" href="/guides/things-to-build.html">&#x6784;&#x5EFA;&#x5E94;&#x7528;</a>
+        <a class="siteFooter__list__item" href="https://github.com/stellar/">GitHub</a>
+        <a class="siteFooter__list__item" href="http://slack.stellar.org/">&#x6765;&#x793E;&#x533A;&#x7545;&#x8C08;</a>
+      </div>
+      <div class="siteFooter__list siteFooter__list--aux">
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/terms-of-service/">&#x670D;&#x52A1;&#x6761;&#x6B3E;</a>
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/privacy-policy/">&#x9690;&#x79C1;&#x653F;&#x7B56;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/js/app-9b8f1b0df3650f3a8dabc0e0b08ccab9.js"></script>
+<script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("U8cLXTFMPm");
+analytics.page()
+}}();
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5V3WNNP');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V3WNNP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</html>

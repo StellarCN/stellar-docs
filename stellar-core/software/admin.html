@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+
+  Want to contribute to this site? Take a look at the GitHub repository for this
+  site: https://github.com/stellar/developers
+
+  -->
+  <title>Administration - Stellar Core | Stellar Developers</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="author" content="Stellar.org and contributors">
+
+  <meta property="og:title" content="Administration - Stellar Core | Stellar Developers">
+  <meta property="og:type" content="website">
+
+
+  <link rel="stylesheet" href="/styles/index-cff14d28bafbba60930f31b923b4e75b.css">
+
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/rocket-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/rocket-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/rocket-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicon/rocket-96x96.png" sizes="96x96">
+  <meta name="msapplication-TileImage" content="/images/favicon/rocket-144x144.png">
+
+  <script type="text/javascript">
+    var $mcGoal = {'settings':{'uuid':'c001d97369b7a10d224c23867','dc':'us9'}};
+    (function() {
+      var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+      sp.src = ('https:' == document.location.protocol ? 'https://s3.amazonaws.com/downloads.mailchimp.com' : 'http://downloads.mailchimp.com') + '/js/goal.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+    })();
+  </script>
+
+  <script>window.clientData = {};</script>
+
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0065/1320.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+</head>
+<body>
+<div class="header2016">
+  <div class="header2016__logo header2016__logo--spaced">
+    <div class="so-siteHeader">
+      <span class="so-logo">
+  <a href="https://www.stellar.org/" class="so-logo__main">Stellar</a><!--
+  --><span class="so-logo__separator"> </span><!--
+  --><a href="/" class="so-logo__subSite">developers</a>
+</span>
+    </div>
+  </div>
+  <nav class="header2016__nav mainNavMenu spu-padStart-30">
+    <a class="mainNavMenu__item " href="/guides/">&#x6307;&#x5357;</a>
+<a class="mainNavMenu__item " href="/reference/">API &#x53C2;&#x8003;&#x624B;&#x518C;</a>
+<a class="mainNavMenu__item is-currentItem" href="/software/">&#x8F6F;&#x4EF6;</a>
+<a class="mainNavMenu__item " href="/tools/">&#x5DE5;&#x5177;</a>
+  </nav>
+</div>
+
+<div class="S-flex-row">
+  <div class="siteSidebar pageNavListBounder">
+  <div class="mainSidebar">
+    <ul class="pageNavList">
+
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Stellar Core</span>
+        <ul class="collapsibleListSet__list">
+                    <li class="pageNavList__item is-currentItem"><a href="/stellar-core/software/admin.html">Administration</a></li>
+  <li class="pageNavList__item"><a href="/stellar-core/software/commands.html">Commands</a></li>
+  <li class="pageNavList__item"><a href="/stellar-core/software/security-protocol-release-notes.html">Security and Protocol release notes</a></li>
+  <li class="pageNavList__item"><a href="/stellar-core/software/testnet.html">Testnet</a></li>
+          <li class="pageNavList__item"><a href="/stellar-core/software/core-data-flow.pdf">Core Data Flow</a></li>
+
+        </ul>
+      </li>
+    
+      <li class="pageNavList__item"><a href="https://github.com/stellar/go/tree/master/services/federation">Federation Server</a></li>
+      <li class="pageNavList__item"><a href="https://github.com/stellar/bridge-server">Bridge Server</a></li>
+      <li class="pageNavList__item"><a href="https://github.com/stellar/go/tree/master/tools/stellar-archivist">Archivist</a></li>
+      <li class="pageNavList__item"><a href="https://github.com/stellar/go/tree/master/services/horizon">Horizon</a></li>
+      <li class="pageNavList__item"><a href="/developers/software/known-issues.html">Known Issues</a></li>
+    </ul>
+  </div>
+</div>
+  <div class="S-flexItem-share">
+  <div class="spu-padSE-30">
+    <h1 class="mainSectionTitle">
+      Administration
+      &#xA0;<span class="spu-color-neutral6">[Stellar Core]</span>
+    </h1>
+  </div>
+  <div class="S-flex-rowWrap spu-borderTop-1 spu-borderColor-neutral7">
+    <s-read-md class="S-flexItem-share mainContent s-read-md--capped spu-padSE-30 spu-padTB-20 documentRead" link-process-md>
+      <h2 id="purpose-of-this-document"><a class="anchorShortcut" href="#purpose-of-this-document" aria-hidden="true"></a> Purpose of this document</h2>
+<p>This document describes various aspects of running <code>stellar-core</code> for <strong>system administrators</strong> (but may be useful to a broader audience).</p>
+<h2 id="introduction"><a class="anchorShortcut" href="#introduction" aria-hidden="true"></a> Introduction</h2>
+<p>Stellar Core is responsible for communicating directly with and maintaining the Stellar peer-to-peer network. For a high-level introduction to Stellar Core, <a href="https://www.youtube.com/watch?v=pt_mm8S9_WU">watch this talk</a> on the architecture and ledger basics:</p>
+<figure><a href="https://www.youtube.com/watch?v=pt_mm8S9_WU"><img src="https://i.ytimg.com/vi/pt_mm8S9_WU/hqdefault.jpg" alt="Introduction to Stellar Core" title="Introduction to Stellar Core"></a></figure>
+<p>It will also be useful to understand how <a href="/stellar-core/software/core-data-flow.pdf">data flows</a> and is stored in the system.</p>
+<h2 id="zero-to-completed-node-checklist"><a class="anchorShortcut" href="#zero-to-completed-node-checklist" aria-hidden="true"></a> Zero to completed: node checklist</h2>
+<ul>
+<li>[ ] <a href="#why-run-a-node">deciding to run a node</a></li>
+<li>[ ] <a href="#instance-setup">setting up an instance to run core</a></li>
+<li>[ ] <a href="#installing">install stellar-core</a></li>
+<li>[ ] <a href="#configuring">craft a configuration</a></li>
+<li>[ ] <a href="#crafting-a-quorum-set">crafting  a quorum set</a></li>
+<li>[ ] <a href="#environment-preparation">preparing the environment before the first run</a></li>
+<li>[ ] <a href="#joining-the-network">joining the network</a></li>
+<li>[ ] <a href="#logging">logging</a></li>
+<li>[ ] <a href="#monitoring-and-diagnostics">monitoring and diagnostics</a></li>
+<li>[ ] <a href="#validator-maintenance">performing validator maintenance</a></li>
+<li>[ ] <a href="#network-configuration">performing network wide updates</a></li>
+<li>[ ] <a href="#advanced-topics-and-internals">advanced topics and internals</a></li>
+</ul>
+<h2 id="why-run-a-node"><a class="anchorShortcut" href="#why-run-a-node" aria-hidden="true"></a> Why run a node?</h2>
+<h3 id="benefits-of-running-a-node"><a class="anchorShortcut" href="#benefits-of-running-a-node" aria-hidden="true"></a> Benefits of running a node</h3>
+<p>You get to run your own Horizon instance:</p>
+<ul>
+<li>Allows for customizations (triggers, etc) of the business logic or APIs</li>
+<li>Full control of which data to retain (historical or online)</li>
+<li>A trusted entry point to the network
+<ul>
+<li>Trusted end to end (can implement additional counter measures to secure services)</li>
+<li>Open Horizon increases customer trust by allowing to query at the source (ie: larger token issuers have an official endpoint that can be queried)</li>
+</ul>
+</li>
+<li>Control of SLA</li>
+</ul>
+<p>note: in this document we use &#x201C;Horizon&#x201D; as the example implementation of a first tier service built on top of stellar-core, but any other system would get the same benefits.</p>
+<h3 id="level-of-participation-to-the-network"><a class="anchorShortcut" href="#level-of-participation-to-the-network" aria-hidden="true"></a> Level of participation to the network</h3>
+<p>As a node operator you can participate to the network in multiple ways.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>watcher</th>
+<th>archiver</th>
+<th>basic validator</th>
+<th>full validator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>description</td>
+<td>non-validator</td>
+<td>all of watcher + publish to archive</td>
+<td>all of watcher + active participation in consensus (submit proposals for the transaction set to include in the next ledger)</td>
+<td>basic validator + publish to archive</td>
+</tr>
+<tr>
+<td>submits transactions</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>supports horizon</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>participates in consensus</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>helps other nodes to catch up and join the network</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Increase the resiliency of the network</td>
+<td>No</td>
+<td>Medium</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<p>From an operational point of view &#x201C;watchers&#x201D; and &#x201C;basic validators&#x201D; are about the
+same (they both compute an up to date version of the ledger).
+&#x201C;Archivers&#x201D; or &#x201C;Full validators&#x201D; publish into an history archive which
+has additional cost.</p>
+<h4 id="watcher-nodes"><a class="anchorShortcut" href="#watcher-nodes" aria-hidden="true"></a> Watcher nodes</h4>
+<p>Watcher nodes are configured to watch the activity from the network</p>
+<p>Use cases:</p>
+<ul>
+<li>Ephemeral instances, where having other nodes depend on those nodes is not desired</li>
+<li>Potentially reduced administration cost (no or reduced SLA)</li>
+<li>Real time network monitoring (which validators are present, etc)</li>
+<li>Generate network meta-data for other systems (Horizon)</li>
+</ul>
+<p><strong>Operational requirements</strong>:</p>
+<ul>
+<li>a <a href="#database">database</a></li>
+</ul>
+<h4 id="archiver-nodes"><a class="anchorShortcut" href="#archiver-nodes" aria-hidden="true"></a> Archiver nodes</h4>
+<p>The purpose of Archiver nodes is to record the activity of the network in long term storage (AWS, Azure, etc).</p>
+<p><a href="#history-archives">History Archives</a> contain snapshots of the ledger, all transactions and their results.</p>
+<p>Use cases:</p>
+<ul>
+<li>Everything that a watcher node can do</li>
+<li>Need for a low cost compliance story</li>
+<li>Participate to the network&#x2019;s resiliency</li>
+<li>Analysis of historical data</li>
+</ul>
+<p><strong>Operational requirements</strong>:</p>
+<ul>
+<li>requires an additional internet facing blob store</li>
+<li>a <a href="#database">database</a></li>
+</ul>
+<h4 id="basic-validators"><a class="anchorShortcut" href="#basic-validators" aria-hidden="true"></a> Basic validators</h4>
+<p>Nodes configured to actively vote on the network.</p>
+<p>Use cases:</p>
+<ul>
+<li>Everything that a watcher node can do</li>
+<li>Increase the network reliability</li>
+<li>Enables deeper integrations by clients and business partners</li>
+<li>Official endorsement of specific ledgers in real time (via signatures)</li>
+<li>Quorum Set aligned with business priorities</li>
+<li>Additional checks/invariants enabled
+<ul>
+<li>Validator can halt and/or signal that for example (in the case of an issuer) that it does not agree to something.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Operational requirements</strong>:</p>
+<ul>
+<li>secret key management (used for signing messages on the network)</li>
+<li>a <a href="#database">database</a></li>
+</ul>
+<h4 id="full-validators"><a class="anchorShortcut" href="#full-validators" aria-hidden="true"></a> Full validators</h4>
+<p>Nodes fully participating in the network.</p>
+<p>Full validators are the true measure of how decentralized and redundant the network is as they are the only type of validators that perform all functions on the network.</p>
+<p>Use cases:</p>
+<ul>
+<li>All other use cases</li>
+<li>Some full validators required to be v-blocking (~ N full validators, M other validators on the network -&gt; require at least M+1 threshold)</li>
+<li>Branding - strongest association with the network</li>
+<li>Mutually beneficial - best way to support the network&#x2019;s health and resilience</li>
+</ul>
+<p><strong>Operational requirements</strong>:</p>
+<ul>
+<li>requires an additional internet facing blob store</li>
+<li>secret key management (used for signing messages on the network)</li>
+<li>a <a href="#database">database</a></li>
+</ul>
+<h2 id="instance-setup"><a class="anchorShortcut" href="#instance-setup" aria-hidden="true"></a> Instance setup</h2>
+<p>Regardless of how you install stellar-core (apt, source, docker, etc), you will need to configure the instance hosting it roughly the same way.</p>
+<h3 id="compute-requirements"><a class="anchorShortcut" href="#compute-requirements" aria-hidden="true"></a> Compute requirements</h3>
+<p>CPU, RAM, Disk and network depends on network activity. If you decide to collocate certain workloads, you will need to take this into account.</p>
+<p>As of early 2018, stellar-core with PostgreSQL running on the same machine has no problem running on a <a href="https://aws.amazon.com/ec2/instance-types/m5/">m5.large</a> in AWS (dual core 2.5 GHz Intel Xeon, 8 GB RAM).</p>
+<p>Storage wise, 20 GB seems to be an excellent working set as it leaves plenty of room for growth.</p>
+<h3 id="network-access"><a class="anchorShortcut" href="#network-access" aria-hidden="true"></a> Network access</h3>
+<h4 id="interaction-with-the-peer-to-peer-network"><a class="anchorShortcut" href="#interaction-with-the-peer-to-peer-network" aria-hidden="true"></a> Interaction with the peer to peer network</h4>
+<ul>
+<li><strong>inbound</strong>: stellar-core needs to allow all ips to connect to its <code>PEER_PORT</code> (default 11625) over TCP.</li>
+<li><strong>outbound</strong>: stellar-core needs access to connect to other peers on the internet on <code>PEER_PORT</code> (most use the default as well) over TCP.</li>
+</ul>
+<h4 id="interaction-with-other-internal-systems"><a class="anchorShortcut" href="#interaction-with-other-internal-systems" aria-hidden="true"></a> Interaction with other internal systems</h4>
+<ul>
+<li><strong>outbound</strong>:
+<ul>
+<li>stellar-core needs access to a database (postgresql for example), which may reside on a different machine on the network</li>
+<li>other connections can safely be blocked</li>
+</ul>
+</li>
+<li><strong>inbound</strong>: stellar-core exposes an <em>unauthenticated</em> HTTP endpoint on port <code>HTTP_PORT</code> (default 11626)
+<ul>
+<li>it is used by other systems (such as Horizon) to submit transactions (so may have to be exposed to the rest of your internal ips)</li>
+<li>query information (info, metrics, &#x2026;) for humans and automation</li>
+<li>perform administrative commands (schedule upgrades, change log levels, &#x2026;)</li>
+</ul>
+</li>
+</ul>
+<p>Note on exposing the HTTP endpoint:
+if you need to expose this endpoint to other hosts in your local network, it is recommended to use an intermediate reverse proxy server to implement authentication. Don&#x2019;t expose the HTTP endpoint to the raw and cruel open internet.</p>
+<h2 id="installing"><a class="anchorShortcut" href="#installing" aria-hidden="true"></a> Installing</h2>
+<h3 id="release-version"><a class="anchorShortcut" href="#release-version" aria-hidden="true"></a> Release version</h3>
+<p>In general you should aim to run the latest <a href="https://github.com/stellar/stellar-core/releases">release</a> as builds are backward compatible and are cummulative.</p>
+<p>The version number scheme that we follow is <code>protocol_version.release_number.patch_number</code>, where</p>
+<ul>
+<li><code>protocol_version</code> is the maximum protocol version supported by that release (all versions are 100% backward compatible),</li>
+<li><code>release_number</code> is bumped when a set of new features or bug fixes not impacting the protocol are included in the release,</li>
+<li><code>patch_number</code> is used when a critical fix has to be deployed</li>
+</ul>
+<h3 id="installing-from-source"><a class="anchorShortcut" href="#installing-from-source" aria-hidden="true"></a> Installing from source</h3>
+<p>See the <a href="https://github.com/stellar/stellar-core/blob/master/INSTALL.md">INSTALL</a> for build instructions.</p>
+<h3 id="package-based-installation"><a class="anchorShortcut" href="#package-based-installation" aria-hidden="true"></a> Package based Installation</h3>
+<p>If you are using Ubuntu 16.04 LTS we provide the latest stable releases of <a href="https://github.com/stellar/stellar-core">stellar-core</a> and <a href="https://github.com/stellar/go/tree/master/services/horizon">stellar-horizon</a> in Debian binary package format.</p>
+<p>See <a href="https://github.com/stellar/packages#sdf---packages">detailed installation instructions</a></p>
+<h3 id="container-based-installation"><a class="anchorShortcut" href="#container-based-installation" aria-hidden="true"></a> Container based installation</h3>
+<p>Docker images are maintained in a few places, good starting points are:</p>
+<ul>
+<li>the <a href="https://github.com/stellar/docker-stellar-core-horizon">quickstart image</a></li>
+<li>the <a href="https://github.com/stellar/docker-stellar-core">standalone image</a>. <strong>Warning</strong>: this only tracks the latest master, so you have to find the image based on the <a href="https://github.com/stellar/stellar-core/releases">release</a> that you want to use.</li>
+</ul>
+<h2 id="configuring"><a class="anchorShortcut" href="#configuring" aria-hidden="true"></a> Configuring</h2>
+<p>Before attempting to configure stellar-core, it is highly recommended to first try running a private network or joining the test network.</p>
+<h3 id="configuration-basics"><a class="anchorShortcut" href="#configuration-basics" aria-hidden="true"></a> Configuration basics</h3>
+<p>All configuration for stellar-core is done with a TOML file. By default
+stellar-core loads <code>./stellar-core.cfg</code>, but you can specify a different file to load on the command line:</p>
+<p><code>$ stellar-core --conf betterfile.cfg &lt;COMMAND&gt;</code></p>
+<p>The <a href="https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_example.cfg">example config</a> is not a real configuration, but documents all possible configuration elements as well as their default values.</p>
+<p>Here is an <a href="https://github.com/stellar/docker-stellar-core-horizon/blob/master/testnet/core/etc/stellar-core.cfg">example test network config</a> for connecting to the test network.</p>
+<p>Here is an <a href="https://github.com/stellar/docs/blob/master/other/stellar-core-validator-example.cfg">example public network config</a> for connecting to the public network.</p>
+<p>The examples in this file don&#x2019;t specify <code>--conf betterfile.cfg</code> for brevity.</p>
+<h3 id="validating-node"><a class="anchorShortcut" href="#validating-node" aria-hidden="true"></a> Validating node</h3>
+<p>Nodes are considered <strong>validating</strong> if they take part in SCP and sign messages
+pledging that the network agreed to a particular transaction set. It isn&#x2019;t
+necessary to be a validator. Only set your node to validate if other nodes
+care about your validation.</p>
+<p>If you want to validate, you must generate a public/private key for your node.
+Nodes shouldn&#x2019;t share keys. You should carefully <em>secure your private key</em>.
+If it is compromised, someone can send false messages to the network and those
+messages will look like they came from you.</p>
+<p>Generate a key pair like this:</p>
+<p><code>$ stellar-core gen-seed</code>
+the output will look something like</p>
+<pre><code>Secret seed: SBAAOHEU4WSWX6GBZ3VOXEGQGWRBJ72ZN3B3MFAJZWXRYGDIWHQO37SY
+Public: GDMTUTQRCP6L3JQKX3OOKYIGZC6LG2O6K2BSUCI6WNGLL4XXCIB3OK2P
+</code></pre>
+<p>Place the seed in your config:</p>
+<p><code>NODE_SEED=&quot;SBAAOHEU4WSWX6GBZ3VOXEGQGWRBJ72ZN3B3MFAJZWXRYGDIWHQO37SY&quot;</code></p>
+<p>and set the following value in your config:</p>
+<p><code>NODE_IS_VALIDATOR=true</code></p>
+<p>Tell other people your public key (GDMTUTQ&#x2026; ) so people can add it to their <code>QUORUM_SET</code> in their config.
+If you don&#x2019;t include a <code>NODE_SEED</code> or set <code>NODE_IS_VALIDATOR=true</code>, you will still
+watch SCP and see all the data in the network but will not send validation messages.</p>
+<h3 id="crafting-a-quorum-set"><a class="anchorShortcut" href="#crafting-a-quorum-set" aria-hidden="true"></a> Crafting a quorum set</h3>
+<p>This section describes how to configure the quorum set for a validator and assumes basic understanding of the <a href="/guides/concepts/scp.html">Stellar Consensus Protocol</a>.</p>
+<h4 id="validator-list"><a class="anchorShortcut" href="#validator-list" aria-hidden="true"></a> Validator list</h4>
+<p>You will find lists of validators in a few places:</p>
+<ul>
+<li><a href="https://github.com/stellar/docs/blob/master/validators.md">list of validators</a></li>
+<li>the <a href="https://dashboard.stellar.org/">Stellar Dashboard</a></li>
+</ul>
+<h4 id="understanding-requirements-for-a-good-quorum"><a class="anchorShortcut" href="#understanding-requirements-for-a-good-quorum" aria-hidden="true"></a> Understanding requirements for a good quorum</h4>
+<p>The way quorum sets are configured is explained in detail in the <a href="https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_example.cfg">example config</a>.</p>
+<p>As an administrator what you need to do is ensure that your quorum configuration:</p>
+<ul>
+<li>is aligned with how you want to trust other nodes on the network</li>
+<li>gives good guarantees on the quorum intersection property of the network</li>
+<li>provides the right properties in the event of arbitrary node failures</li>
+</ul>
+<p>If you are running multiple validators, the availability model of your organization as a &#x201C;group of validators&#x201D; (the way people are likely to refer to your validators) is not like traditional web services:</p>
+<ul>
+<li>traditional web services stay available down to the last node</li>
+<li>in the consensus world, for your group to be available, 67% of your nodes have to agree to each other</li>
+</ul>
+<h4 id="recommended-pattern-for-building-a-quorum-set"><a class="anchorShortcut" href="#recommended-pattern-for-building-a-quorum-set" aria-hidden="true"></a> Recommended pattern for building a quorum set</h4>
+<p>Divide the validators into two categories:</p>
+<ul>
+<li><a href="#full-validators">full validators</a></li>
+<li><a href="#basic-validators">basic validators</a></li>
+</ul>
+<p>One of the goals is to ensure that there will always be some full validators in any given quorum (from your node&#x2019;s point of view).</p>
+<p>As the way quorum sets are specified using a threshold, i.e. require T out of N entities (groups or individual validators) to agree, the desired property is achieved by simply picking a threshold at least equal to the number of basic entities at the top level + 1.</p>
+<pre><code class="language-toml">[QUORUM_SET]
+THRESHOLD_PERCENT= ?
+VALIDATORS= [ ... ]
+
+# optional, other full validators grouped by entity
+[QUORUM_SET.FULLSDF]
+THRESHOLD_PERCENT= 66
+VALIDATORS = [ ... ]
+
+# other basic validators
+[QUORUM_SET.BASIC]
+THRESHOLD_PERCENT= ?
+VALIDATORS= [ ... ]
+
+# optional, more basic validators from entity XYZ
+[QUORUM_SET.BASIC.XYZ]
+THRESHOLD_PERCENT= 66
+VALIDATORS= [ ... ]
+</code></pre>
+<p>A simple configuration with those properties could look like this:</p>
+<pre><code class="language-toml">[QUORUM_SET]
+# this setup puts all basic entities into one top level one
+# this makes the minimum number of entities at the top level to be 2
+# with 3 validators, we then end up with a minimum of 50%
+# more would be better at the expense of liveness in this example
+THRESHOLD_PERCENT= 67
+VALIDATORS= [ &quot;$sdf1&quot;, &quot;$sdf2&quot;, &quot;$sdf3&quot; ]
+
+[QUORUM_SET.BASIC]
+THRESHOLD_PERCENT= 67
+VALIDATORS= [ ... ]
+
+[QUORUM_SET.BASIC.XYZ]
+THRESHOLD_PERCENT= 67
+VALIDATORS= [ ... ]
+</code></pre>
+<h4 id="picking-thresholds"><a class="anchorShortcut" href="#picking-thresholds" aria-hidden="true"></a> Picking thresholds</h4>
+<p>Thresholds and groupings go hand in hand, and balance:</p>
+<ul>
+<li>liveness - network doesn&#x2019;t halt when some nodes are missing (during maintenance for example)</li>
+<li>safety - resistance to bad votes, some nodes being more important (full validators) for the normal operation of the network</li>
+</ul>
+<p>Liveness pushes thresholds lower and safety pushes thresholds higher.</p>
+<p>On the safety front, ideally any group (regardless of its composition), can suffer a 33% byzantine failure, but in some cases this is not practical and a different configuration needs to be picked.</p>
+<p>You may have to change the grouping in order to achieve the expected properties:</p>
+<ul>
+<li>merging groups typically makes the group more resilient, compare:
+<ul>
+<li>[51%, [51%, A, B, C, D], [51%, E, F, G, H]] # group of 4 has a threshold of 3 nodes -&gt; 2 nodes missing enough to halt</li>
+<li>[51%, A, B, C, D, E, F, G, H] # 8 nodes -&gt; 5 nodes threshold -&gt; 4 nodes missing to halt</li>
+</ul>
+</li>
+<li>splitting groups can also be useful to make certain entities optional, compare:
+<ul>
+<li>[100%, [51%, A, B, C], [50%, D, E]] # requires D or E to agree</li>
+<li>[ 67%, A, B, C, [50%, D, E]] # D or E only required if one of A,B,C doesn&#x2019;t agree (the [D,E] group acts as a tie breaker)</li>
+</ul>
+</li>
+</ul>
+<h4 id="quorum-and-overlay-network"><a class="anchorShortcut" href="#quorum-and-overlay-network" aria-hidden="true"></a> Quorum and overlay network</h4>
+<p>It is generally a good idea to give information to your validator on other validators that you rely on. This is achieved by configuring <code>KNOWN_PEERS</code> and <code>PREFERRED_PEERS</code> with the addresses of your dependencies.</p>
+<p>Additionally, configuring <code>PREFERRED_PEER_KEYS</code> with the keys from your quorum set might be a good idea to give priority to the nodes that allows you to reach consensus.</p>
+<p>Without those settings, your validator depends on other nodes on the network to forward you the right messages, which is typically done as a best effort.</p>
+<h4 id="special-considerations-during-quorum-set-updates"><a class="anchorShortcut" href="#special-considerations-during-quorum-set-updates" aria-hidden="true"></a> Special considerations during quorum set updates</h4>
+<p>Sometimes an organization needs to make changes that impact other&#x2019;s quorum sets:</p>
+<ul>
+<li>taking a validator down for long period of time</li>
+<li>adding new validators to their pool</li>
+</ul>
+<p>In both cases, it&#x2019;s crucial to stage the changes to preserve quorum intersection and general good health of the network:</p>
+<ul>
+<li>removing too many nodes from your quorum set <em>before</em> the nodes are taken down : if different people remove different sets the remaining sets may not overlap between nodes and may cause network splits</li>
+<li>adding too many nodes in your quorum set at the same time : if not done carefully can cause those nodes to overpower your configuration</li>
+</ul>
+<p>Recommended steps are for the entity that adds/removes nodes to do so first between their own nodes, and then have people reflect those changes gradually (over several rounds) in their quorum configuration.</p>
+<h2 id="environment-preparation"><a class="anchorShortcut" href="#environment-preparation" aria-hidden="true"></a> Environment preparation</h2>
+<h3 id="stellar-core-configuration"><a class="anchorShortcut" href="#stellar-core-configuration" aria-hidden="true"></a> stellar-core configuration</h3>
+<p>Cross reference your validator settings, in particular:</p>
+<ul>
+<li>environment specific settings
+<ul>
+<li>network passphrase</li>
+<li>known peers</li>
+</ul>
+</li>
+<li>quorum set
+<ul>
+<li>public keys of the validators that you manage grouped properly</li>
+</ul>
+</li>
+<li>seed defined if validating</li>
+<li><a href="#cursors-and-automatic-maintenance">Automatic maintenance</a> configured properly, especially when stellar-core is used in conjunction with a downstream system like Horizon.</li>
+</ul>
+<h3 id="database-and-local-state"><a class="anchorShortcut" href="#database-and-local-state" aria-hidden="true"></a> Database and local state</h3>
+<p>After configuring your <a href="#database">database</a> and <a href="#buckets">buckets</a> settings, when running stellar-core for the first time, you must initialize the database:</p>
+<p><code>$ stellar-core new-db</code></p>
+<p>This command will initialize the database as well as the bucket directory and then exit.</p>
+<p>You can also use this command if your DB gets corrupted and you want to restart it from scratch.</p>
+<h4 id="database"><a class="anchorShortcut" href="#database" aria-hidden="true"></a> Database</h4>
+<p>Stellar-core stores the state of the ledger in a SQL database.</p>
+<p>This DB should either be a SQLite database or, for larger production instances, a separate PostgreSQL server.</p>
+<p><em>Note: Horizon currently depends on using PostgreSQL.</em></p>
+<p>For how to specify the database,
+see the <a href="https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_example.cfg">example config</a>.</p>
+<h5 id="cursors-and-automatic-maintenance"><a class="anchorShortcut" href="#cursors-and-automatic-maintenance" aria-hidden="true"></a> Cursors and automatic maintenance</h5>
+<p>Some tables in the database act as a publishing queue for external systems such as Horizon and generate <strong>meta data</strong> for changes happening to the distributed ledger.</p>
+<p>If not managed properly those tables will grow without bounds. To avoid this, a built-in scheduler will delete data from old ledgers that are not used anymore by other parts of the system (external systems included).</p>
+<p>The settings that control the automatic maintenance behavior are: <code>AUTOMATIC_MAINTENANCE_PERIOD</code>,  <code>AUTOMATIC_MAINTENANCE_COUNT</code> and <code>KNOWN_CURSORS</code>.</p>
+<p>By default, stellar-core will perform this automatic maintenance, so be sure to disable it until you have done the appropriate data ingestion in downstream systems (Horizon for example sometimes needs to reingest data).</p>
+<p>If you need to regenerate the meta data, the simplest way is to replay ledgers for the range you&#x2019;re interested in after (optionally) clearing the database with <code>newdb</code>.</p>
+<h4 id="buckets"><a class="anchorShortcut" href="#buckets" aria-hidden="true"></a> Buckets</h4>
+<p>Stellar-core stores a duplicate copy of the ledger in the form of flat XDR files
+called &#x201C;buckets.&#x201D; These files are placed in a directory specified in the config
+file as <code>BUCKET_DIR_PATH</code>, which defaults to <code>buckets</code>. The bucket files are used
+for hashing and transmission of ledger differences to history archives.</p>
+<p>Buckets should be stored on a fast local disk with sufficient space to store several times the size of the current ledger.</p>
+<p>For the most part, the contents of both directories can be ignored as they are managed by stellar-core.</p>
+<h3 id="history-archives"><a class="anchorShortcut" href="#history-archives" aria-hidden="true"></a> History archives</h3>
+<p>Stellar-core normally interacts with one or more &#x201C;history archives,&#x201D; which are
+configurable facilities for storing and retrieving flat files containing history
+checkpoints: bucket files and history logs. History archives are usually off-site
+commodity storage services such as Amazon S3, Google Cloud Storage,
+Azure Blob Storage, or custom SCP/SFTP/HTTP servers.</p>
+<p>Use command templates in the config file to give the specifics of which
+services you will use and how to access them.
+The <a href="https://github.com/stellar/stellar-core/blob/master/docs/stellar-core_example.cfg">example config</a>
+shows how to configure a history archive through command templates.</p>
+<p>While it is possible to run a stellar-core node with no configured history
+archives, it will be <em>severely limited</em>, unable to participate fully in a
+network, and likely unable to acquire synchronization at all. At the very
+least, if you are joining an existing network in a read-only capacity, you
+will still need to configure a <code>get</code> command to access that network&#x2019;s history
+archives.</p>
+<h4 id="configuring-to-publish-to-an-archive"><a class="anchorShortcut" href="#configuring-to-publish-to-an-archive" aria-hidden="true"></a> Configuring to publish to an archive</h4>
+<p>Archive sections can also be configured with <code>put</code> and <code>mkdir</code> commands to
+cause the instance to publish to that archive (for nodes configured as <a href="#archiver-nodes">archiver nodes</a> or <a href="#full-validators">full validators</a>).</p>
+<p>The very first time you want to use your archive <em>before starting your node</em> you need to initialize it with:
+<code>$ stellar-core new-hist &lt;historyarchive&gt;</code></p>
+<p><strong>IMPORTANT:</strong></p>
+<ul>
+<li>make sure that you configure both <code>put</code> and <code>mkdir</code> if <code>put</code> doesn&#x2019;t
+automatically create sub-folders</li>
+<li>writing to the same archive from different nodes is not supported and
+will result in undefined behavior, <em>potentially data loss</em>.</li>
+<li>do not run <code>newhist</code> on an existing archive unless you want to erase it.</li>
+</ul>
+<h3 id="other-preparation"><a class="anchorShortcut" href="#other-preparation" aria-hidden="true"></a> Other preparation</h3>
+<p>In addition, your should ensure that your operating environment is also functional.</p>
+<p>In no particular order:</p>
+<ul>
+<li>logging and log rotation</li>
+<li>monitoring and alerting infrastructure</li>
+</ul>
+<h2 id="starting-your-node"><a class="anchorShortcut" href="#starting-your-node" aria-hidden="true"></a> Starting your node</h2>
+<p>After having configured your node and its environment, you&#x2019;re ready to start stellar-core.</p>
+<p>This can be done with a command equivalent to</p>
+<p><code>$ stellar-core run</code></p>
+<p>At this point you&#x2019;re ready to observe core&#x2019;s activity as it joins the network.</p>
+<p>Review the <a href="#logging">logging</a> section to get yourself familiar with the output of stellar-core.</p>
+<h3 id="interacting-with-your-instance"><a class="anchorShortcut" href="#interacting-with-your-instance" aria-hidden="true"></a> Interacting with your instance</h3>
+<p>While running, interaction with stellar-core is done via an administrative
+HTTP endpoint. Commands can be submitted using command-line HTTP tools such
+as <code>curl</code>, or by running a command such as</p>
+<p><code>$ stellar-core http-command &lt;http-command&gt;</code></p>
+<p>The endpoint is <a href="#interaction-with-other-internal-systems">not intended to be exposed to the public internet</a>. It&#x2019;s typically accessed by administrators, or by a mid-tier application to submit transactions to the Stellar network.</p>
+<p>See <a href="./commands.html">commands</a> for a description of the available commands.</p>
+<h3 id="joining-the-network"><a class="anchorShortcut" href="#joining-the-network" aria-hidden="true"></a> Joining the network</h3>
+<p>You can review the section on <a href="#general-node-information">general node information</a>;</p>
+<p>the node will go through the following phases as it joins the network:</p>
+<h4 id="establish-connection-to-other-peers"><a class="anchorShortcut" href="#establish-connection-to-other-peers" aria-hidden="true"></a> Establish connection to other peers</h4>
+<p>You should see <code>authenticated_count</code> increase.</p>
+<pre><code class="language-json">&quot;peers&quot; : {
+         &quot;authenticated_count&quot; : 3,
+         &quot;pending_count&quot; : 4
+      },
+</code></pre>
+<h4 id="observing-consensus"><a class="anchorShortcut" href="#observing-consensus" aria-hidden="true"></a> Observing consensus</h4>
+<p>Until the node sees a quorum, it will say</p>
+<pre><code class="language-json">&quot;state&quot; : &quot;Joining SCP&quot;
+</code></pre>
+<p>After observing consensus, a new field <code>quorum</code> will be set with information on what the network decided on, at this point the node will switch to &#x201C;<em>Catching up</em>&#x201D;:</p>
+<pre><code class="language-json">      &quot;quorum&quot; : {
+         &quot;22267866&quot; : {
+            &quot;agree&quot; : 5,
+            &quot;delayed&quot; : 0,
+            &quot;disagree&quot; : 0,
+            &quot;fail_at&quot; : 3,
+            &quot;hash&quot; : &quot;980a24&quot;,
+            &quot;missing&quot; : 0,
+            &quot;phase&quot; : &quot;EXTERNALIZE&quot;
+         }
+      },
+      &quot;state&quot; : &quot;Catching up&quot;,
+</code></pre>
+<h4 id="catching-up"><a class="anchorShortcut" href="#catching-up" aria-hidden="true"></a> Catching up</h4>
+<p>This is a phase where the node downloads data from archives.
+The state will start with something like</p>
+<pre><code class="language-json">      &quot;state&quot; : &quot;Catching up&quot;,
+      &quot;status&quot; : [ &quot;Catching up: Awaiting checkpoint (ETA: 35 seconds)&quot; ]
+</code></pre>
+<p>and then go through the various phases of downloading and applying state such as</p>
+<pre><code class="language-json">      &quot;state&quot; : &quot;Catching up&quot;,
+      &quot;status&quot; : [ &quot;Catching up: downloading ledger files 20094/119803 (16%)&quot; ]
+</code></pre>
+<h4 id="synced"><a class="anchorShortcut" href="#synced" aria-hidden="true"></a> Synced</h4>
+<p>When the node is done catching up, its state will change to</p>
+<pre><code class="language-json">      &quot;state&quot; : &quot;Synced!&quot;
+</code></pre>
+<h2 id="logging"><a class="anchorShortcut" href="#logging" aria-hidden="true"></a> Logging</h2>
+<p>Stellar-core sends logs to standard output and <code>stellar-core.log</code> by default,
+configurable as <code>LOG_FILE_PATH</code>.</p>
+<p>Log messages are classified by progressive <em>priority levels</em>:
+<code>TRACE</code>, <code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code> and <code>FATAL</code>.
+The logging system only emits those messages at or above its configured logging level.</p>
+<p>The log level can be controlled by configuration, the <code>-ll</code> command-line flag
+or adjusted dynamically by administrative (HTTP) commands. Run:</p>
+<p><code>$ stellar-core http-command &quot;ll?level=debug&quot;</code></p>
+<p>against a running system.
+Log levels can also be adjusted on a partition-by-partition basis through the
+administrative interface.
+For example the history system can be set to DEBUG-level logging by running:</p>
+<p><code>$ stellar-core http-command &quot;ll?level=debug&amp;partition=history&quot;</code></p>
+<p>against a running system.
+The default log level is <code>INFO</code>, which is moderately verbose and should emit
+progress messages every few seconds under normal operation.</p>
+<h2 id="monitoring-and-diagnostics"><a class="anchorShortcut" href="#monitoring-and-diagnostics" aria-hidden="true"></a> Monitoring and diagnostics</h2>
+<p>Information provided here can be used for both human operators and programmatic access.</p>
+<h3 id="general-node-information"><a class="anchorShortcut" href="#general-node-information" aria-hidden="true"></a> General node information</h3>
+<p>Run <code>$ stellar-core http-command &apos;info&apos;</code>
+The output will look something like</p>
+<pre><code class="language-json">{
+      &quot;build&quot; : &quot;v10.2.0&quot;,
+      &quot;history_failure_rate&quot; : &quot;0&quot;,
+      &quot;ledger&quot; : {
+         &quot;age&quot; : 1549052313,
+         &quot;baseFee&quot; : 100,
+         &quot;baseReserve&quot; : 100000000,
+         &quot;closeTime&quot; : 0,
+         &quot;hash&quot; : &quot;39c2a3cd4141b2853e70d84601faa44744660334b48f3228e0309342e3f4eb48&quot;,
+         &quot;maxTxSetSize&quot; : 100,
+         &quot;num&quot; : 1,
+         &quot;version&quot; : 0
+      },
+      &quot;network&quot; : &quot;Public Global Stellar Network ; September 2015&quot;,
+      &quot;peers&quot; : {
+         &quot;authenticated_count&quot; : 5,
+         &quot;pending_count&quot; : 0
+      },
+      &quot;protocol_version&quot; : 10,
+      &quot;quorum&quot; : {
+         &quot;22267866&quot; : {
+            &quot;agree&quot; : 5,
+            &quot;delayed&quot; : 0,
+            &quot;disagree&quot; : 0,
+            &quot;fail_at&quot; : 3,
+            &quot;hash&quot; : &quot;980a24&quot;,
+            &quot;missing&quot; : 0,
+            &quot;phase&quot; : &quot;EXTERNALIZE&quot;
+         }
+      },
+      &quot;startedOn&quot; : &quot;2019-02-01T20:13:43Z&quot;,
+      &quot;state&quot; : &quot;Catching up&quot;,
+      &quot;status&quot; : [ &quot;Catching up: downloading and verifying buckets: 30/30 (100%)&quot; ]
+   }
+}
+</code></pre>
+<p><code>peers</code> gives information on the connectivity to the network, <code>authenticated_count</code> are live connections while <code>pending_count</code> are connections that are not fully established yet.</p>
+<p><code>ledger</code> represents the local state of your node, it may be different from the network state if your node was disconnected from the network for example.</p>
+<p>notable fields in ledger are:</p>
+<ul>
+<li><code>age</code> : time elapsed since this ledger closed (during normal operation less than 10 seconds)</li>
+<li><code>num</code> : ledger number</li>
+<li><code>version</code> : protocol version supported by this ledger</li>
+</ul>
+<p>The state of a fresh node (reset with <code>newdb</code>), will look something like this:</p>
+<pre><code class="language-json">&quot;ledger&quot; : {
+         &quot;age&quot; : 1519857653,
+         &quot;baseFee&quot; : 100,
+         &quot;baseReserve&quot; : 100000000,
+         &quot;closeTime&quot; : 0,
+         &quot;hash&quot; : &quot;63d98f536ee68d1b27b5b89f23af5311b7569a24faf1403ad0b52b633b07be99&quot;,
+         &quot;num&quot; : 2,
+         &quot;version&quot; : 0
+      },
+</code></pre>
+<p>Additional fields typically used by downstream systems:</p>
+<ul>
+<li><code>build</code> is the build number for this stellar-core instance</li>
+<li><code>network</code> is the network passphrase that this core instance is connecting to</li>
+<li><code>protocol_version</code> is the maximum version of the protocol that this instance recognizes</li>
+</ul>
+<p>In some cases, nodes will display additional status information:</p>
+<pre><code class="language-json">      &quot;status&quot; : [
+         &quot;Armed with network upgrades: upgradetime=2018-01-31T20:00:00Z, protocolversion=9&quot;
+      ]
+</code></pre>
+<h3 id="overlay-information"><a class="anchorShortcut" href="#overlay-information" aria-hidden="true"></a> Overlay information</h3>
+<p>The <code>peers</code> command returns information on the peers the instance is connected to.</p>
+<p>This list is the result of both inbound connections from other peers and outbound connections from this node to other peers.</p>
+<p><code>$ stellar-core http-command &apos;peers&apos;</code></p>
+<pre><code class="language-json">{
+   &quot;authenticated_peers&quot; : {
+     &quot;inbound&quot; : [
+        {
+           &quot;address&quot; : &quot;54.161.82.181:11625&quot;,
+           &quot;id&quot; : &quot;sdf1&quot;,
+           &quot;olver&quot; : 5,
+           &quot;ver&quot; : &quot;v9.1.0&quot;
+        }
+     ],
+     &quot;outbound&quot; : [
+       {
+          &quot;address&quot; : &quot;54.211.174.177:11625&quot;,
+          &quot;id&quot; : &quot;sdf2&quot;,
+          &quot;olver&quot; : 5,
+          &quot;ver&quot; : &quot;v9.1.0&quot;
+       },
+       {
+          &quot;address&quot; : &quot;54.160.175.7:11625&quot;,
+          &quot;id&quot; : &quot;sdf3&quot;,
+          &quot;olver&quot; : 5,
+          &quot;ver&quot; : &quot;v9.1.0&quot;
+        }
+     ]
+   },
+   &quot;pending_peers&quot; : {
+      &quot;inbound&quot; : [ &quot;211.249.63.74:11625&quot;, &quot;45.77.5.118:11625&quot; ],
+      &quot;outbound&quot; : [ &quot;178.21.47.226:11625&quot;, &quot;178.131.109.241:11625&quot; ]
+   }
+}
+</code></pre>
+<h3 id="quorum-set-health"><a class="anchorShortcut" href="#quorum-set-health" aria-hidden="true"></a> Quorum set Health</h3>
+<p>The <code>quorum</code> command allows to diagnose problems with the quorum set of the local node.</p>
+<p>Run</p>
+<p><code>$ stellar-core http-command &apos;quorum&apos;</code></p>
+<p>The output looks something like:</p>
+<pre><code class="language-json">&quot;474313&quot; : {
+         &quot;agree&quot; : 6,
+         &quot;delayed&quot; : null,
+         &quot;disagree&quot; : null,
+         &quot;fail_at&quot; : 2,
+         &quot;fail_with&quot; : [ &quot;lab1&quot;, &quot;lab2&quot; ],
+         &quot;hash&quot; : &quot;d1dacb&quot;,
+         &quot;missing&quot; : [ &quot;donovan&quot; ],
+         &quot;phase&quot; : &quot;EXTERNALIZE&quot;,
+         &quot;value&quot; : {
+            &quot;t&quot; : 5,
+            &quot;v&quot; : [ &quot;lab1&quot;, &quot;lab2&quot;, &quot;lab3&quot;, &quot;donovan&quot;, &quot;GDVFV&quot;, &quot;nelisky1&quot;, &quot;nelisky2&quot; ]
+         }
+</code></pre>
+<p>Entries to watch for are:</p>
+<ul>
+<li><code>agree</code> : the number of nodes in the quorum set that agree with this instance.</li>
+<li><code>delayed</code> : the nodes that are participating to consensus but seem to be behind.</li>
+<li><code>disagree</code>: the nodes that were participating but disagreed with this instance.</li>
+<li><code>fail_at</code> : the number of failed nodes that <em>would</em> cause this instance to halt.</li>
+<li><code>fail_with</code>: an example of such potential failure.</li>
+<li><code>missing</code> : the nodes that were missing during this consensus round.</li>
+<li><code>value</code> : the quorum set used by this node (<code>t</code> is the threshold expressed as a number of nodes).</li>
+</ul>
+<p>In the example above, 6 nodes are functioning properly, one is down (<code>donovan</code>), and
+the instance will fail if any two nodes out of the ones still working fail as well.</p>
+<p>If a node is stuck in state <code>Joining SCP</code>, this command allows to quickly find the reason:</p>
+<ul>
+<li>
+<p>too many validators missing (down or without a good connectivity), solutions are:</p>
+<ul>
+<li><a href="#crafting-a-quorum-set">adjust quorum set</a> (thresholds, grouping, etc) based on the nodes that are not missing</li>
+<li>try to get a <a href="#quorum-and-overlay-network">better connectivity path</a> to the missing validators</li>
+</ul>
+</li>
+<li>
+<p>network split would cause SCP to be stuck because of nodes that disagree. This would happen if either there is a bug in SCP, the network does not have quorum intersection or the disagreeing nodes are misbehaving (compromised, etc)</p>
+</li>
+</ul>
+<p>Note that the node not being able to reach consensus does not mean that the network
+as a whole will not be able to reach consensus (and the opposite is true, the network
+may fail because of a different set of validators failing).</p>
+<p>You can get a sense of the quorum set health of a different node by doing
+<code>$ stellar-core http-command &apos;quorum?node=$sdf1</code> or <code>$ stellar-core http-command &apos;quorum?node=@GABCDE</code></p>
+<p>Overall network health can be evaluated by walking through all nodes and looking at their health. Note that this is only an approximation as remote nodes may not have received the same messages (in particular: <code>missing</code> for other nodes is not reliable).</p>
+<h2 id="validator-maintenance"><a class="anchorShortcut" href="#validator-maintenance" aria-hidden="true"></a> Validator maintenance</h2>
+<p>Maintenance here refers to anything involving taking your validator temporarily out of the network (to apply security patches, system upgrade, etc).</p>
+<p>As an administrator of a validator, you must ensure that the maintenance you are about to apply to the validator is safe for the overall network and for your validator.</p>
+<p>Safe means that the other validators that depend on yours will not be affected too much when you turn off your validator for maintenance and that your validator will continue to operate as part of the network when it comes back up.</p>
+<p>If you are changing some settings that may impact network wide settings such as protocol version, review <a href="#network-configuration">the section on network configuration</a>.</p>
+<p>If you&#x2019;re changing your quorum set configuration, also read the <a href="#special-considerations-during-quorum-set-updates">section on what to do</a>.</p>
+<h3 id="recommended-steps-to-perform-as-part-of-a-maintenance"><a class="anchorShortcut" href="#recommended-steps-to-perform-as-part-of-a-maintenance" aria-hidden="true"></a> Recommended steps to perform as part of a maintenance</h3>
+<p>We recommend performing the following steps in order (repeat sequentially as needed if you run multiple nodes).</p>
+<ol>
+<li>Advertise your intention to others that may depend on you. Some coordination is required to avoid situations where too many nodes go down at the same time.</li>
+<li>Dependencies should assess the health of their quorum, refer to the section
+&quot;Understanding quorum and reliability&quot;.</li>
+<li>If there is no objection, take your instance down</li>
+<li>When done, start your instance that should rejoin the network</li>
+<li>The instance will be completely caught up when it&#x2019;s both <code>Synced</code> and <em>there is no backlog in uploading history</em>.</li>
+</ol>
+<h2 id="network-configuration"><a class="anchorShortcut" href="#network-configuration" aria-hidden="true"></a> Network configuration</h2>
+<p>The network itself has network wide settings that can be updated.</p>
+<p>This is performed by validators voting for and agreeing to new values the same way than consensus is reached for transaction sets, etc.</p>
+<p>A node can be configured to vote for upgrades using the <code>upgrades</code> endpoint . see <a href="commands.html"><code>commands.md</code></a> for more information.</p>
+<p>The network settings are:</p>
+<ul>
+<li>the version of the protocol used to process transactions</li>
+<li>the maximum number of transactions that can be included in a given ledger close</li>
+<li>the cost (fee) associated with processing operations</li>
+<li>the base reserve used to calculate the lumen balance needed to store things in the ledger</li>
+</ul>
+<p>When the network time is later than the <code>upgradetime</code> specified in
+the upgrade settings, the validator will vote to update the network
+to the value specified in the upgrade setting.</p>
+<p>When a validator is armed to change network values, the output of <code>info</code> will contain information about the vote.</p>
+<p>For a new value to be adopted, the same level of consensus between nodes needs to be reached as for transaction sets.</p>
+<h3 id="important-notes-on-network-wide-settings"><a class="anchorShortcut" href="#important-notes-on-network-wide-settings" aria-hidden="true"></a> Important notes on network wide settings</h3>
+<p>Changes to network wide settings have to be orchestrated properly between
+validators as well as non validating nodes:</p>
+<ul>
+<li>a change is vetted between operators (changes can be bundled)</li>
+<li>an effective date in the future is picked for the change to take effect (controlled by <code>upgradetime</code>)</li>
+<li>if applicable, communication is sent out to all network users</li>
+</ul>
+<p>An improper plan may cause issues such as:</p>
+<ul>
+<li>nodes missing consensus (aka &#x201C;getting stuck&#x201D;), and having to use history to rejoin</li>
+<li>network reconfiguration taking effect at a non deterministic time (causing fees to change ahead of schedule for example)</li>
+</ul>
+<p>For more information look at <a href="../versioning.html"><code>docs/versioning.md</code></a>.</p>
+<h3 id="example-upgrade-command"><a class="anchorShortcut" href="#example-upgrade-command" aria-hidden="true"></a> Example upgrade command</h3>
+<p>Example here is to upgrade the protocol version to version 9 on January-31-2018.</p>
+<ol>
+<li>
+<p><code>$ stellar-core http-command &apos;upgrades?mode=set&amp;upgradetime=2018-01-31T20:00:00Z&amp;protocolversion=9&apos;</code></p>
+</li>
+<li>
+<p><code>$ stellar-core http-command info</code>
+At this point <code>info</code> will tell you that the node is setup to vote for this upgrade:</p>
+</li>
+</ol>
+<pre><code class="language-json">      &quot;status&quot; : [
+         &quot;Armed with network upgrades: upgradetime=2018-01-31T20:00:00Z, protocolversion=9&quot;
+      ]
+</code></pre>
+<h2 id="advanced-topics-and-internals"><a class="anchorShortcut" href="#advanced-topics-and-internals" aria-hidden="true"></a> Advanced topics and internals</h2>
+<p>This section contains information that is useful to know but that should not stop somebody from running a node.</p>
+<h3 id="creating-your-own-private-network"><a class="anchorShortcut" href="#creating-your-own-private-network" aria-hidden="true"></a> Creating your own private network</h3>
+<p><a href="./testnet.html">testnet.md</a> is a short tutorial demonstrating how to
+configure and run a short-lived, isolated test network.</p>
+<h3 id="runtime-information-start-and-stop"><a class="anchorShortcut" href="#runtime-information-start-and-stop" aria-hidden="true"></a> Runtime information: start and stop</h3>
+<p>Stellar-core can be started directly from the command line, or through a supervision
+system such as <code>init</code>, <code>upstart</code>, or <code>systemd</code>.</p>
+<p>Stellar-core can be gracefully exited at any time by delivering <code>SIGINT</code> or
+pressing <code>CTRL-C</code>. It can be safely, forcibly terminated with <code>SIGTERM</code> or
+<code>SIGKILL</code>. The latter may leave a stale lock file in the <code>BUCKET_DIR_PATH</code>,
+and you may need to remove the file before it will restart.
+Otherwise, all components are designed to recover from abrupt termination.</p>
+<p>Stellar-core can also be packaged in a container system such as Docker, so long
+as <code>BUCKET_DIR_PATH</code> and the database are stored on persistent volumes. For an
+example, see <a href="https://github.com/stellar/docker-stellar-core-horizon">docker-stellar-core</a>.</p>
+<h3 id="in-depth-architecture"><a class="anchorShortcut" href="#in-depth-architecture" aria-hidden="true"></a> In depth architecture</h3>
+<p><a href="https://github.com/stellar/stellar-core/blob/master/docs/architecture.md">architecture.md</a>
+describes how stellar-core is structured internally, how it is intended to be
+deployed, and the collection of servers and services needed to get the full
+functionality and performance.</p>
+
+      <br>
+      <a href="https://github.com/stellar/stellar-core/blob/master/docs/software/admin.md" class="spu-color-neutral6">&#x5728; GitHub &#x4E0A;&#x7F16;&#x8F91;&#x6B64;&#x9875;&#x9762;</a>
+    </s-read-md>
+  
+  </div>
+</div>
+</div>
+
+<div class="so-back spu-borderTop-1 spu-borderColor-neutral7 spu-padTB-15">
+  <div class="so-chunk">
+    <div class="siteFooter">
+      <div class="siteFooter__list">
+        <a class="siteFooter__list__item" href="https://www.stellar.org/"><span class="graphic-backArrow-9"></span>&#xA0;&#xA0;Stellar.org</a>
+        <span class="siteFooter__list__sep">|</span>
+        <a class="siteFooter__list__item" href="https://www.stellar.org/bug-bounty-program/">Bug &#x60AC;&#x8D4F;</a>
+        <a class="siteFooter__list__item" href="/stellar-core/software/admin.html">&#x8FD0;&#x884C;&#x8282;&#x70B9;</a>
+        <a class="siteFooter__list__item" href="/guides/things-to-build.html">&#x6784;&#x5EFA;&#x5E94;&#x7528;</a>
+        <a class="siteFooter__list__item" href="https://github.com/stellar/">GitHub</a>
+        <a class="siteFooter__list__item" href="http://slack.stellar.org/">&#x6765;&#x793E;&#x533A;&#x7545;&#x8C08;</a>
+      </div>
+      <div class="siteFooter__list siteFooter__list--aux">
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/terms-of-service/">&#x670D;&#x52A1;&#x6761;&#x6B3E;</a>
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/privacy-policy/">&#x9690;&#x79C1;&#x653F;&#x7B56;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/js/app-9b8f1b0df3650f3a8dabc0e0b08ccab9.js"></script>
+<script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("U8cLXTFMPm");
+analytics.page()
+}}();
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5V3WNNP');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V3WNNP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</html>

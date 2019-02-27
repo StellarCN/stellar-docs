@@ -1,0 +1,82 @@
+<h2 id="horizon-development-guide"><a class="anchorShortcut" href="#horizon-development-guide" aria-hidden="true"></a> Horizon Development Guide</h2>
+<p>This document describes how to build Horizon from source, so that you can test and edit the code locally to develop bug fixes and new features.</p>
+<p>If you are just starting with Horizon and want to try it out, consider the <a href="quickstart.md">Quickstart Guide</a> instead. For information about administrating a Horizon instance in production, check out the <a href="admin.md">Administration Guide</a>.</p>
+<h2 id="building-horizon"><a class="anchorShortcut" href="#building-horizon" aria-hidden="true"></a> Building Horizon</h2>
+<p>Building Horizon requires the following developer tools:</p>
+<ul>
+<li>A <a href="https://en.wikipedia.org/wiki/Unix-like">Unix-like</a> operating system with the common core commands (cp, tar, mkdir, bash, etc.)</li>
+<li>Golang 1.9 or later</li>
+<li><a href="https://git-scm.com/">git</a> (to check out Horizon&#x2019;s source code)</li>
+<li><a href="https://golang.github.io/dep/">go-dep</a> (package manager for Go)</li>
+<li><a href="https://www.mercurial-scm.org/">mercurial</a> (needed for <code>go-dep</code>)</li>
+</ul>
+<ol>
+<li>Set your <a href="https://github.com/golang/go/wiki/GOPATH">GOPATH</a> environment variable, if you haven&#x2019;t already. The default <code>GOPATH</code> is <code>$HOME/go</code>.</li>
+<li>Clone the <a href="https://github.com/stellar/go">Stellar Go</a> monorepo:  <code>go get github.com/stellar/go</code>. You should see the repository present at <code>$GOPATH/src/github.com/stellar/go</code>.</li>
+<li>Enter the source dir: <code>cd $GOPATH/src/github.com/stellar/go</code>, and download external dependencies: <code>dep ensure -v</code>. You should see the downloaded third party dependencies in <code>$GOPATH/pkg</code>.</li>
+<li>Compile the Horizon binary: <code>cd $GOPATH; go install github.com/stellar/go/services/horizon</code>. You should see the resulting <code>horizon</code> executable in <code>$GOPATH/bin</code>.</li>
+<li>Add Go binaries to your PATH in your <code>bashrc</code> or equivalent, for easy access: <code>export PATH=${GOPATH//://bin:}/bin:$PATH</code></li>
+</ol>
+<p>Open a new terminal. Confirm everything worked by running <code>horizon --help</code> successfully. You should see an informative message listing the command line options supported by Horizon.</p>
+<h2 id="set-up-horizons-database"><a class="anchorShortcut" href="#set-up-horizons-database" aria-hidden="true"></a> Set up Horizon&#x2019;s database</h2>
+<p>Horizon uses a Postgres database backend to store test fixtures and record information ingested from an associated Stellar Core. To set this up:</p>
+<ol>
+<li>Install <a href="https://www.postgresql.org/">PostgreSQL</a>.</li>
+<li>Run <code>createdb horizon_dev</code> to initialise an empty database for Horizon&#x2019;s use.</li>
+<li>Run <code>horizon db init --db-url postgres://localhost/horizon_dev</code> to install Horizon&#x2019;s database schema.</li>
+</ol>
+<h3 id="database-problems"><a class="anchorShortcut" href="#database-problems" aria-hidden="true"></a> Database problems?</h3>
+<ol>
+<li>Depending on your installation&#x2019;s defaults, you may need to configure a Postgres DB user with appropriate permissions for Horizon to access the database you created. Refer to the <a href="https://www.postgresql.org/docs/current/sql-createuser.html">Postgres documentation</a> for details. Note: Remember to restart the Postgres server after making any changes to <code>pg_hba.conf</code> (the Postgres configuration file), or your changes won&#x2019;t take effect!</li>
+<li>Make sure you pass the appropriate database name and user (and port, if using something non-standard) to Horizon using <code>--db-url</code>. One way is to use a Postgres URI with the following form: <code>postgres://USERNAME:PASSWORD@localhost:PORT/DB_NAME</code>.</li>
+<li>If you get the error <code>connect failed: pq: SSL is not enabled on the server</code>, add <code>?sslmode=disable</code> to the end of the Postgres URI to allow connecting without SSL.</li>
+<li>If your server is responding strangely, and you&#x2019;ve exhausted all other options, reboot the machine. On some systems <code>service postgresql restart</code> or equivalent may not fully reset the state of the server.</li>
+</ol>
+<h2 id="run-tests"><a class="anchorShortcut" href="#run-tests" aria-hidden="true"></a> Run tests</h2>
+<p>At this point you should be able to run Horizon&#x2019;s unit tests:</p>
+<pre><code class="language-bash">cd $GOPATH/src/github.com/stellar/go/services/horizon
+bash ../../support/scripts/run_tests
+</code></pre>
+<h2 id="set-up-stellar-core"><a class="anchorShortcut" href="#set-up-stellar-core" aria-hidden="true"></a> Set up Stellar Core</h2>
+<p>Horizon provides an API to the Stellar network. It does this by ingesting data from an associated <code>stellar-core</code> instance. Thus, to run a full Horizon instance requires a <code>stellar-core</code> instance to be configured, up to date with the network state, and accessible to Horizon. Horizon accesses <code>stellar-core</code> through both an HTTP endpoint and by connecting directly to the <code>stellar-core</code> Postgres database.</p>
+<p>The simplest way to set up Stellar Core is using the <a href="https://github.com/stellar/docker-stellar-core-horizon">Stellar Quickstart Docker Image</a>. This is a Docker container that provides both <code>stellar-core</code> and <code>horizon</code>, pre-configured for testing.</p>
+<ol>
+<li>Install <a href="https://www.docker.com/get-started">Docker</a>.</li>
+<li>Verify your Docker installation works: <code>docker run hello-world</code></li>
+<li>Create a local directory that the container can use to record state. This is helpful because it can take a few minutes to sync a new <code>stellar-core</code> with enough data for testing, and because it allows you to inspect and modify the configuration if needed. Here, we create a directory called <code>stellar</code> to use as the persistent volume: <code>cd $HOME; mkdir stellar</code></li>
+<li>Download and run the Stellar Quickstart container:</li>
+</ol>
+<pre><code class="language-bash">docker run --rm -it -p &quot;8000:8000&quot; -p &quot;11626:11626&quot; -p &quot;11625:11625&quot; -p&quot;8002:5432&quot; -v $HOME/stellar:/opt/stellar --name stellar stellar/quickstart --testnet
+</code></pre>
+<p>In this example we run the container in interactive mode. We map the container&#x2019;s Horizon HTTP port (<code>8000</code>), the <code>stellar-core</code> HTTP port (<code>11626</code>), and the <code>stellar-core</code> peer node port (<code>11625</code>) from the container to the corresponding ports on <code>localhost</code>. Importantly, we map the container&#x2019;s <code>postgresql</code> port (<code>5432</code>) to a custom port (<code>8002</code>) on <code>localhost</code>, so that it doesn&#x2019;t clash with our local Postgres install.
+The <code>-v</code> option mounts the <code>stellar</code> directory for use by the container. See the <a href="https://github.com/stellar/docker-stellar-core-horizon">Quickstart Image documentation</a> for a detailed explanation of these options.</p>
+<ol start="5">
+<li>The container is running both a <code>stellar-core</code> and a <code>horizon</code> instance. Log in to the container and stop Horizon:</li>
+</ol>
+<pre><code class="language-bash">docker exec -it stellar /bin/bash
+supervisorctl
+stop horizon
+</code></pre>
+<h2 id="check-stellar-core-status"><a class="anchorShortcut" href="#check-stellar-core-status" aria-hidden="true"></a> Check Stellar Core status</h2>
+<p>Stellar Core takes some time to synchronise with the rest of the network. The default configuration will pull roughly a couple of day&#x2019;s worth of ledgers, and may take 15 - 30 minutes to catch up. Logs are stored in the container at <code>/var/log/supervisor</code>. You can check the progress by monitoring logs with <code>supervisorctl</code>:</p>
+<pre><code class="language-bash">docker exec -it stellar /bin/bash
+supervisorctl tail -f stellar-core
+</code></pre>
+<p>You can also check status by looking at the HTTP endpoint, e.g. by visiting <a href="http://localhost:11626">http://localhost:11626</a> in your browser.</p>
+<h2 id="connect-horizon-to-stellar-core"><a class="anchorShortcut" href="#connect-horizon-to-stellar-core" aria-hidden="true"></a> Connect Horizon to Stellar Core</h2>
+<p>You can connect Horizon to <code>stellar-core</code> at any time, but Horizon will not begin ingesting data until <code>stellar-core</code> has completed its catch-up process.</p>
+<p>Now run your development version of Horizon (which is outside of the container), pointing it at the <code>stellar-core</code> running inside the container:</p>
+<pre><code class="language-bash">horizon --db-url=&quot;postgres://localhost/horizon_dev&quot; --stellar-core-db-url=&quot;postgres://stellar:postgres@localhost:8002/core&quot; --stellar-core-url=&quot;http://localhost:11626&quot; --port 8001 --network-passphrase &quot;Test SDF Network ; September 2015&quot; --ingest
+</code></pre>
+<p>If all is well, you should see ingest logs written to standard out. You can test your Horizon instance with a query like: <a href="http://localhost:8001/transactions?limit=10&amp;order=asc">http://localhost:8001/transactions?limit=10&amp;order=asc</a>. Use the <a href="https://www.stellar.org/laboratory/">Stellar Laboratory</a> to craft other queries to try out,
+and read about the available endpoints and see examples in the <a href="https://www.stellar.org/developers/horizon/reference/">Horizon API reference</a>.</p>
+<h2 id="the-development-cycle"><a class="anchorShortcut" href="#the-development-cycle" aria-hidden="true"></a> The development cycle</h2>
+<p>Congratulations! You can now run the full development cycle to build and test your code.</p>
+<ol>
+<li>Write code + tests</li>
+<li>Run tests</li>
+<li>Compile Horizon: <code>go install github.com/stellar/go/services/horizon</code></li>
+<li>Run Horizon (pointing at your running <code>stellar-core</code>)</li>
+<li>Try Horizon queries</li>
+</ol>
+<p>Check out the <a href="https://github.com/stellar/docs/blob/master/CONTRIBUTING.md">Stellar Contributing Guide</a> to see how to contribute your work to the Stellar repositories. Once you&#x2019;ve got something that works, open a pull request, linking to the issue that you are resolving with your contribution. We&#x2019;ll get back to you as quickly as we can.</p>

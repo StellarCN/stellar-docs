@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+
+  Want to contribute to this site? Take a look at the GitHub repository for this
+  site: https://github.com/stellar/developers
+
+  -->
+  <title>Developing Interstellar Modules - Interstellar | Stellar Developers</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="author" content="Stellar.org and contributors">
+
+  <meta property="og:title" content="Developing Interstellar Modules - Interstellar | Stellar Developers">
+  <meta property="og:type" content="website">
+
+
+  <link rel="stylesheet" href="/styles/index-cff14d28bafbba60930f31b923b4e75b.css">
+
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/rocket-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/rocket-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/rocket-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicon/rocket-96x96.png" sizes="96x96">
+  <meta name="msapplication-TileImage" content="/images/favicon/rocket-144x144.png">
+
+  <script type="text/javascript">
+    var $mcGoal = {'settings':{'uuid':'c001d97369b7a10d224c23867','dc':'us9'}};
+    (function() {
+      var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+      sp.src = ('https:' == document.location.protocol ? 'https://s3.amazonaws.com/downloads.mailchimp.com' : 'http://downloads.mailchimp.com') + '/js/goal.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+    })();
+  </script>
+
+  <script>window.clientData = {};</script>
+
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0065/1320.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+</head>
+<body>
+<div class="header2016">
+  <div class="header2016__logo header2016__logo--spaced">
+    <div class="so-siteHeader">
+      <span class="so-logo">
+  <a href="https://www.stellar.org/" class="so-logo__main">Stellar</a><!--
+  --><span class="so-logo__separator"> </span><!--
+  --><a href="/" class="so-logo__subSite">developers</a>
+</span>
+    </div>
+  </div>
+  <nav class="header2016__nav mainNavMenu spu-padStart-30">
+    <a class="mainNavMenu__item is-currentItem" href="/guides/">&#x6307;&#x5357;</a>
+<a class="mainNavMenu__item " href="/reference/">API &#x53C2;&#x8003;&#x624B;&#x518C;</a>
+<a class="mainNavMenu__item " href="/software/">&#x8F6F;&#x4EF6;</a>
+<a class="mainNavMenu__item " href="/tools/">&#x5DE5;&#x5177;</a>
+  </nav>
+</div>
+
+<div class="S-flex-row">
+  <div class="siteSidebar pageNavListBounder">
+  <div class="mainSidebar">
+    <ul class="pageNavList">
+
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x5165;&#x95E8;</span>
+        <ol class="collapsibleListSet__list">
+                    <li class="pageNavList__item"><a href="/guides/get-started/index.html">Stellar &#x7F51;&#x7EDC;&#x6982;&#x89C8;</a></li>
+          <li class="pageNavList__item"><a href="/guides/get-started/create-account.html">&#x521B;&#x5EFA;&#x8D26;&#x6237;</a></li>
+  <li class="pageNavList__item"><a href="/guides/get-started/transactions.html">&#x4ED8;&#x6B3E;&#x548C;&#x6536;&#x6B3E;</a></li>
+
+        </ol>
+      </li>
+    
+
+
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x951A;&#x70B9;</span>
+        <ol class="collapsibleListSet__list">
+                    <li class="pageNavList__item"><a href="/guides/anchor/index.html">&#x67B6;&#x6784;</a></li>
+          <li class="pageNavList__item"><a href="/guides/anchor/2-bridge-server.html">&#x6865;&#x63A5;&#x670D;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/anchor/3-federation-server.html">&#x8054;&#x90A6;&#x670D;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/anchor/4-compliance-server.html">&#x5408;&#x89C4;&#x670D;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/anchor/5-conclusion.html">&#x4E0B;&#x4E00;&#x6B65;</a></li>
+
+        </ol>
+      </li>
+    
+      
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x6982;&#x5FF5;</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/guides/concepts/accounts.html">&#x8D26;&#x6237;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/assets.html">&#x8D44;&#x4EA7;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/exchange.html">&#x5206;&#x5E03;&#x5F0F;&#x4EA4;&#x6613;&#x6240;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/federation.html">&#x8054;&#x90A6;&#x534F;&#x8BAE;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/fees.html">&#x8D39;&#x7528;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/inflation.html">&#x901A;&#x8D27;&#x81A8;&#x80C0;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/ledger.html">&#x603B;&#x8D26;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/list-of-operations.html">&#x64CD;&#x4F5C;&#x6E05;&#x5355;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/multi-sig.html">&#x591A;&#x91CD;&#x7B7E;&#x540D;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/operations.html">&#x64CD;&#x4F5C;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/scp.html">Stellar &#x5171;&#x8BC6;&#x534F;&#x8BAE;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/stellar-toml.html">Stellar.toml</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/test-net.html">&#x6D4B;&#x8BD5;&#x7F51;&#x7EDC;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/transactions.html">&#x4E8B;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/versioning.html">&#x7248;&#x672C;&#x4E0E;&#x5347;&#x7EA7;&#x7BA1;&#x7406;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/xdr.html">XDR</a></li>
+
+        </ul>
+      </li>
+    
+      
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x6F14;&#x793A;</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/guides/walkthroughs/bifrost-server-setup.html">&#x914D;&#x7F6E;&#x8679;&#x6865;&#x670D;&#x52A1;&#x5668;</a></li>
+  <li class="pageNavList__item"><a href="/guides/walkthroughs/custom-assets.html">&#x81EA;&#x5B9A;&#x4E49;&#x8D44;&#x4EA7;</a></li>
+  <li class="pageNavList__item"><a href="/guides/walkthroughs/how-to-complete-stellar-toml.html">&#x5982;&#x4F55;&#x4EE5;&#x53CA;&#x4E3A;&#x4F55;&#x8BBE;&#x7F6E;&#x60A8;&#x7684; Stellar.toml</a></li>
+  <li class="pageNavList__item"><a href="/guides/walkthroughs/stellar-smart-contracts.html">Stellar &#x667A;&#x80FD;&#x5408;&#x7EA6;</a></li>
+
+        </ul>
+      </li>
+    
+        <li class="pageNavList__item"><a href="/guides/attachment.html">Stellar &#x9644;&#x4EF6;&#x516C;&#x7EA6;</a></li>
+  <li class="pageNavList__item"><a href="/guides/channels.html">&#x4FE1;&#x9053;</a></li>
+  <li class="pageNavList__item"><a href="/guides/compliance-protocol.html">&#x5408;&#x89C4;&#x534F;&#x8BAE;</a></li>
+  <li class="pageNavList__item"><a href="/guides/exchange.html">&#x5C06; Stellar &#x6DFB;&#x52A0;&#x5230;&#x60A8;&#x7684;&#x4EA4;&#x6613;&#x6240;&#x4E2D;</a></li>
+  <li class="pageNavList__item"><a href="/guides/hardware.html">&#x786C;&#x4EF6;&#x9700;&#x6C42;</a></li>
+  <li class="pageNavList__item"><a href="/guides/issuing-assets.html">&#x53D1;&#x884C;&#x8D44;&#x4EA7;</a></li>
+  <li class="pageNavList__item"><a href="/guides/nodes.html">&#x5DF2;&#x77E5;&#x7684;&#x9A8C;&#x8BC1;&#x8282;&#x70B9;</a></li>
+  <li class="pageNavList__item"><a href="/guides/security.html">&#x5B89;&#x5168;</a></li>
+  <li class="pageNavList__item"><a href="/guides/things-to-build.html">&#x6784;&#x5EFA; Stellar &#x5E94;&#x7528;&#x7A0B;&#x5E8F;</a></li>
+        <li class="pageNavList__item"><a href="/guides/contributing.html">&#x8D21;&#x732E;&#x6307;&#x5357;</a></li>
+    </ul>
+  </div>
+</div>
+  <div class="S-flexItem-share">
+  <div class="spu-padSE-30">
+    <h1 class="mainSectionTitle">
+      Developing Interstellar Modules
+      &#xA0;<span class="spu-color-neutral6">[Interstellar]</span>
+    </h1>
+  </div>
+  <div class="S-flex-rowWrap spu-borderTop-1 spu-borderColor-neutral7">
+    <s-read-md class="S-flexItem-share mainContent s-read-md--capped spu-padSE-30 spu-padTB-20 documentRead" link-process-md>
+      <h1 id="developing-interstellar-modules"><a class="anchorShortcut" href="#developing-interstellar-modules" aria-hidden="true"></a> Developing Interstellar Modules</h1>
+<p><strong>Development of the <code>interstellar</code> project has been paused. Please check out the <a href="/js-stellar-sdk/learn/index.html">JS Stellar SDK</a> docs for how integrate with Stellar using JavaScript.</strong></p>
+<p>This document will guide you through the process of developing your own module that will be used by the Interstellar application.</p>
+<p>You may want to begin with the <a href="./">Getting Started</a> doc.</p>
+<h2 id="contents"><a class="anchorShortcut" href="#contents" aria-hidden="true"></a> Contents</h2>
+<ol>
+<li><a href="#what-is-a-module">What is a module?</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#installing-interstellar-command-line-tool">Installing <code>interstellar</code> command line tool</a></li>
+<li><a href="#generating-sample-app-and-sample-module-files">Generating sample app and sample module files</a></li>
+<li><a href="#interstellar-module-architecture">Interstellar module architecture</a></li>
+<li><a href="#creating-a-widget">Creating a widget</a></li>
+<li><a href="#checking-if-module-works">Checking if module works</a></li>
+<li><a href="#where-to-go-from-here">Where to go from here?</a></li>
+</ol>
+<h2 id="what-is-a-module"><a class="anchorShortcut" href="#what-is-a-module" aria-hidden="true"></a> What is a module?</h2>
+<p>Modules are building blocks of IMS which export services, widgets and helpful classes for developers.</p>
+<p>Technically, a module is a NPM package and <a href="https://docs.angularjs.org/guide/module">AngularJS module</a>.</p>
+<h2 id="prerequisites"><a class="anchorShortcut" href="#prerequisites" aria-hidden="true"></a> Prerequisites</h2>
+<p>Before you start make sure you have <a href="https://nodejs.org/">Node</a> v0.10 installed (use <a href="https://github.com/creationix/nvm">nvm</a> if you don&#x2019;t) and <a href="https://npmjs.com">npm</a>.</p>
+<p>Interstellar is written in JavaScript. We&#x2019;re using ECMAScript 6 standard thanks to <a href="https://babeljs.io/">Babel</a> and <a href="http://webpack.github.io/">Webpack</a> for bundling. Knowledge of <a href="https://angularjs.org/">AngularJS</a> will be very helpful.</p>
+<p>Please install <a href="http://yeoman.io/">Yeoman</a> to quickly generate sample project in this tutorial:</p>
+<pre><code class="language-bash">npm install -g yo generator-interstellar
+</code></pre>
+<h2 id="installing-command-line-tool"><a class="anchorShortcut" href="#installing-command-line-tool" aria-hidden="true"></a> Installing <code>interstellar</code> command line tool</h2>
+<p><a href="https://github.com/stellar/interstellar"><code>interstellar</code> command line tool</a> will help you build and develop your projects. To install <code>interstellar</code> run:</p>
+<pre><code class="language-bash">npm install -g interstellar
+</code></pre>
+<p>Make sure it&#x2019;s successfully installed by running <code>interstellar stroopy</code>. You may want to check out <a href="https://www.stellar.org/stories/adventures-in-galactic-consensus-chapter-1/">Stroopy adventures</a> too :).</p>
+<h2 id="generating-sample-app-and-sample-module-files"><a class="anchorShortcut" href="#generating-sample-app-and-sample-module-files" aria-hidden="true"></a> Generating sample app and sample module files</h2>
+<p>Let&#x2019;s start with bootstraping our module:</p>
+<pre><code class="language-bash">mkdir interstellar-friendbot
+cd interstellar-friendbot
+yo interstellar:module interstellar-friendbot
+npm link
+cd ..
+</code></pre>
+<p>We&#x2019;re using <a href="https://docs.npmjs.com/cli/link"><code>npm link</code></a> to create a symbolic link to our sample module to be able to use a module in a sample application during development.</p>
+<p>Now, let&#x2019;s bootstrap our application using <code>yo</code>:</p>
+<pre><code class="language-bash">mkdir sample-app
+cd sample-app
+yo interstellar sample-app
+</code></pre>
+<p>We need some working application to test our module. To install our previously linked module we need to run in a new application directory:</p>
+<pre><code class="language-bash">npm link interstellar-friendbot
+</code></pre>
+<p>If you&#x2019;re developing multiple modules in the same time you may find <a href="https://www.npmjs.com/package/npm-workspace"><code>npm-workspace</code></a> package very useful. Check our <a href="https://github.com/stellar/interstellar-stellar-client"><code>interstellar-stellar-client</code></a> repo to find out how we use it.</p>
+<h2 id="interstellar-module-architecture"><a class="anchorShortcut" href="#interstellar-module-architecture" aria-hidden="true"></a> Interstellar module architecture</h2>
+<p>Let&#x2019;s look at our sample module code and discuss the most important parts. If you have no experience with ECMAScript 6 code, please read about <a href="https://github.com/lukehoban/es6features">ES6 features</a>.</p>
+<h3 id="module-definition"><a class="anchorShortcut" href="#module-definition" aria-hidden="true"></a> Module definition</h3>
+<p>Open <code>index.es6</code> file. We start by creating a new <code>Module</code> object and giving it a name. It&#x2019;s important to export our new module as a default value:</p>
+<pre><code class="language-js">import {Module} from &quot;interstellar-core&quot;;
+
+const mod = new Module(&apos;interstellar-friendbot&apos;);
+export default mod;
+</code></pre>
+<p>Module can contain its own Angular elements like controllers, services, templates etc. They are autoloaded using:</p>
+<pre><code class="language-js">app.controllers = require.context(&quot;./controllers&quot;, true);
+app.directives = require.context(&quot;./directives&quot;, true);
+app.templates = require.context(&quot;raw!./templates&quot;, true);
+</code></pre>
+<p>We&#x2019;re using Webpack <a href="http://webpack.github.io/docs/context.html">require.context</a> to load many files at a time.</p>
+<h3 id="module-configuration"><a class="anchorShortcut" href="#module-configuration" aria-hidden="true"></a> Module configuration</h3>
+<p>Modules can export a default configuration object. All of the values exposed by a module can be overwritten later by an application that&#x2019;s using it. To add a module configuration we use <a href="https://github.com/stellar/interstellar-core#interstellar-coreconfig-service"><code>interstellar-core.Config</code></a> provider&#x2019;s <code>addModuleConfig</code> method.</p>
+<p>It&#x2019;s important to do all of above steps in application <code>config</code> block (read more about <a href="https://docs.angularjs.org/guide/module">configuration and run blocks</a>).</p>
+<pre><code class="language-js">let addConfig = ConfigProvider =&gt; {
+  ConfigProvider.addModuleConfig(mod.name, {
+    amount: 1000
+  });
+};
+addConfig.$inject = [&apos;interstellar-core.ConfigProvider&apos;];
+mod.config(addConfig);
+</code></pre>
+<p>To learn more please read <a href="https://github.com/stellar/interstellar-core#interstellar-coreconfig-service"><code>interstellar-core.Config</code></a> documentation.</p>
+<p>Finally, we need to run <code>define</code> method to register module artifacts:</p>
+<pre><code class="language-js">mod.define();
+</code></pre>
+<h3 id="module-exports"><a class="anchorShortcut" href="#module-exports" aria-hidden="true"></a> Module exports</h3>
+<p>Module can additionally export normal JS classes and objects. You can do it by using ES6 <a href="https://github.com/lukehoban/es6features#modules"><code>export</code></a> statement.</p>
+<h3 id="widgets"><a class="anchorShortcut" href="#widgets" aria-hidden="true"></a> Widgets</h3>
+<p>The last important part of modules we will mention in this document are widgets. Widgets are complex solutions that are reponsible for a single task, like: showing account balances. They consist of templates, controllers and directives. Widget can be embeded in an application by putting a directive name in an application template. For example:</p>
+<pre><code class="language-html">&lt;interstellar-network-widgets-balance&gt;&lt;/interstellar-network-widgets-balance&gt;
+</code></pre>
+<p>Widget name is a concatenation of module name and directive name with a hyphen in the middle.</p>
+<h2 id="creating-a-widget"><a class="anchorShortcut" href="#creating-a-widget" aria-hidden="true"></a> Creating a widget</h2>
+<p>In this tutorial we will develop a <em>friendbot</em> module that will send us some <a href="https://github.com/stellar/stellar-core/blob/master/docs/testnet.md">testnet</a> stellars to play with.</p>
+<p>To create a widget we need to create widget&#x2019;s controller, directive, template and styles. Let&#x2019;s start with a <a href="https://docs.angularjs.org/guide/directive">directive</a>:</p>
+<pre><code class="language-js">let friendbotWidget = function () {
+  return {
+    restrict: &quot;E&quot;,
+    templateUrl: &quot;interstellar-friendbot/friendbot-widget&quot;
+  }
+};
+
+module.exports = function(mod) {
+  mod.directive(&quot;friendbot&quot;, friendbotWidget);
+};
+</code></pre>
+<p>For devs familiar with AngularJS it&#x2019;s nothing new except for the last 3 lines. These lines simply register a directive in Interstellar.</p>
+<p>Every widget has a template. Let&#x2019;s open our friendbot widget template:</p>
+<pre><code class="language-html">&lt;div ng-controller=&quot;interstellar-friendbot.FriendbotWidgetController as widget&quot;&gt;
+  &lt;div class=&quot;interstellar-network-modules-receive-receiveContainer&quot;&gt;
+    &lt;button ng-click=&quot;widget.friendbot()&quot;&gt;Friendbot&lt;/button&gt;&lt;span ng-if=&quot;widget.friendbotSent&quot;&gt;Sent!&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<!--Read more about styling your widgets [here](kelp-readme).-->
+<p>Now, let&#x2019;s look at a widget controller:</p>
+<pre><code class="language-js">require(&apos;../styles/friendbot-widget.scss&apos;);
+
+@Inject(&quot;$scope&quot;, &quot;interstellar-core.Config&quot;, &quot;interstellar-sessions.Sessions&quot;, &quot;interstellar-network.Server&quot;)
+class FriendbotWidgetController {
+  constructor($scope, Config, Sessions, Server) {
+    if (!Sessions.hasDefault()) {
+      console.error(&apos;Active session is required by this widget.&apos;);
+      return;
+    }
+    this.$scope = $scope;
+    this.Config = Config;
+    this.Server = Server;
+    this.session = Sessions.default;
+  }
+
+  friendbot() {
+    this.Server.friendbot(this.session.getAddress(), {
+        amount: Config.get(&apos;modules.interstellar-friendbot.amount&apos;)
+      }).then(() =&gt; {
+        this.$scope.$apply();
+      })
+  }
+}
+
+module.exports = function(mod) {
+  mod.controller(&quot;FriendbotWidgetController&quot;, FriendbotWidgetController);
+};
+
+</code></pre>
+<p>There are a couple of important things to mention here:</p>
+<p>First, you should tie your widget styles to a controller by putting your <code>require</code> statement here. In the future, Interstellar will provide conditional <code>require</code>s mechanism - when application is not using your widget, styles won&#x2019;t be loaded too.</p>
+<p>Next, you can notice that modules can use other modules services. In an example above <code>FriendbotWidgetController</code> is using <code>interstellar-sessions.Sessions</code> and <code>interstellar-network.Server</code> services.</p>
+<p>Another interesting part of this controller is an example of using <code>interstellar-core.Config</code> service to read configuration value.</p>
+<p>Finally, again we need to register controller to Interstellar with the last 3 lines.</p>
+<h2 id="checking-if-module-works"><a class="anchorShortcut" href="#checking-if-module-works" aria-hidden="true"></a> Checking if module works</h2>
+<p>We&#x2019;re ready to check if our module works. To use our <code>&lt;interstellar-friendbot-friendbot&gt;</code> widget we simply need to import our module and use it:</p>
+<pre><code class="language-js">import interstellarFriendbot from &quot;interstellar-friendbot&quot;;
+app.use(interstellarFriendbot);
+</code></pre>
+<p>Then we only need to insert it somewhere in our application templates, like this:</p>
+<pre><code class="language-html">&lt;interstellar-friendbot-friendbot&gt;&lt;/interstellar-friendbot-friendbot&gt;
+</code></pre>
+<p>Then run <code>interstellar develop</code> to compile and open a sample application in your browser.</p>
+<h2 id="where-to-go-from-here"><a class="anchorShortcut" href="#where-to-go-from-here" aria-hidden="true"></a> Where to go from here?</h2>
+<ul>
+<li>Develop your own module!</li>
+</ul>
+<!-- this section is copied in other .md files in this docs folder -->
+<ul>
+<li>Join our <a href="http://slack.stellar.org/">Slack channel</a> to discuss Interstellar and share ideas!</li>
+<li>Help us develop our <a href="https://github.com/stellar/interstellar-client">interstellar-client</a>.</li>
+<li><a href="https://github.com/issues?utf8=%E2%9C%93&amp;q=is%3Aopen+repo%3Astellar%2Finterstellar+repo%3Astellar%2Finterstellar-core+repo%3Astellar%2Finterstellar-network+repo%3Astellar%2Finterstellar-network-widgets+repo%3Astellar%2Finterstellar-wallet+repo%3Astellar%2Finterstellar-sessions+repo%3Astellar%2Finterstellar-client">Fix issues</a> in Interstellar modules.</li>
+<li>Develop your own module!</li>
+</ul>
+
+      <br>
+      <a href="https://github.com/stellar/interstellar/blob/master/docs/guides/developing-interstellar-module.md" class="spu-color-neutral6">&#x5728; GitHub &#x4E0A;&#x7F16;&#x8F91;&#x6B64;&#x9875;&#x9762;</a>
+    </s-read-md>
+  
+  </div>
+</div>
+</div>
+
+<div class="so-back spu-borderTop-1 spu-borderColor-neutral7 spu-padTB-15">
+  <div class="so-chunk">
+    <div class="siteFooter">
+      <div class="siteFooter__list">
+        <a class="siteFooter__list__item" href="https://www.stellar.org/"><span class="graphic-backArrow-9"></span>&#xA0;&#xA0;Stellar.org</a>
+        <span class="siteFooter__list__sep">|</span>
+        <a class="siteFooter__list__item" href="https://www.stellar.org/bug-bounty-program/">Bug &#x60AC;&#x8D4F;</a>
+        <a class="siteFooter__list__item" href="/stellar-core/software/admin.html">&#x8FD0;&#x884C;&#x8282;&#x70B9;</a>
+        <a class="siteFooter__list__item" href="/guides/things-to-build.html">&#x6784;&#x5EFA;&#x5E94;&#x7528;</a>
+        <a class="siteFooter__list__item" href="https://github.com/stellar/">GitHub</a>
+        <a class="siteFooter__list__item" href="http://slack.stellar.org/">&#x6765;&#x793E;&#x533A;&#x7545;&#x8C08;</a>
+      </div>
+      <div class="siteFooter__list siteFooter__list--aux">
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/terms-of-service/">&#x670D;&#x52A1;&#x6761;&#x6B3E;</a>
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/privacy-policy/">&#x9690;&#x79C1;&#x653F;&#x7B56;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/js/app-9b8f1b0df3650f3a8dabc0e0b08ccab9.js"></script>
+<script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("U8cLXTFMPm");
+analytics.page()
+}}();
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5V3WNNP');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V3WNNP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</html>

@@ -1,0 +1,107 @@
+<h2 id="horizon-administration-guide"><a class="anchorShortcut" href="#horizon-administration-guide" aria-hidden="true"></a> Horizon Administration Guide</h2>
+<p>Horizon is responsible for providing an HTTP API to data in the Stellar network. It ingests and re-serves the data produced by the stellar network in a form that is easier to consume than the performance-oriented data representations used by stellar-core.</p>
+<p>This document describes how to administer a <strong>production</strong> Horizon instance. If you are just starting with Horizon and want to try it out, consider the <a href="quickstart.md">Quickstart Guide</a> instead. For information about developing on the Horizon codebase, check out the <a href="developing.md">Development Guide</a>.</p>
+<h2 id="why-run-horizon"><a class="anchorShortcut" href="#why-run-horizon" aria-hidden="true"></a> Why run Horizon?</h2>
+<p>The Stellar Development Foundation runs two Horizon servers, one for the public network and one for the test network, free for anyone&#x2019;s use at <a href="https://horizon.stellar.org">https://horizon.stellar.org</a> and <a href="https://horizon-testnet.stellar.org">https://horizon-testnet.stellar.org</a>.  These servers should be fine for development and small scale projects, but it is not recommended that you use them for production services that need strong reliability.  By running Horizon within your own infrastructure provides a number of benefits:</p>
+<ul>
+<li>Multiple instances can be run for redundancy and scalability.</li>
+<li>Request rate limiting can be disabled.</li>
+<li>Full operational control without dependency on the Stellar Development Foundations operations.</li>
+</ul>
+<h2 id="prerequisites"><a class="anchorShortcut" href="#prerequisites" aria-hidden="true"></a> Prerequisites</h2>
+<p>Horizon is dependent upon a stellar-core server.  Horizon needs access to both the SQL database and the HTTP API that is published by stellar-core. See <a href="https://www.stellar.org/developers/stellar-core/learn/admin.html">the administration guide</a> to learn how to set up and administer a stellar-core server.  Secondly, Horizon is dependent upon a postgres server, which it uses to store processed core data for ease of use. Horizon requires postgres version &gt;= 9.3.</p>
+<p>In addition to the two prerequisites above, you may optionally install a redis server to be used for rate limiting requests.</p>
+<h2 id="installing"><a class="anchorShortcut" href="#installing" aria-hidden="true"></a> Installing</h2>
+<p>To install Horizon, you have a choice: either downloading a <a href="https://github.com/stellar/go/releases">prebuilt release for your target architecture</a> and operation system, or <a href="#Building">building Horizon yourself</a>.  When either approach is complete, you will find yourself with a directory containing a file named <code>horizon</code>.  This file is a native binary.</p>
+<p>After building or unpacking Horizon, you simply need to copy the native binary into a directory that is part of your PATH.  Most unix-like systems have <code>/usr/local/bin</code> in PATH by default, so unless you have a preference or know better, we recommend you copy the binary there.</p>
+<p>To test the installation, simply run <code>horizon --help</code> from a terminal.  If the help for Horizon is displayed, your installation was successful. Note: some shells, such as zsh, cache PATH lookups.  You may need to clear your cache  (by using <code>rehash</code> in zsh, for example) before trying to run <code>horizon --help</code>.</p>
+<h2 id="building"><a class="anchorShortcut" href="#building" aria-hidden="true"></a> Building</h2>
+<p>Should you decide not to use one of our prebuilt releases, you may instead build Horizon from source.  To do so, you need to install some developer tools:</p>
+<ul>
+<li>A unix-like operating system with the common core commands (cp, tar, mkdir, bash, etc.)</li>
+<li>A compatible distribution of Go (we officially support Go 1.9 and later)</li>
+<li><a href="https://golang.github.io/dep/">go-dep</a></li>
+<li><a href="https://git-scm.com/">git</a></li>
+<li><a href="https://www.mercurial-scm.org/">mercurial</a></li>
+</ul>
+<ol>
+<li>Set your <a href="https://github.com/golang/go/wiki/GOPATH">GOPATH</a> environment variable, if you haven&#x2019;t already. The default <code>GOPATH</code> is <code>$HOME/go</code>.</li>
+<li>Clone the Stellar Go monorepo:  <code>go get github.com/stellar/go</code>. You should see the repository cloned at <code>$GOPATH/src/github.com/stellar/go</code>.</li>
+<li>Enter the source dir: <code>cd $GOPATH/src/github.com/stellar/go</code>, and download external dependencies: <code>dep ensure -v</code>. You should see the downloaded third party dependencies in <code>$GOPATH/pkg</code>.</li>
+<li>Compile the Horizon binary: <code>cd $GOPATH; go install github.com/stellar/go/services/horizon</code>. You should see the <code>horizon</code> binary in <code>$GOPATH/bin</code>.</li>
+<li>Add Go binaries to your PATH in your <code>bashrc</code> or equivalent, for easy access: <code>export PATH=${GOPATH//://bin:}/bin:$PATH</code></li>
+</ol>
+<p>Open a new terminal. Confirm everything worked by running <code>horizon --help</code> successfully.</p>
+<p>Note:  Building directly on windows is not supported.</p>
+<h2 id="configuring"><a class="anchorShortcut" href="#configuring" aria-hidden="true"></a> Configuring</h2>
+<p>Horizon is configured using command line flags or environment variables.  To see the list of command line flags that are available (and their default values) for your version of Horizon, run:</p>
+<p><code>horizon --help</code></p>
+<p>As you will see if you run the command above, Horizon defines a large number of flags, however only three are required:</p>
+<table>
+<thead>
+<tr>
+<th>flag</th>
+<th>envvar</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--db-url</code></td>
+<td><code>DATABASE_URL</code></td>
+<td>postgres://localhost/horizon_testnet</td>
+</tr>
+<tr>
+<td><code>--stellar-core-db-url</code></td>
+<td><code>STELLAR_CORE_DATABASE_URL</code></td>
+<td>postgres://localhost/core_testnet</td>
+</tr>
+<tr>
+<td><code>--stellar-core-url</code></td>
+<td><code>STELLAR_CORE_URL</code></td>
+<td><a href="http://localhost:11626">http://localhost:11626</a></td>
+</tr>
+</tbody>
+</table>
+<p><code>--db-url</code> specifies the Horizon database, and its value should be a valid <a href="http://www.postgresql.org/docs/9.2/static/libpq-connect.html#AEN38419">PostgreSQL Connection URI</a>.  <code>--stellar-core-db-url</code> specifies a stellar-core database which will be used to load data about the stellar ledger.  Finally, <code>--stellar-core-url</code> specifies the HTTP control port for an instance of stellar-core.  This URL should be associated with the stellar-core that is writing to the database at <code>--stellar-core-db-url</code>.</p>
+<p>Specifying command line flags every time you invoke Horizon can be cumbersome, and so we recommend using environment variables.  There are many tools you can use to manage environment variables:  we recommend either <a href="http://direnv.net/">direnv</a> or <a href="https://github.com/bkeepers/dotenv">dotenv</a>.  A template configuration that is compatible with dotenv can be found in the <a href="https://github.com/stellar/go/blob/master/services/horizon/.env.template">Horizon git repo</a>.</p>
+<h2 id="preparing-the-database"><a class="anchorShortcut" href="#preparing-the-database" aria-hidden="true"></a> Preparing the database</h2>
+<p>Before the Horizon server can be run, we must first prepare the Horizon database.  This database will be used for all of the information produced by Horizon, notably historical information about successful transactions that have occurred on the stellar network.</p>
+<p>To prepare a database for Horizon&#x2019;s use, first you must ensure the database is blank.  It&#x2019;s easiest to simply create a new database on your postgres server specifically for Horizon&#x2019;s use.  Next you must install the schema by running <code>horizon db init</code>.  Remember to use the appropriate command line flags or environment variables to configure Horizon as explained in <a href="#Configuring">Configuring </a>.  This command will log any errors that occur.</p>
+<h3 id="postgres-configuration"><a class="anchorShortcut" href="#postgres-configuration" aria-hidden="true"></a> Postgres configuration</h3>
+<p>It is recommended to set <code>random_page_cost=1</code> in Postgres configuration if you are using SSD storage. With this setting Query Planner will make a better use of indexes, expecially for <code>JOIN</code> queries. We have noticed a huge speed improvement for some queries.</p>
+<h2 id="running"><a class="anchorShortcut" href="#running" aria-hidden="true"></a> Running</h2>
+<p>Once your Horizon database is configured, you&#x2019;re ready to run Horizon.  To run Horizon you simply run <code>horizon</code> or <code>horizon serve</code>, both of which start the HTTP server and start logging to standard out.  When run, you should see some output that similar to:</p>
+<pre><code>INFO[0000] Starting horizon on :8000                     pid=29013
+</code></pre>
+<p>The log line above announces that Horizon is ready to serve client requests. Note: the numbers shown above may be different for your installation.  Next we can confirm that Horizon is responding correctly by loading the root resource.  In the example above, that URL would be [<a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>] and simply running <code>curl http://127.0.0.1:8000/</code> shows you that the root resource can be loaded correctly.</p>
+<h2 id="ingesting-live-stellar-core-data"><a class="anchorShortcut" href="#ingesting-live-stellar-core-data" aria-hidden="true"></a> Ingesting live stellar-core data</h2>
+<p>Horizon provides most of its utility through ingested data.  Your Horizon server can be configured to listen for and ingest transaction results from the connected stellar-core.  We recommend that within your infrastructure you run one (and only one) Horizon process that is configured in this way.   While running multiple ingestion processes will not corrupt the Horizon database, your error logs will quickly fill up as the two instances race to ingest the data from stellar-core.  We may develop a system that coordinates multiple Horizon processes in the future, but we would also be happy to include an external contribution that accomplishes this.</p>
+<p>To enable ingestion, you must either pass <code>--ingest=true</code> on the command line or set the <code>INGEST</code> environment variable to &#x201C;true&#x201D;.</p>
+<h3 id="ingesting-historical-data"><a class="anchorShortcut" href="#ingesting-historical-data" aria-hidden="true"></a> Ingesting historical data</h3>
+<p>To enable ingestion of historical data from stellar-core you need to run <code>horizon db backfill NUM_LEDGERS</code>. If you&#x2019;re running a full validator with published history archive, for example, you might want to ingest all of history. In this case your <code>NUM_LEDGERS</code> should be slightly higher than the current ledger id on the network. You can run this process in the background while your Horizon server is up. This continuously decrements the <code>history.elder_ledger</code> in your /metrics endpoint until <code>NUM_LEDGERS</code> is reached and the backfill is complete.</p>
+<h3 id="managing-storage-for-historical-data"><a class="anchorShortcut" href="#managing-storage-for-historical-data" aria-hidden="true"></a> Managing storage for historical data</h3>
+<p>Over time, the recorded network history will grow unbounded, increasing storage used by the database. Horizon expands the data ingested from stellar-core and needs sufficient disk space. Unless you need to maintain a history archive you may configure Horizon to only retain a certain number of ledgers in the database. This is done using the <code>--history-retention-count</code> flag or the <code>HISTORY_RETENTION_COUNT</code> environment variable. Set the value to the number of recent ledgers you wish to keep around, and every hour the Horizon subsystem will reap expired data.  Alternatively, you may execute the command <code>horizon db reap</code> to force a collection.</p>
+<h3 id="surviving-stellar-core-downtime"><a class="anchorShortcut" href="#surviving-stellar-core-downtime" aria-hidden="true"></a> Surviving stellar-core downtime</h3>
+<p>Horizon tries to maintain a gap-free window into the history of the stellar-network.  This reduces the number of edge cases that Horizon-dependent software must deal with, aiming to make the integration process simpler.  To maintain a gap-free history, Horizon needs access to all of the metadata produced by stellar-core in the process of closing a ledger, and there are instances when this metadata can be lost.  Usually, this loss of metadata occurs because the stellar-core node went offline and performed a catchup operation when restarted.</p>
+<p>To ensure that the metadata required by Horizon is maintained, you have several options: You may either set the <code>CATCHUP_COMPLETE</code> stellar-core configuration option to <code>true</code> or configure <code>CATCHUP_RECENT</code> to determine the amount of time your stellar-core can be offline without having to rebuild your Horizon database.</p>
+<p>Unless your node is a full validator and archive publisher we <em>do not</em> recommend using the <code>CATCHUP_COMPLETE</code> method, as this will force stellar-core to apply every transaction from the beginning of the ledger, which will take an ever increasing amount of time. Instead, we recommend you set the <code>CATCHUP_RECENT</code> config value. To do this, determine how long of a downtime you would like to survive (expressed in seconds) and divide by ten.  This roughly equates to the number of ledgers that occur within your desired grace period (ledgers roughly close at a rate of one every ten seconds).  With this value set, stellar-core will replay transactions for ledgers that are recent enough, ensuring that the metadata needed by Horizon is present.</p>
+<h3 id="correcting-gaps-in-historical-data"><a class="anchorShortcut" href="#correcting-gaps-in-historical-data" aria-hidden="true"></a> Correcting gaps in historical data</h3>
+<p>In the section above, we mentioned that Horizon <em>tries</em> to maintain a gap-free window.  Unfortunately, it cannot directly control the state of stellar-core and <a href="https://www.stellar.org/developers/software/known-issues.html#gaps-detected">so gaps may form</a> due to extended down time.  When a gap is encountered, Horizon will stop ingesting historical data and complain loudly in the log with error messages (log lines will include &#x201C;ledger gap detected&#x201D;).  To resolve this situation, you must re-establish the expected state of the stellar-core database and purge historical data from Horizon&#x2019;s database.  We leave the details of this process up to the reader as it is dependent upon your operating needs and configuration, but we offer one potential solution:</p>
+<p>We recommend you configure the HISTORY_RETENTION_COUNT in Horizon to a value less than or equal to the configured value for CATCHUP_RECENT in stellar-core.  Given this situation any downtime that would cause a ledger gap will require a downtime greater than the amount of historical data retained by Horizon.  To re-establish continuity:</p>
+<ol>
+<li>Stop Horizon.</li>
+<li>run <code>horizon db reap</code> to clear the historical database.</li>
+<li>Clear the cursor for Horizon by running <code>stellar-core -c &quot;dropcursor?id=HORIZON&quot;</code> (ensure capitilization is maintained).</li>
+<li>Clear ledger metadata from before the gap by running <code>stellar-core -c &quot;maintenance?queue=true&quot;</code>.</li>
+<li>Restart Horizon.</li>
+</ol>
+<h2 id="managing-stale-historical-data"><a class="anchorShortcut" href="#managing-stale-historical-data" aria-hidden="true"></a> Managing Stale Historical Data</h2>
+<p>Horizon ingests ledger data from a connected instance of stellar-core.  In the event that stellar-core stops running (or if Horizon stops ingesting data for any other reason), the view provided by Horizon will start to lag behind reality.  For simpler applications, this may be fine, but in many cases this lag is unacceptable and the application should not continue operating until the lag is resolved.</p>
+<p>To help applications that cannot tolerate lag, Horizon provides a configurable &#x201C;staleness&#x201D; threshold.  Given that enough lag has accumulated to surpass this threshold (expressed in number of ledgers), Horizon will only respond with an error: <a href="./errors/stale-history.md"><code>stale_history</code></a>.  To configure this option, use either the <code>--history-stale-threshold</code> command line flag or the <code>HISTORY_STALE_THRESHOLD</code> environment variable.  NOTE:  non-historical requests (such as submitting transactions or finding payment paths) will not error out when the staleness threshold is surpassed.</p>
+<h2 id="monitoring"><a class="anchorShortcut" href="#monitoring" aria-hidden="true"></a> Monitoring</h2>
+<p>To ensure that your instance of Horizon is performing correctly we encourage you to monitor it, and provide both logs and metrics to do so.</p>
+<p>Horizon will output logs to standard out.  Information about what requests are coming in will be reported, but more importantly, warnings or errors will also be emitted by default.  A correctly running Horizon instance will not output any warning or error log entries.</p>
+<p>Metrics are collected while a Horizon process is running and they are exposed at the <code>/metrics</code> path.  You can see an example at (<a href="https://horizon-testnet.stellar.org/metrics">https://horizon-testnet.stellar.org/metrics</a>).</p>
+<h2 id="im-stuck-help"><a class="anchorShortcut" href="#im-stuck-help" aria-hidden="true"></a> I&#x2019;m Stuck! Help!</h2>
+<p>If any of the above steps don&#x2019;t work or you are otherwise prevented from correctly setting up Horizon, please come to our community and tell us.  Either <a href="https://stellar.stackexchange.com/">post a question at our Stack Exchange</a> or <a href="http://slack.stellar.org/">chat with us on slack</a> to ask for help.</p>

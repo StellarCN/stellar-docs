@@ -1,0 +1,37 @@
+<p>% stellar-core(1)
+% Stellar Development Foundation
+%</p>
+<h1 id="name"><a class="anchorShortcut" href="#name" aria-hidden="true"></a> NAME</h1>
+<p>stellar-core - Core daemon for Stellar payment network</p>
+<h1 id="synopsys"><a class="anchorShortcut" href="#synopsys" aria-hidden="true"></a> SYNOPSYS</h1>
+<p>stellar-core [OPTIONS]</p>
+<h1 id="description"><a class="anchorShortcut" href="#description" aria-hidden="true"></a> DESCRIPTION</h1>
+<p>Stellar is a decentralized, federated peer-to-peer network that allows
+people to send payments in any asset anywhere in the world
+instantaneously, and with minimal fee. <code>Stellar-core</code> is the core
+component of this network. <code>Stellar-core</code> is a C++ implementation of
+the Stellar Consensus Protocol configured to construct a chain of
+ledgers that are guaranteed to be in agreement across all the
+participating nodes at all times.</p>
+<h2 id="configuration-file"><a class="anchorShortcut" href="#configuration-file" aria-hidden="true"></a> Configuration file</h2>
+<p>In most modes of operation, stellar-core requires a configuration
+file.  By default, it looks for a file called <code>stellar-core.cfg</code> in
+the current working directory, but this default can be changed by the
+<code>--conf</code> command-line option.  The configuration file is in TOML
+syntax.  The full set of supported directives can be found in
+<code>%prefix%/share/doc/stellar-core_example.cfg</code>.</p>
+<p>%commands%</p>
+<h1 id="examples"><a class="anchorShortcut" href="#examples" aria-hidden="true"></a> EXAMPLES</h1>
+<p>See <code>%prefix%/share/doc/*.cfg</code> for some example stellar-core
+configuration files</p>
+<h1 id="files"><a class="anchorShortcut" href="#files" aria-hidden="true"></a> FILES</h1>
+<p>stellar-core.cfg
+:   Configuration file (in current working directory by default)</p>
+<h1 id="see-also"><a class="anchorShortcut" href="#see-also" aria-hidden="true"></a> SEE ALSO</h1>
+<p><a href="https://www.stellar.org/developers/stellar-core/software/admin.html">https://www.stellar.org/developers/stellar-core/software/admin.html</a>
+:   stellar-core administration guide</p>
+<p><a href="https://www.stellar.org">https://www.stellar.org</a>
+:   Home page of Stellar development foundation</p>
+<h1 id="bugs"><a class="anchorShortcut" href="#bugs" aria-hidden="true"></a> BUGS</h1>
+<p>Please report bugs using the github issue tracker:<br>
+<a href="https://github.com/stellar/stellar-core/issues">https://github.com/stellar/stellar-core/issues</a></p>

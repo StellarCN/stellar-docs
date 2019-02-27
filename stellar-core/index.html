@@ -1,0 +1,110 @@
+<p>Stellar is a decentralized, federated peer-to-peer network that allows people to
+send payments in any asset anywhere in the world instantaneously, and with
+minimal fee.</p>
+<p><code>Stellar-core</code> is the core component of this network. <code>Stellar-core</code> is a C++
+implementation of the Stellar Consensus Protocol configured to construct a chain
+of ledgers that are guaranteed to be in agreement across all the participating
+nodes at all times.</p>
+<p>For more detail on the Stellar Consensus Protocol and how it establishes this
+guarantee see <a href="/src/scp/readme.md"><code>src/scp/readme.md</code></a>.</p>
+<ul>
+<li><a href="/INSTALL.md">Building &amp; Installing</a></li>
+<li><a href="software/admin.md">Stellar-core administration</a></li>
+<li><a href="architecture.md">Architecture</a></li>
+<li><a href="https://www.stellar.org/developers/guides/">Key Concepts</a></li>
+<li><a href="integration.md">Integration with other services</a></li>
+<li><a href="#major-components">Major Components</a></li>
+<li><a href="#supporting-code-directories">Supporting Code Directories</a></li>
+<li><a href="/CONTRIBUTING.md">Contributing</a></li>
+</ul>
+<h2 id="major-components"><a class="anchorShortcut" href="#major-components" aria-hidden="true"></a> Major Components</h2>
+<p>There are a few major components of the system. Each component has a dedicated
+source directory and its own dedicated <code>readme.md</code>.</p>
+<ul>
+<li>
+<p><strong>SCP</strong> is our implementation of the Stellar Consensus Protocol (SCP). This
+component is fully abstracted from the rest of the system. It receives
+candidate black-box values and signals when these values have reached
+consensus by the network (called <em>externalizing</em> a value) (See
+<a href="/src/scp/readme.md"><code>src/scp/readme.md</code></a>).</p>
+</li>
+<li>
+<p><strong>Herder</strong> is responsible for interfacing between SCP and the rest of
+<code>stellar-core</code>. Herder provides SCP with concrete implementations of the
+methods SCP uses to communicate with peers, to compare values, to determine
+whether values contain valid signatures, and so forth. Herder often
+accomplishes its tasks by delegating to other components
+(See <a href="/src/herder/readme.md"><code>src/herder/readme.md</code></a>).</p>
+</li>
+<li>
+<p><strong>Overlay</strong> connects to and keeps track of the peers this node knows
+about and is connected to. It floods messages and fetches from peers the data
+that is needed to accomplish consensus (See
+<a href="/src/overlay/readme.md"><code>src/overlay/readme.md</code></a>). All
+other data downloads are handled without imposing on the SCP-nodes, see
+<a href="/docs/architecture.md"><code>./architecture.md</code></a>.</p>
+</li>
+<li>
+<p><strong>Ledger</strong> applies the transaction set that is externalized by SCP. It also
+forwards the externalization event to other components: it submits the changed
+ledger entries to the bucket list, triggers the publishing of history, and
+informs the overlay system to update its map of flooded messages. Ledger also
+triggers the history system&#x2019;s catching-up routine when it detects that this
+node has fallen behind of the rest of the network (See
+<a href="/src/ledger/readme.md"><code>src/ledger/readme.md</code></a>).</p>
+</li>
+<li>
+<p><strong>History</strong> publishes transaction and ledger entries to off-site permanent
+storage for auditing, and as a source of catch-up data for other nodes. When
+this node falls behind, the history system fetches catch-up data and submits
+it to Ledger twice: first to verify its security, then to apply it (See
+<a href="/src/history/readme.md"><code>src/history/readme.md</code></a>).</p>
+</li>
+<li>
+<p><strong>BucketList</strong> stores ledger entries on disk arranged for hashing and
+block-catch-up. BucketList coordinates the hashing and deduplicating of
+buckets by multiple background threads
+(See <a href="/src/buckets/readme.md"><code>src/buckets/readme.md</code></a>).</p>
+</li>
+<li>
+<p><strong>Transactions</strong> implements all the various transaction types (See
+<a href="/src/transactions/readme.md">src/transactions/readme.md</a>).</p>
+</li>
+</ul>
+<h2 id="supporting-code-directories"><a class="anchorShortcut" href="#supporting-code-directories" aria-hidden="true"></a> Supporting Code Directories</h2>
+<ul>
+<li>
+<p><strong>src/main</strong> handles booting, loading of the configuration and of persistent
+state flags. Launches the test suite if requested.</p>
+</li>
+<li>
+<p><strong>src/crypto</strong> contains standard cryptographic routines, including random
+number generation, hashing, hex encoding and Stellar Key encoding.</p>
+</li>
+<li>
+<p><strong>src/util</strong> gathers assorted logging and utility routines.</p>
+</li>
+<li>
+<p><strong>src/lib</strong> keeps various 3rd party libraries we use.</p>
+</li>
+<li>
+<p><strong>src/database</strong> is a thin layer above the functionality provided by the
+database-access library <code>soci</code>.</p>
+</li>
+<li>
+<p><strong>src/process</strong> is an asynchronous implementation of <code>system()</code>, for running
+subprocesses.</p>
+</li>
+<li>
+<p><strong>src/simulation</strong> provides support for instantiating and exercising
+in-process test networks.</p>
+</li>
+<li>
+<p><strong>src/xdr</strong> contains to definition of the wire protocol in the <a href="https://tools.ietf.org/html/rfc4506.html"><code>XDR</code>
+(RFC4506)</a> specification language.</p>
+</li>
+<li>
+<p><strong>src/generated</strong> contains the wire protocol&#x2019;s C++ classes, generated from
+the definitions in <code>src/xdr</code>.</p>
+</li>
+</ul>

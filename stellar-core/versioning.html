@@ -1,0 +1,106 @@
+<p>This document describes the various mechanisms used to keep the overall system working as it evolves.</p>
+<h2 id="ledger-versioning"><a class="anchorShortcut" href="#ledger-versioning" aria-hidden="true"></a> Ledger versioning</h2>
+<h3 id="ledgerversion"><a class="anchorShortcut" href="#ledgerversion" aria-hidden="true"></a> ledgerVersion</h3>
+<p>This uint32 stored in the ledger header describes the version number of the overall protocol.
+Protocol in this case is defined both as &#x201C;wire format&#x201D; (ie, the serialized forms of all objects stored in the ledger) and its behavior.</p>
+<p>This version number is incremented every time the protocol changes.</p>
+<h3 id="integration-with-consensus"><a class="anchorShortcut" href="#integration-with-consensus" aria-hidden="true"></a> Integration with consensus</h3>
+<p>Most of the time consensus is simply reached on which transaction set needs to
+be applied to the previous ledger.</p>
+<p>However consensus can in addition be reached on upgrade steps.</p>
+<p>One such upgrade step is something like &#x201C;update ledgerVersion to value X after
+current ledger&#x201D;.</p>
+<p>If nodes do not consider that the upgrade set is valid they simply drop the
+upgrade step from their vote during nomination.
+If a quorum voted for an invalid value, the validator will ignore
+the SCP messages for the current ledger (ie: abstain).</p>
+<p>A node considers a step invalid either because:</p>
+<ul>
+<li>they do not understand it, for example a new upgrade type not implemented</li>
+<li>its value differs for this node&#x2019;s scheduled upgrade setting</li>
+<li>network time is before the scheduled upgrade datetime</li>
+</ul>
+<p>Upgrades are applied after applying the transaction set. It is done this way
+because the transaction set is validated against the last closed ledger,
+independently of any upgrades. For example, this allows to update <code>baseFee</code>
+without risking invalidating transactions for the current ledger.</p>
+<p>Supported upgrades are encoded using LedgerUpgradeType.</p>
+<p>Upgrades are specified with:</p>
+<ul>
+<li>upgradetime - the minimum time for node to accept and
+nominate upgrades</li>
+<li>basefee - upgrades value of baseFee in ledger header, uses upgrade
+type LEDGER_UPGRADE_BASE_FEE</li>
+<li>maxtxsize - upgrades value of maxTxSetSize in ledger header,
+uses upgrade type LEDGER_UPGRADE_MAX_TX_SET_SIZE</li>
+<li>basereserve - upgrades value of baseReserve in ledger header, uses
+upgrade type LEDGER_UPGRADE_BASE_RESERVE</li>
+<li>protocolversion - upgrades value of ledgerVersion in ledger header, uses
+upgrade type LEDGER_UPGRADE_VERSION (when specified it has to match the
+supported version number)</li>
+</ul>
+<h4 id="limitations-of-the-current-implementation"><a class="anchorShortcut" href="#limitations-of-the-current-implementation" aria-hidden="true"></a> Limitations of the current implementation</h4>
+<p>There is an assumption that validator operators are either paying attention to network wide proposals
+or do not really care about the network settings per se.
+For that reason, upgrades are only validated during SCP rounds - ie, they are not validated when catching up from history.</p>
+<p>As a consequence, there is currently no way for a node to not eventually rejoin the network if it doesn&#x2019;t agree
+with the upgrade.</p>
+<p>A validator in this situation will disagree with the SCP round with the upgrade (and won&#x2019;t even see the network closing
+as invalid values are invisible to the validator),
+but it will rejoin the network after a few minutes by downloading historical data from other nodes.
+The validator will still try to revert the changes by voting for the values it has in its configuration.</p>
+<p>Note that this is still a best effort:
+the node may stay out of sync or crash if it cannot replay history properly (in the case of new features for example).</p>
+<h3 id="supported-versions"><a class="anchorShortcut" href="#supported-versions" aria-hidden="true"></a> Supported versions</h3>
+<p>Each node has its own way of tracking which version it supports,
+for example a &#x201C;min version&#x201D;, &#x201C;max version&#x201D;; but it can also include things
+like &#x201C;black listed versions&#x201D;. This is not tracked from within the protocol.</p>
+<p>Note that minProtocolVersion is distinct from the version an instance understands:
+typically an implementation understands versions n &#x2026; maxProtocolVersion, where n &lt;= minProtocolVersion.
+The reason for this is that nodes must be able to replay transactions from history (down to version &#x2018;n&#x2019;), yet there might be some issue/vulnerability that we don&#x2019;t want to be exploitable for new transactions.</p>
+<h2 id="ledger-object-versioning"><a class="anchorShortcut" href="#ledger-object-versioning" aria-hidden="true"></a> Ledger object versioning</h2>
+<p>Data structures that are likely to evolve over time contain the following extension point:</p>
+<pre><code class="language-C++">    union switch(int v)
+    {
+    case 0:
+        void;
+    } ext;
+</code></pre>
+<p>The version &#x2018;v&#x2019; in this case refers to the version of the object and permits the addition of new arms.</p>
+<p>This scheme offers several benefits:</p>
+<ul>
+<li>implementations become wire compatible without code changes only by updating their protocol definition files</li>
+<li>even without updating the protocol definition files, older implementations continue to function as long as they don&#x2019;t encounter newer formats</li>
+<li>promotes code sharing between versions of the objects</li>
+</ul>
+<p>note that while this scheme promotes code sharing for components consuming those objects, this is not necessarily true for core itself as the behavior has to be preserved for all versions: in order to reconstruct the ledger chain from arbitrary points in time, the behavior has to be 100% compatible.</p>
+<h2 id="operations-versioning"><a class="anchorShortcut" href="#operations-versioning" aria-hidden="true"></a> Operations versioning</h2>
+<p>Operations are versioned as a whole: if a new parameter needs to be added or changed, versioning is achieved by adding a new operation.
+This causes some duplication of logic in client but avoids introducing potential bugs in clients. For example: code that would sign only certain types of transactions have to be fully aware of what they are signing.</p>
+<h2 id="envelope-versioning"><a class="anchorShortcut" href="#envelope-versioning" aria-hidden="true"></a> Envelope versioning</h2>
+<p>The pattern used to allow for extensibility of envelopes (signed content) is</p>
+<pre><code class="language-C++">union TransactionEnvelope switch (int v)
+{
+case 0:
+    struct
+    {
+        Transaction tx;
+        DecoratedSignature signatures&lt;20&gt;;
+    } v0;
+};
+</code></pre>
+<p>This allows to both have the capability to modify the envelope if needed while enforcing that clients don&#x2019;t blindly consume content that they could not validate.</p>
+<h2 id="upgrading-objects-that-dont-have-an-extension-point"><a class="anchorShortcut" href="#upgrading-objects-that-dont-have-an-extension-point" aria-hidden="true"></a> Upgrading objects that don&#x2019;t have an extension point</h2>
+<p>The object&#x2019;s schema has to be cloned and its parent object has to be updated to use the new object type. The assumption here is that there is no unversioned &#x201C;root&#x201D; object.</p>
+<h2 id="supported-implementations-lifetime-considerations"><a class="anchorShortcut" href="#supported-implementations-lifetime-considerations" aria-hidden="true"></a> Supported implementations lifetime considerations</h2>
+<p>In order to keep the code base in a maintainable state, implementations may not preserve the ability to playback from genesis and instead opt to support a limited range, for example only preserve the capability to replay the previous 3 months of transactions (assuming that the network&#x2019;s minProtocolVersion is more recent than this).
+This does not change the ability for the node to (re)join or participate in the network; it only effects the ability for a node to do historical validation.</p>
+<h1 id="overlay-versioning"><a class="anchorShortcut" href="#overlay-versioning" aria-hidden="true"></a> Overlay versioning</h1>
+<p>Overlay follows a similar pattern for versioning: it has a min-maxOverlayVersion.</p>
+<p>The versioning policy at the overlay layer is a lot more aggressive when it comes to the deprecation schedule as the set of nodes involved is limited to the ones that connect directly to the instance.</p>
+<p>With this in mind, structures follow the &#x201C;clone&#x201D; model at this layer:
+if a message needs to be modified, a new message is defined by cloning the old message type using a new type identifier.
+The advantage of the clone model is that it makes it possible to refactor large parts of the code, knowing that the older implementation will be deleted anyways (and therefore avoiding the headache of maintaining older versions).
+Also, at this layer, it is acceptable to modify the behavior of older versions as long as it stays compatible.
+The implementation may decide to share the underlying code (by converting legacy messages into the new format internally for example).</p>
+<p>The &#x201C;HELLO&#x201D; message exchanged when peers connect to each other contains the min and max version the instance supports, the other endpoint may decide to disconnect right away if it&#x2019;s not compatible.</p>

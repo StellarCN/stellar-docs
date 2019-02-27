@@ -1,0 +1,26 @@
+<h2 id="horizon-quickstart"><a class="anchorShortcut" href="#horizon-quickstart" aria-hidden="true"></a> Horizon Quickstart</h2>
+<p>This document describes how to quickly set up a <strong>test</strong> Stellar Core + Horizon node, that you can play around with to get a feel for how a stellar node operates. <strong>This configuration is not secure!</strong> It is <strong>not</strong> intended as a guide for production administration.</p>
+<p>For detailed information about running Horizon and Stellar Core safely in production see the <a href="admin.md">Horizon Administration Guide</a> and the <a href="https://www.stellar.org/developers/stellar-core/software/admin.html">Stellar Core Administration Guide</a>.</p>
+<p>If you&#x2019;re ready to roll up your sleeves and dig into the code, check out the <a href="developing.md">Developer Guide</a>.</p>
+<h3 id="install-and-run-the-quickstart-docker-image"><a class="anchorShortcut" href="#install-and-run-the-quickstart-docker-image" aria-hidden="true"></a> Install and run the Quickstart Docker Image</h3>
+<p>The fastest way to get up and running is using the <a href="https://github.com/stellar/docker-stellar-core-horizon">Stellar Quickstart Docker Image</a>. This is a Docker container that provides both <code>stellar-core</code> and <code>horizon</code>, pre-configured for testing.</p>
+<ol>
+<li>Install <a href="https://www.docker.com/get-started">Docker</a>.</li>
+<li>Verify your Docker installation works: <code>docker run hello-world</code></li>
+<li>Create a local directory that the container can use to record state. This is helpful because it can take a few minutes to sync a new <code>stellar-core</code> with enough data for testing, and because it allows you to inspect and modify the configuration if needed. Here, we create a directory called <code>stellar</code> to use as the persistent volume:
+<code>cd $HOME; mkdir stellar</code></li>
+<li>Download and run the Stellar Quickstart container, replacing <code>USER</code> with your username:</li>
+</ol>
+<pre><code class="language-bash">docker run --rm -it -p &quot;8000:8000&quot; -p &quot;11626:11626&quot; -p &quot;11625:11625&quot; -p&quot;8002:5432&quot; -v $HOME/stellar:/opt/stellar --name stellar stellar/quickstart --testnet
+</code></pre>
+<p>You can check out Stellar Core status by browsing to <a href="http://localhost:11626">http://localhost:11626</a>.</p>
+<p>You can check out your Horizon instance by browsing to <a href="http://localhost:8000">http://localhost:8000</a>.</p>
+<p>You can tail logs within the container to see what&#x2019;s going on behind the scenes:</p>
+<pre><code class="language-bash">docker exec -it stellar /bin/bash
+supervisorctl tail -f stellar-core
+supervisorctl tail -f horizon stderr
+</code></pre>
+<p>On a modern laptop this test setup takes about 15 minutes to synchronise with the last couple of days of testnet ledgers. At that point Horizon will be available for querying.</p>
+<p>See the <a href="https://github.com/stellar/docker-stellar-core-horizon">Quickstart Docker Image</a> documentation for more details, and alternative ways to run the container.</p>
+<p>You can test your Horizon instance with a query like: <a href="http://localhost:8001/transactions?cursor=&amp;limit=10&amp;order=asc">http://localhost:8001/transactions?cursor=&amp;limit=10&amp;order=asc</a>. Use the <a href="https://www.stellar.org/laboratory/">Stellar Laboratory</a> to craft other queries to try out,
+and read about the available endpoints and see examples in the <a href="https://www.stellar.org/developers/horizon/reference/">Horizon API reference</a>.</p>

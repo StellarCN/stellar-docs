@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+
+  Want to contribute to this site? Take a look at the GitHub repository for this
+  site: https://github.com/stellar/developers
+
+  -->
+  <title>&#x5982;&#x4F55;&#x4EE5;&#x53CA;&#x4E3A;&#x4F55;&#x8BBE;&#x7F6E;&#x60A8;&#x7684; Stellar.toml | Stellar Developers</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="author" content="Stellar.org and contributors">
+
+  <meta property="og:title" content="&#x5982;&#x4F55;&#x4EE5;&#x53CA;&#x4E3A;&#x4F55;&#x8BBE;&#x7F6E;&#x60A8;&#x7684; Stellar.toml | Stellar Developers">
+  <meta property="og:type" content="website">
+
+
+  <link rel="stylesheet" href="/styles/index-cff14d28bafbba60930f31b923b4e75b.css">
+
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/rocket-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/rocket-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/rocket-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicon/rocket-96x96.png" sizes="96x96">
+  <meta name="msapplication-TileImage" content="/images/favicon/rocket-144x144.png">
+
+  <script type="text/javascript">
+    var $mcGoal = {'settings':{'uuid':'c001d97369b7a10d224c23867','dc':'us9'}};
+    (function() {
+      var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+      sp.src = ('https:' == document.location.protocol ? 'https://s3.amazonaws.com/downloads.mailchimp.com' : 'http://downloads.mailchimp.com') + '/js/goal.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+    })();
+  </script>
+
+  <script>window.clientData = {};</script>
+
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0065/1320.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+</head>
+<body>
+<div class="header2016">
+  <div class="header2016__logo header2016__logo--spaced">
+    <div class="so-siteHeader">
+      <span class="so-logo">
+  <a href="https://www.stellar.org/" class="so-logo__main">Stellar</a><!--
+  --><span class="so-logo__separator"> </span><!--
+  --><a href="/" class="so-logo__subSite">developers</a>
+</span>
+    </div>
+  </div>
+  <nav class="header2016__nav mainNavMenu spu-padStart-30">
+    <a class="mainNavMenu__item is-currentItem" href="/guides/">&#x6307;&#x5357;</a>
+<a class="mainNavMenu__item " href="/reference/">API &#x53C2;&#x8003;&#x624B;&#x518C;</a>
+<a class="mainNavMenu__item " href="/software/">&#x8F6F;&#x4EF6;</a>
+<a class="mainNavMenu__item " href="/tools/">&#x5DE5;&#x5177;</a>
+  </nav>
+</div>
+
+<div class="S-flex-row">
+  <div class="siteSidebar pageNavListBounder">
+  <div class="mainSidebar">
+    <ul class="pageNavList">
+
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x5165;&#x95E8;</span>
+        <ol class="collapsibleListSet__list">
+                    <li class="pageNavList__item"><a href="/guides/get-started/index.html">Stellar &#x7F51;&#x7EDC;&#x6982;&#x89C8;</a></li>
+          <li class="pageNavList__item"><a href="/guides/get-started/create-account.html">&#x521B;&#x5EFA;&#x8D26;&#x6237;</a></li>
+  <li class="pageNavList__item"><a href="/guides/get-started/transactions.html">&#x4ED8;&#x6B3E;&#x548C;&#x6536;&#x6B3E;</a></li>
+
+        </ol>
+      </li>
+    
+
+
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x951A;&#x70B9;</span>
+        <ol class="collapsibleListSet__list">
+                    <li class="pageNavList__item"><a href="/guides/anchor/index.html">&#x67B6;&#x6784;</a></li>
+          <li class="pageNavList__item"><a href="/guides/anchor/2-bridge-server.html">&#x6865;&#x63A5;&#x670D;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/anchor/3-federation-server.html">&#x8054;&#x90A6;&#x670D;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/anchor/4-compliance-server.html">&#x5408;&#x89C4;&#x670D;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/anchor/5-conclusion.html">&#x4E0B;&#x4E00;&#x6B65;</a></li>
+
+        </ol>
+      </li>
+    
+      
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x6982;&#x5FF5;</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/guides/concepts/accounts.html">&#x8D26;&#x6237;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/assets.html">&#x8D44;&#x4EA7;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/exchange.html">&#x5206;&#x5E03;&#x5F0F;&#x4EA4;&#x6613;&#x6240;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/federation.html">&#x8054;&#x90A6;&#x534F;&#x8BAE;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/fees.html">&#x8D39;&#x7528;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/inflation.html">&#x901A;&#x8D27;&#x81A8;&#x80C0;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/ledger.html">&#x603B;&#x8D26;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/list-of-operations.html">&#x64CD;&#x4F5C;&#x6E05;&#x5355;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/multi-sig.html">&#x591A;&#x91CD;&#x7B7E;&#x540D;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/operations.html">&#x64CD;&#x4F5C;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/scp.html">Stellar &#x5171;&#x8BC6;&#x534F;&#x8BAE;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/stellar-toml.html">Stellar.toml</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/test-net.html">&#x6D4B;&#x8BD5;&#x7F51;&#x7EDC;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/transactions.html">&#x4E8B;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/versioning.html">&#x7248;&#x672C;&#x4E0E;&#x5347;&#x7EA7;&#x7BA1;&#x7406;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/xdr.html">XDR</a></li>
+
+        </ul>
+      </li>
+    
+      
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x6F14;&#x793A;</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/guides/walkthroughs/bifrost-server-setup.html">&#x914D;&#x7F6E;&#x8679;&#x6865;&#x670D;&#x52A1;&#x5668;</a></li>
+  <li class="pageNavList__item"><a href="/guides/walkthroughs/custom-assets.html">&#x81EA;&#x5B9A;&#x4E49;&#x8D44;&#x4EA7;</a></li>
+  <li class="pageNavList__item is-currentItem"><a href="/guides/walkthroughs/how-to-complete-stellar-toml.html">&#x5982;&#x4F55;&#x4EE5;&#x53CA;&#x4E3A;&#x4F55;&#x8BBE;&#x7F6E;&#x60A8;&#x7684; Stellar.toml</a></li>
+  <li class="pageNavList__item"><a href="/guides/walkthroughs/stellar-smart-contracts.html">Stellar &#x667A;&#x80FD;&#x5408;&#x7EA6;</a></li>
+
+        </ul>
+      </li>
+    
+        <li class="pageNavList__item"><a href="/guides/attachment.html">Stellar &#x9644;&#x4EF6;&#x516C;&#x7EA6;</a></li>
+  <li class="pageNavList__item"><a href="/guides/channels.html">&#x4FE1;&#x9053;</a></li>
+  <li class="pageNavList__item"><a href="/guides/compliance-protocol.html">&#x5408;&#x89C4;&#x534F;&#x8BAE;</a></li>
+  <li class="pageNavList__item"><a href="/guides/exchange.html">&#x5C06; Stellar &#x6DFB;&#x52A0;&#x5230;&#x60A8;&#x7684;&#x4EA4;&#x6613;&#x6240;&#x4E2D;</a></li>
+  <li class="pageNavList__item"><a href="/guides/hardware.html">&#x786C;&#x4EF6;&#x9700;&#x6C42;</a></li>
+  <li class="pageNavList__item"><a href="/guides/issuing-assets.html">&#x53D1;&#x884C;&#x8D44;&#x4EA7;</a></li>
+  <li class="pageNavList__item"><a href="/guides/nodes.html">&#x5DF2;&#x77E5;&#x7684;&#x9A8C;&#x8BC1;&#x8282;&#x70B9;</a></li>
+  <li class="pageNavList__item"><a href="/guides/security.html">&#x5B89;&#x5168;</a></li>
+  <li class="pageNavList__item"><a href="/guides/things-to-build.html">&#x6784;&#x5EFA; Stellar &#x5E94;&#x7528;&#x7A0B;&#x5E8F;</a></li>
+        <li class="pageNavList__item"><a href="/guides/contributing.html">&#x8D21;&#x732E;&#x6307;&#x5357;</a></li>
+    </ul>
+  </div>
+</div>
+  <div class="S-flexItem-share">
+  <div class="spu-padSE-30">
+    <h1 class="mainSectionTitle">
+      &#x5982;&#x4F55;&#x4EE5;&#x53CA;&#x4E3A;&#x4F55;&#x8BBE;&#x7F6E;&#x60A8;&#x7684; Stellar.toml
+      
+    </h1>
+  </div>
+  <div class="S-flex-rowWrap spu-borderTop-1 spu-borderColor-neutral7">
+    <s-read-md class="S-flexItem-share mainContent s-read-md--capped spu-padSE-30 spu-padTB-20 documentRead" link-process-md>
+      <blockquote>
+<p><em>&#x5982;&#x679C;&#x60A8;&#x60F3;&#x8981;&#x4F46;&#x5374;&#x8FD8;&#x6CA1;&#x6709;&#x5728; Stellar &#x7F51;&#x7EDC;&#x4E0A;&#x53D1;&#x5E03;&#x4EE4;&#x724C;&#xFF0C;&#x8BF7;</em><a href="./custom-assets.html"><em>&#x5728;&#x6B64;&#x5904;&#x67E5;&#x9605;</em></a><em>&#x521B;&#x5EFA;&#x81EA;&#x5B9A;&#x4E49;&#x4EE4;&#x724C;&#x7684;&#x8BE6;&#x7EC6;&#x6B65;&#x9AA4;&#x3002;</em></p>
+</blockquote>
+<p>&#x60A8;&#x597D;&#xFF01;&#x6211;&#x4EEC;&#x5236;&#x4F5C;&#x4E86;&#x8FD9;&#x4E2A;&#x7B80;&#x77ED;&#x7684;&#x6307;&#x5357;&#x6307;&#x5BFC;&#x60A8;&#x5982;&#x4F55;&#x4F7F;&#x53D1;&#x884C;&#x7684;&#x4EE4;&#x724C;&#x53D6;&#x5F97;&#x6210;&#x529F;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x786E;&#x4FDD;&#x60A8;&#x77E5;&#x9053;&#x5982;&#x4F55;&#x5411;<strong>&#x7F51;&#x7EDC;&#x63D0;&#x4F9B;</strong>&#x6709;&#x5173;&#x60A8;&#x81EA;&#x5DF1;&#x548C;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4EE5;&#x4FBF;&#x6F5C;&#x5728;&#x7684;&#x4E70;&#x5BB6;&#x548C;&#x5E94;&#x7528;&#xFF08;&#x5982;&#x4EA4;&#x6613;&#x6240;&#x548C;&#x94B1;&#x5305;&#xFF09;&#x4FE1;&#x4EFB;&#x60A8;&#x7684;&#x8D44;&#x4EA7;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x586B;&#x5199; <strong>stellar.toml</strong> &#x6587;&#x4EF6;&#x6765;&#x63D0;&#x4F9B;&#x6B64;&#x5FC5;&#x8981;&#x4FE1;&#x606F;&#x3002;</p>
+<p>Stellar &#x4E0A;&#x6700;&#x6210;&#x529F;&#x7684;&#x90A3;&#x4E9B;&#x4EE4;&#x724C;&#x5DF2;&#x7ECF;&#x9075;&#x5FAA;&#x4EE5;&#x4E0B;&#x6307;&#x5357;&#xFF0C;<em>&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x548C;&#x4E70;&#x5BB6;&#x5C06;&#x671F;&#x671B;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x4E5F;&#x80FD;&#x8FD9;&#x6837;&#x505A;</em>&#x3002;</p>
+<h2 id="stellartoml"><a class="anchorShortcut" href="#stellartoml" aria-hidden="true"></a> &#x4E3A;&#x4EC0;&#x4E48;&#x60A8;&#x5E94;&#x8BE5;&#x8BBE;&#x7F6E;&#x60A8;&#x7684; stellar.toml</h2>
+<p>&#x90A3;&#x4E9B;&#x6210;&#x529F;&#x7684;&#x4EE4;&#x724C;&#x53D1;&#x884C;&#x65B9;&#x5F80;&#x5F80;&#x5411;&#x4EA4;&#x6613;&#x6240;&#x548C;&#x6F5C;&#x5728;&#x7684;&#x8D2D;&#x4E70;&#x8005;&#x63D0;&#x4F9B;&#x4E86;&#x5927;&#x91CF;&#x5173;&#x4E8E;&#x4ED6;&#x4EEC;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x5728; Stellar &#x4E2D;&#xFF0C;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5;&#x5C06;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x914D;&#x7F6E;&#x5728; <strong>stellar.toml</strong> &#x4E2D;&#x3002;&#x5982;&#x679C;&#x60A8;&#x63D0;&#x4F9B;&#x4E86;&#x8DB3;&#x591F;&#x591A;&#x7684;&#x4FE1;&#x606F;&#x53EF;&#x80FD;&#x4F1A;&#x5E26;&#x6765;&#x4EE5;&#x4E0B;&#x597D;&#x5904;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x80FD;&#x5728;<em>&#x66F4;&#x591A;</em>&#x7684;&#x4EA4;&#x6613;&#x6240;&#x4E0A;&#x67B6;</p>
+</li>
+<li>
+<p>&#x4EE4;&#x724C;&#x7684;&#x6301;&#x6709;&#x8005;<em>&#x66F4;&#x52A0;</em>&#x4FE1;&#x4EFB;&#x60A8;&#x7684;&#x4EE4;&#x724C;</p>
+</li>
+<li>
+<p>&#x60A8;&#x7684;&#x9879;&#x76EE;&#x5F88;&#x6709;&#x53EF;&#x80FD;&#x4F1A;&#x53D6;&#x5F97;<em>&#x66F4;&#x5927;</em>&#x7684;&#x6210;&#x529F;</p>
+</li>
+</ul>
+<p>&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#xFF0C;Stellar &#x5E94;&#x7528;&#x7A0B;&#x5E8F; <a href="http://stellarx.com/">StellarX</a> &#x901A;&#x8FC7; stellar.toml &#x6587;&#x4EF6;&#x6765;&#x51B3;&#x5B9A;&#x5982;&#x4F55;&#x5728;&#x5E02;&#x573A;&#x89C6;&#x56FE;&#x4E2D;&#x5411;&#x4EA4;&#x6613;&#x8005;&#x5C55;&#x793A;&#x4EE4;&#x724C;&#x3002;&#x5982;&#x679C;&#x60A8;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x8DB3;&#x591F;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x53EF;&#x80FD;&#x4F1A;&#x88AB;&#x9690;&#x85CF;&#x3002;<a href="http://stellarport.io">stellarport.io</a> &#x548C; <a href="http://stellarterm.com">stellarterm.com</a> &#x7B49;&#x5176;&#x5B83;&#x7684; Stellar &#x4EA4;&#x6613;&#x6240;&#x4E5F;&#x91C7;&#x53D6;&#x4E86;&#x7C7B;&#x4F3C;&#x7684;&#x63AA;&#x65BD;&#x3002;</p>
+<p><em>&#x5982;&#x679C;&#x60A8;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x5B8C;&#x5584;&#x7684; stellar.toml&#xFF0C;&#x5927;&#x591A;&#x6570;&#x4EA4;&#x6613;&#x6240;&#x90FD;&#x4E0D;&#x4F1A;&#x5217;&#x51FA;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x3002;</em></p>
+<p>stellar.toml &#x6587;&#x4EF6;&#x975E;&#x5E38;&#x91CD;&#x8981;&#xFF0C;&#x56E0;&#x6B64;&#x7B2C;&#x4E00;&#x4E2A; Stellar &#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x63D0;&#x6848;&#x81F4;&#x529B;&#x4E8E;&#x6982;&#x8FF0;&#x5B83;&#x5E94;&#x8BE5;&#x5305;&#x542B;&#x7684;&#x5185;&#x5BB9;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5728;<a href="https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md">&#x8FD9;&#x91CC;</a>&#x627E;&#x5230;&#x5B8C;&#x6574;&#x7684; SEP 0001&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x5728;&#x4E0B;&#x9762;&#x603B;&#x7ED3;&#x5176;&#x4E2D;&#x91CD;&#x8981;&#x7684;&#x90E8;&#x5206;&#x3002;</p>
+<h2 id="stellartoml-2"><a class="anchorShortcut" href="#stellartoml-2" aria-hidden="true"></a> &#x4EC0;&#x4E48;&#x662F; stellar.toml&#xFF1F;</h2>
+<p>stellar.toml &#x662F;&#x4EE5; <a href="https://github.com/toml-lang/toml">TOML</a> &#x683C;&#x5F0F;&#xFF08;&#x4E00;&#x79CD;&#x7B80;&#x5355;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x683C;&#x5F0F;&#xFF09;&#x7F16;&#x5199;&#x5230;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x5B83;&#x4F1A;&#x88AB;&#x53D1;&#x5E03;&#x5230; https://YOUR_DOMAIN/.well-known/stellar.toml&#x3002;&#x4EFB;&#x4F55;&#x4EBA;&#x90FD;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5B83;&#xFF0C;&#x8BE5;&#x6587;&#x4EF6;<em>&#x8BC1;&#x660E;</em>&#x4E86;&#x60A8;&#x62E5;&#x6709;&#x6258;&#x7BA1; stellar.toml &#x6587;&#x4EF6;&#x7684;&#x57DF;&#x540D;&#xFF0C;&#x4E5F;&#x58F0;&#x660E;&#x4E86;&#x60A8;&#x5BF9;&#x5176;&#x4E2D;&#x5217;&#x51FA;&#x7684;&#x8D26;&#x6237;&#x548C;&#x4EE4;&#x724C;<em>&#x8D1F;&#x8D23;</em>&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4F7F;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x66F4;&#x52A0;&#x7B26;&#x5408;&#x6807;&#x51C6;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x91CC;&#x63D0;&#x4F9B;&#x5173;&#x4E8E;&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x548C;&#x4EE4;&#x724C;&#x7684;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#x3002;<strong>&#x5982;&#x679C;&#x60A8;&#x63D0;&#x4F9B;&#x4E86;&#x591A;&#x79CD;&#x4EE4;&#x724C;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x5C06;&#x5B83;&#x4EEC;&#x5728;&#x4E00;&#x4E2A; stellar.toml &#x6587;&#x4EF6;&#x4E2D;&#x5217;&#x51FA;&#x3002;</strong></p>
+<h2 id="stellartoml-3"><a class="anchorShortcut" href="#stellartoml-3" aria-hidden="true"></a> &#x5982;&#x4F55;&#x5B8C;&#x6210;&#x60A8;&#x7684; stellar.toml</h2>
+<p><a href="https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md">SEP 0001</a> &#x89C4;&#x5B9A;&#x4E86;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x5230; stellar.toml &#x4E2D;&#x7684;&#x4E94;&#x4E2A;&#x90E8;&#x5206;&#xFF1A;&#x8D26;&#x6237;&#x4FE1;&#x606F;&#x3001;&#x53D1;&#x884C;&#x4EBA;&#x4FE1;&#x606F;&#x3001;&#x8054;&#x7CFB;&#x4EBA;&#x4FE1;&#x606F;&#x3001;&#x4EE4;&#x724C;&#x4FE1;&#x606F;&#x548C;&#x9A8C;&#x8BC1;&#x8282;&#x70B9;&#x4FE1;&#x606F;&#x3002;&#x5728;&#x8FD9;&#x4E9B;&#x90E8;&#x5206;&#x4E2D;&#xFF0C;&#x4E00;&#x4E9B;&#x5B57;&#x6BB5;&#x53EA;&#x9002;&#x7528;&#x4E8E;&#x7279;&#x5B9A;&#x7684;&#x4EE4;&#x724C;&#xFF0C;&#x4F46;&#x662F;&#x8BB8;&#x591A;&#x5B57;&#x6BB5;&#x9002;&#x7528;&#x4E8E;<em>&#x6240;&#x6709;</em>&#x4EE4;&#x724C;&#xFF0C;&#x4E0B;&#x6587;&#x4E2D;&#x4F1A;&#x6CE8;&#x660E;&#x54EA;&#x4E9B;&#x4FE1;&#x606F;&#x7684;&#x5FC5;&#x987B;&#x63D0;&#x4F9B;&#x7684;&#xFF0C;&#x54EA;&#x4E9B;&#x4FE1;&#x606F;&#x662F;&#x5EFA;&#x8BAE;&#x63D0;&#x4F9B;&#x7684;&#x3002;</p>
+<ul>
+<li>
+<p><strong>&#x5FC5;&#x9700;&#x63D0;&#x4F9B;</strong>&#xFF1A;&#x5982;&#x679C;&#x8981;&#x5728;&#x4EA4;&#x6613;&#x6240;&#x4E0A;&#x5E02;&#xFF0C;&#x6240;&#x6709;&#x4EE4;&#x724C;&#x53D1;&#x884C;&#x4EBA;<em>&#x5FC5;&#x987B;</em>&#x5728;&#x5176; stellar.toml &#x4E2D;&#x586B;&#x5199;&#x6B64;&#x4FE1;&#x606F;&#x3002;</p>
+</li>
+<li>
+<p><strong>&#x5EFA;&#x8BAE;&#x63D0;&#x4F9B;</strong>&#xFF1A;&#x4EFB;&#x4F55;&#x5E0C;&#x671B;&#x5176;&#x4EE4;&#x724C;&#x66F4;&#x52A0;&#x88AB;&#x7528;&#x6237;&#x4FE1;&#x4EFB;&#x7684;&#x4EE4;&#x724C;&#x53D1;&#x884C;&#x4EBA;&#x90FD;&#x5E94;&#x586B;&#x5199;&#x8FD9;&#x4E9B;&#x5B57;&#x6BB5;&#x3002;</p>
+</li>
+</ul>
+<h3 id><a class="anchorShortcut" href="#" aria-hidden="true"></a> &#x8D26;&#x6237;&#x4FE1;&#x606F;</h3>
+<p><em>&#x6240;&#x6709;</em>&#x4EE4;&#x724C;&#x53D1;&#x884C;&#x8005;<em>&#x90FD;</em>&#x9700;&#x8981;&#x586B;&#x5199;&#x201C;&#x5E10;&#x6237;&#x4FE1;&#x606F;&#x201D;&#x90E8;&#x5206;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#xFF1A;</p>
+<ul>
+<li><code>ACCOUNTS</code>: &#x4E0E;&#x4EE4;&#x724C;&#x5173;&#x8054;&#x7684;&#x6240;&#x6709; Stellar &#x5E10;&#x6237;&#x7684;<strong>&#x516C;&#x94A5;</strong>&#x5217;&#x8868;&#x3002;</li>
+</ul>
+<p>&#x5217;&#x51FA;&#x60A8;&#x7684;&#x516C;&#x94A5;&#x53EF;&#x4EE5;&#x8BA9;&#x7528;&#x6237;&#x786E;&#x8BA4;&#x60A8;&#x5B9E;&#x9645;&#x4E0A;&#x62E5;&#x6709;&#x5B83;&#x4EEC;&#x3002;&#x4F8B;&#x5982; <a href="https://google.com">https://google.com</a> &#x6258;&#x7BA1;&#x4E86;&#x4E00;&#x4E2A; stellar.toml &#x6587;&#x4EF6;&#xFF0C;&#x7528;&#x6237;&#x53EF;&#x4EE5;&#x786E;&#x4FDD;<em>&#x53EA;&#x6709;</em>&#x5176;&#x4E2D;&#x5217;&#x51FA;&#x7684;&#x5E10;&#x6237;&#x5C5E;&#x4E8E; Google&#x3002;&#x5982;&#x679C;&#x6709;&#x4EBA;&#x8BF4;&#xFF1A;&#x201C;&#x60A8;&#x9700;&#x8981;&#x5728;&#x672C;&#x6708;&#x652F;&#x4ED8;&#x60A8;&#x7684; Google &#x8D26;&#x5355;&#xFF0C;&#x8BF7;&#x628A;&#x4ED8;&#x6B3E;&#x53D1;&#x9001;&#x5230; GIAMGOOGLEIPROMISE&#x201D;&#xFF0C;&#x7528;&#x6237;&#x67E5;&#x770B; Google &#x7684; stellar.toml &#x540E;&#x53D1;&#x73B0;&#x8BE5;&#x5730;&#x5740;&#x5E76;&#x4E0D;&#x5728;&#x5176;&#x4E2D;&#xFF0C;&#x4FBF;&#x660E;&#x767D;&#x4E86;&#x8FD9;&#x4E2A;&#x4EBA;&#x662F;&#x4E0D;&#x53EF;&#x4FE1;&#x7684;&#x3002;</p>
+<p>&#x201C;&#x5E10;&#x6237;&#x4FE1;&#x606F;&#x201D;&#x90E8;&#x5206;&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x5927;&#x591A;&#x6570;&#x5176;&#x4ED6;&#x4FE1;&#x606F;&#x4EC5;&#x5BF9;&#x9A8C;&#x8BC1;&#x8282;&#x70B9;&#x548C;&#x91D1;&#x878D;&#x673A;&#x6784;&#x6709;&#x7528;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684; <code>ACCOUNTS</code> &#x5B57;&#x6BB5;&#x7684;&#x793A;&#x4F8B;&#xFF0C;&#x5B83;&#x5217;&#x51FA;&#x4E86;&#x4E09;&#x4E2A;&#x516C;&#x94A5;&#xFF1A;</p>
+<pre><code>ACCOUNTS=[
+&quot;GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U&quot;,
+&quot;GAENZLGHJGJRCMX5VCHOLHQXU3EMCU5XWDNU4BGGJFNLI2EL354IVBK7&quot;,
+&quot;GB6REF5GOGGSEHZ3L2YK6K4T4KX3YDMWHDCPMV7MZJDLHBDNZXEPRBGM&quot;
+]
+</code></pre>
+<h3 id="-2"><a class="anchorShortcut" href="#-2" aria-hidden="true"></a> &#x53D1;&#x884C;&#x65B9;&#x4FE1;&#x606F;</h3>
+<p>&#x5C06;&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x57FA;&#x672C;&#x4FE1;&#x606F;&#x653E;&#x5728; TOML &#x6587;&#x4EF6;&#x7684; <code>[DOCUMENTATION]</code> &#x8868;&#x4E2D;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x91CC;&#x5411;&#x4EA4;&#x6613;&#x6240;&#x548C;&#x4E70;&#x5BB6;&#x5C55;&#x793A;&#x60A8;&#x7684;&#x4E1A;&#x52A1;&#x4FE1;&#x606F;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x91CC;&#x5411;&#x7528;&#x6237;&#x8BC1;&#x660E;&#x60A8;&#x7684;&#x4E1A;&#x52A1;&#x5408;&#x6CD5;&#x4E14;&#x503C;&#x5F97;&#x4FE1;&#x4EFB;&#x3002;</p>
+<p>&#x60A8;&#x63D0;&#x4F9B;&#x7684;&#x4FE1;&#x606F;&#x8D8A;&#x591A;&#xFF0C;&#x7528;&#x6237;&#x5C31;&#x8D8A;&#x6709;&#x53EF;&#x80FD;&#x4FE1;&#x4EFB;&#x60A8;&#x53D1;&#x884C;&#x7684;&#x4EE4;&#x724C;&#x3002;</p>
+<p><strong>&#x5FC5;&#x9700;&#x63D0;&#x4F9B;</strong>&#xFF1A;&#x6240;&#x6709;&#x53D1;&#x884C;&#x65B9;&#x5FC5;&#x987B;&#x586B;&#x5199;&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x6CD5;&#x5B9A;&#x540D;&#x79F0; (<code>org_name</code>)&#xFF0C;&#x5982;&#x679C;&#x60A8;&#x7684;&#x516C;&#x53F8;&#x6709;&#x4E00;&#x4E2A;&#x7ECF;&#x8425;&#x540D;&#x79F0;(<code>org_dba</code>)&#xFF0C;&#x90A3;&#x4E48;&#x60A8;&#x4E5F;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x5B83;&#x3002;</p>
+</li>
+<li>
+<p>&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#x7684; URL(<code>org_url</code>)&#x3002;&#x4E3A;&#x4E86;&#x8BC1;&#x660E;&#x8BE5;&#x7F51;&#x7AD9;&#x662F;&#x60A8;&#x7684;&#x7F51;&#x7AD9;&#xFF0C;<em>&#x60A8;&#x5FC5;&#x987B;&#x5728;&#x6B64;&#x5904;&#x5217;&#x51FA;&#x7684;&#x76F8;&#x540C;&#x57DF;&#x540D;&#x4E2D;&#x6258;&#x7BA1;&#x60A8;&#x7684; stellar.toml&#x3002;</em> &#x8FD9;&#x6837;&#xFF0C;&#x4EA4;&#x6613;&#x6240;&#x548C;&#x4E70;&#x5BB6;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x60A8;&#x7684;&#x7F51;&#x7AD9;&#x4E0A;&#x67E5;&#x770B; SSL &#x8BC1;&#x4E66;&#xFF0C;&#x5E76;&#x53EF;&#x4EE5;&#x4EE5;&#x6B64;&#x5224;&#x65AD;&#x60A8;&#x7684;&#x8EAB;&#x4EFD;&#x3002;</p>
+</li>
+<li>
+<p>&#x7EC4;&#x7EC7; Logo &#x7684; URL(<code>org_logo</code>) &#xFF0C;&#x5B83;&#x5C06;&#x5728;&#x4EA4;&#x6613;&#x6240;&#x4E2D;&#x663E;&#x793A;&#x5728;&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x65C1;&#x8FB9;&#x3002;&#x5982;&#x679C;&#x60A8;&#x672A;&#x80FD;&#x63D0;&#x4F9B;&#x6B64;&#x53C2;&#x6570;&#xFF0C;&#x5728;&#x8BB8;&#x591A;&#x4EA4;&#x6613;&#x6240;&#x4E2D;&#x60A8;&#x7684;&#x7EC4;&#x7EC7; Logo &#x5C06;&#x5728;&#x663E;&#x793A;&#x4E3A;&#x7A7A;&#x767D;&#x3002;</p>
+</li>
+<li>
+<p>&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x5B9E;&#x9645;&#x5730;&#x5740;(<code>org_physical_address</code>)&#x3002;&#x6211;&#x4EEC;&#x4E86;&#x89E3;&#x60A8;&#x53EF;&#x80FD;&#x5E0C;&#x671B;&#x5C06;&#x60A8;&#x7684;&#x5DE5;&#x4F5C;&#x5730;&#x5740;&#x4FDD;&#x5BC6;&#x3002;&#x4F46;&#x60A8;&#x81F3;&#x5C11;&#x5E94;&#x8BE5;&#x628A;&#x60A8;&#x6240;&#x5728;&#x7684;<em>&#x56FD;&#x5BB6;</em>&#x548C;<em>&#x57CE;&#x5E02;</em>&#x586B;&#x5199;&#x5728;&#x8FD9;&#x91CC;&#x3002;&#x5982;&#x679C;&#x80FD;&#x8BE6;&#x7EC6;&#x5230;&#x8857;&#x9053;&#x5730;&#x5740;&#x5C31;&#x66F4;&#x597D;&#x4E86;&#xFF0C;&#x8FD9;&#x53EF;&#x4EE5;&#x8BA9;&#x6F5C;&#x5728;&#x7528;&#x6237;&#x66F4;&#x52A0;&#x4FE1;&#x4EFB;&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x3002;</p>
+</li>
+<li>
+<p>&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x5B98;&#x65B9;&#x7535;&#x8BDD;&#x53F7;&#x7801;(<code>org_phone_number</code>)&#x3002;</p>
+</li>
+<li>
+<p>&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x5B98;&#x65B9; Twitter &#x5E10;&#x53F7;(<code>org_twitter</code>)&#x3002;</p>
+</li>
+<li>
+<p>&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x5B98;&#x65B9;&#x7535;&#x5B50;&#x90AE;&#x7BB1;&#x5730;&#x5740;(<code>org_official_email</code>)&#x3002;&#x90AE;&#x7BB1;&#x7684;&#x90AE;&#x7BB1;&#x57DF;&#x5E94;&#x8BE5;&#x548C;&#x60A8;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#x7684;&#x57DF;&#x540D;&#x76F8;&#x540C;&#x3002;</p>
+</li>
+</ul>
+<p><strong>&#x5EFA;&#x8BAE;&#x63D0;&#x4F9B;</strong>&#xFF1A;&#x63D0;&#x4F9B;&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#x53EF;&#x4EE5;&#x4F7F;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x66F4;&#x52A0;&#x88AB;&#x7528;&#x6237;&#x4FE1;&#x4EFB;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x5B98;&#x65B9; GitHub &#x5E10;&#x53F7;(<code>org_github</code>)&#x3002;</p>
+</li>
+<li>
+<p>&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x5B98;&#x65B9; Keybase &#x5E10;&#x53F7; (<code>org_keybase</code>)&#x3002;&#x60A8;&#x7684; Keybase &#x5E10;&#x6237;&#x5E94;&#x5305;&#x542B;&#x60A8;&#x5728;&#x6B64;&#x5904;&#x5217;&#x51FA;&#x7684;&#x6240;&#x6709;&#x516C;&#x5171;&#x5728;&#x7EBF;&#x5E10;&#x6237;&#x548C;&#x7EC4;&#x7EC7;&#x57DF;&#x540D;&#x6240;&#x6709;&#x6743;&#x7684;&#x8BC1;&#x660E;&#x3002;</p>
+</li>
+<li>
+<p>&#x4ECB;&#x7ECD;&#x60A8;&#x7684;&#x7EC4;&#x7EC7; (<code>org_description</code>)&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x9700;&#x8981;&#x586B;&#x5199;&#x8BE5;&#x503C;&#xFF0C;&#x6BD4;&#x5982;&#x5728;&#x8FD9;&#x91CC;&#x63CF;&#x8FF0;&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x6B63;&#x5728;&#x505A;&#x4EC0;&#x4E48;&#x3002;</p>
+</li>
+</ul>
+<p>&#x4EA4;&#x6613;&#x6240;&#x6216;&#x8BB8;&#x9700;&#x8981;&#x989D;&#x5916;&#x7684;&#x53EF;&#x9A8C;&#x8BC1;&#x4FE1;&#x606F;&#x6765;&#x51B3;&#x5B9A;&#x5982;&#x4F55;&#x5411;&#x5BA2;&#x6237;&#x5C55;&#x793A;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#xFF0C;&#x5305;&#x542B;&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#x7684;&#x4EE4;&#x724C;&#x53EF;&#x80FD;&#x4F1A;&#x83B7;&#x5F97;&#x66F4;&#x9AD8;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x8BC1;&#x660E;&#x4E0A;&#x8FF0;&#x7684;&#x5B9E;&#x9645;&#x5730;&#x5740;&#x662F;&#x53EF;&#x4FE1;&#x7684; (<code>org_physical_address_attestation</code>)&#x3002;&#x8BE5;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x94FE;&#x63A5;&#x5230;&#x56FE;&#x7247;&#x7684; URL&#xFF0C;&#x8FD9;&#x4E2A;&#x56FE;&#x7247;&#x662F;&#x7531;&#x7B2C;&#x4E09;&#x65B9;&#x673A;&#x6784;&#x63D0;&#x4F9B;&#x7684;&#x6587;&#x6863;&#xFF08;&#x4F8B;&#x5982;&#x516C;&#x7528;&#x4E8B;&#x4E1A;&#x8D26;&#x5355;&#xFF09;&#xFF0C;&#x6587;&#x6863;&#x4E2D;&#x5E94;&#x8BE5;&#x5305;&#x542B;&#x4E86;&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x540D;&#x5B57;&#x548C;&#x5730;&#x5740;&#x3002;</p>
+</li>
+<li>
+<p>&#x8BC1;&#x660E;&#x4E0A;&#x8FF0;&#x7684;&#x8054;&#x7CFB;&#x7535;&#x8BDD;&#x662F;&#x53EF;&#x4FE1;&#x7684; (<code>org_physical_address_attestation</code>)&#x3002;Attestation of the phone number listed above (<code>org_phone_number_attestation</code>)&#x3002;&#x8BE5;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x94FE;&#x63A5;&#x5230;&#x56FE;&#x7247;&#x7684; URL&#xFF0C;&#x8FD9;&#x4E2A;&#x56FE;&#x7247;&#x663E;&#x793A;&#x7684;&#x662F;&#x5305;&#x542B;&#x60A8;&#x7684;&#x7535;&#x8BDD;&#x53F7;&#x7801;&#x548C;&#x7EC4;&#x7EC7;&#x540D;&#x79F0;&#x7684;&#x7535;&#x8BDD;&#x5E10;&#x5355;&#x3002;</p>
+</li>
+</ul>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4EFD;&#x5B8C;&#x6574;&#x7684;&#x53D1;&#x884C;&#x65B9;&#x4FE1;&#x606F;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code>[DOCUMENTATION]
+ORG_NAME=&quot;Organization Name&quot;
+ORG_DBA=&quot;Organization DBA&quot;
+ORG_URL=&quot;https://www.domain.com&quot;
+ORG_LOGO=&quot;https://www.domain.com/awesomelogo.jpg&quot;
+ORG_DESCRIPTION=&quot;Description of issuer&quot;
+ORG_PHYSICAL_ADDRESS=&quot;123 Sesame St., New York, NY, 12345&quot;
+ORG_PHYSICAL_ADDRESS_ATTESTATION=&quot;https://www.domain.com/address_attestation.jpg&quot;
+ORG_PHONE_NUMBER=&quot;1 (123)-456-7890&quot;
+ORG_PHONE_NUMBER_ATTESTATION=&quot;https://www.domain.com/phone_attestation.jpg&quot;
+ORG_KEYBASE=&quot;accountname&quot;
+ORG_TWITTER=&quot;orgtweet&quot;
+ORG_GITHUB=&quot;orgcode&quot;
+ORG_OFFICIAL_EMAIL=&quot;support@domain.com&quot;
+</code></pre>
+<h3 id="-3"><a class="anchorShortcut" href="#-3" aria-hidden="true"></a> &#x8054;&#x7CFB;&#x4EBA;&#x4FE1;&#x606F;</h3>
+<p>&#x5C06;&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x4E3B;&#x8981;&#x8054;&#x7CFB;&#x4EBA;&#x7684;&#x4FE1;&#x606F;&#x653E;&#x7F6E;&#x5728;  TOML &#x6587;&#x4EF6;&#x7684; <code>[[ PRINCIPALS ]]</code> <a href="https://github.com/toml-lang/toml#array-of-tables">&#x8868;&#x5217;</a>&#x4E2D;&#x3002;&#x60A8;&#x81F3;&#x5C11;&#x9700;&#x8981;&#x8F93;&#x5165;&#x7EC4;&#x7EC7;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x4EBA;&#x7684;&#x8054;&#x7CFB;&#x4FE1;&#x606F;&#x3002;&#x5982;&#x679C;&#x60A8;&#x4E0D;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x4EA4;&#x6613;&#x6240;&#x5C31;&#x65E0;&#x6CD5;&#x6838;&#x5B9E;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#xFF0C;&#x4E70;&#x5BB6;&#x4E5F;&#x53EF;&#x80FD;&#x4E0D;&#x4F1A;&#x5BF9;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x611F;&#x5174;&#x8DA3;&#x3002;&#x591A;&#x4E2A;&#x8054;&#x7CFB;&#x4EBA;&#x53EF;&#x4EE5;&#x653E;&#x7F6E;&#x591A;&#x4E2A;<code>[[ PRINCIPALS ]]</code>&#x3002;</p>
+<p><strong>&#x5FC5;&#x9700;&#x63D0;&#x4F9B;</strong>&#xFF1A;&#x6240;&#x6709;&#x7684;&#x53D1;&#x884C;&#x65B9;&#x90FD;&#x5E94;&#x8BE5;&#x63D0;&#x4F9B;&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x4E3B;&#x8981;&#x8054;&#x7CFB;&#x4EBA;&#x7684;&#x540D;&#x5B57; (<code>name</code>)&#x3002;</p>
+</li>
+<li>
+<p>&#x9996;&#x8981;&#x8054;&#x7CFB;&#x4EBA;&#x7684;&#x5B98;&#x65B9;&#x7535;&#x5B50;&#x90AE;&#x7BB1;&#x5730;&#x5740;(<code>email</code>)&#x3002;&#x90AE;&#x7BB1;&#x7684;&#x90AE;&#x7BB1;&#x57DF;&#x5E94;&#x8BE5;&#x548C;&#x60A8;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#x7684;&#x57DF;&#x540D;&#x76F8;&#x540C;&#x3002;</p>
+</li>
+<li>
+<p>&#x9996;&#x8981;&#x8054;&#x7CFB;&#x4EBA;&#x7684; Twitter &#x5E10;&#x53F7; (<code>twitter</code>)&#x3002;</p>
+</li>
+</ul>
+<p><strong>&#x5EFA;&#x8BAE;&#x63D0;&#x4F9B;</strong>&#xFF1A;&#x5982;&#x679C;&#x4E3B;&#x8981;&#x8054;&#x7CFB;&#x4EBA;&#x6709;&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#xFF0C;&#x6211;&#x4EEC;&#x5EFA;&#x8BAE;&#x60A8;&#x586B;&#x5199;&#x5B83;&#x4EEC;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x9996;&#x8981;&#x8054;&#x7CFB;&#x4EBA;&#x7684;&#x4E2A;&#x4EBA; GithHb &#x5E10;&#x53F7;(<code>github</code>)&#x3002;</p>
+</li>
+<li>
+<p>&#x9996;&#x8981;&#x8054;&#x7CFB;&#x4EBA;&#x7684;&#x4E2A;&#x4EBA; Keybase &#x5E10;&#x53F7;(<code>keybase</code>)&#x3002;&#x6B64;&#x5E10;&#x6237;&#x5E94;&#x5305;&#x62EC;&#x4E0A;&#x8FF0;&#x7535;&#x5B50;&#x90AE;&#x4EF6;&#x5730;&#x5740;&#x7684;&#x6240;&#x6709;&#x6743;&#x8BC1;&#x660E;&#x3002;</p>
+</li>
+</ul>
+<p>&#x60A8;&#x63D0;&#x4F9B;&#x7684;&#x4FE1;&#x606F;&#x8D8A;&#x591A;&#x8D8A;&#x597D;&#x3002;&#x4EA4;&#x6613;&#x6240;&#x6216;&#x8BB8;&#x9700;&#x8981;&#x989D;&#x5916;&#x7684;&#x53EF;&#x9A8C;&#x8BC1;&#x4FE1;&#x606F;&#x6765;&#x51B3;&#x5B9A;&#x5982;&#x4F55;&#x5411;&#x5BA2;&#x6237;&#x5C55;&#x793A;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#xFF0C;&#x5305;&#x542B;&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#x7684;&#x4EE4;&#x724C;&#x53EF;&#x80FD;&#x4F1A;&#x83B7;&#x5F97;&#x66F4;&#x9AD8;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x653F;&#x5E9C;&#x7B7E;&#x53D1;&#x7684;&#x8EAB;&#x4EFD;&#x8BC1;&#x660E;&#x7684;&#x7167;&#x7247;&#x7684; SHA-256 hash (<code>id_photo_hash</code>)&#x3002;</p>
+</li>
+<li>
+<p>&#x624B;&#x6301;&#x5305;&#x542B;&#x7B7E;&#x540D;&#x3001;&#x65E5;&#x671F;&#x548C;&#x624B;&#x5199;&#x7684; SEP 0001 &#x4FE1;&#x606F;&#x7684;&#x7167;&#x7247;&#x7684; SHA-256 hash (<code>verification_photo_hash</code>)&#x3002;</p>
+</li>
+</ul>
+<p>&#x4EA4;&#x6613;&#x6240;&#x548C;&#x94B1;&#x5305;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; hash &#x786E;&#x8BA4;&#x60A8;&#x7684;&#x8054;&#x7CFB;&#x4EBA;&#x7684;&#x8EAB;&#x4EFD;&#x3002;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#x63D0;&#x4F9B;&#x5546;&#x53EF;&#x4EE5;&#x79C1;&#x4E0B;&#x4E0E;&#x60A8;&#x8054;&#x7CFB;&#x4EE5;&#x83B7;&#x53D6;&#x8EAB;&#x4EFD;&#x8BC1;&#x548C;&#x9A8C;&#x8BC1;&#x7167;&#x7247;&#xFF0C;&#x7136;&#x540E;&#x6839;&#x636E;&#x6B64;&#x5904;&#x5217;&#x51FA;&#x7684; hash &#x68C0;&#x67E5;&#x8FD9;&#x4E9B;&#x7167;&#x7247;&#xFF0C;&#x4EE5;&#x786E;&#x4FDD;&#x5B83;&#x4EEC;&#x5339;&#x914D;&#x3002;&#x5982;&#x679C;&#x54C8;&#x5E0C;&#x503C;&#x5339;&#x914D;&#xFF0C;&#x4ED6;&#x4EEC;&#x4F1A;&#x8BA9;&#x5BA2;&#x6237;&#x77E5;&#x9053;&#x60A8;&#x7684;&#x8054;&#x7CFB;&#x4EBA;&#x4FE1;&#x606F;&#x5DF2;&#x7ECF;&#x7ECF;&#x8FC7;&#x4E86;&#x9A8C;&#x8BC1;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4EFD;&#x5B8C;&#x6574;&#x7684;&#x4E3B;&#x8981;&#x8054;&#x7CFB;&#x4EBA;&#x4FE1;&#x606F;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code>[[PRINCIPALS]]
+name=&quot;Jane Jedidiah Johnson&quot;
+email=&quot;jane@domain.com&quot;
+twitter=&quot;@crypto_jane&quot;
+keybase=&quot;crypto_jane&quot;
+github=&quot;crypto_jane&quot;
+id_photo_hash=&quot;5g249e170f4f134b18ab3de069c5a13e5c3ef3ef90f3643afa15a1603c34cf38&quot;
+verification_photo_hash=&quot;693687f6abd594366a09cfe6b380e58f9023867a851cc9fa71f302ab4889e48&quot;
+</code></pre>
+<h3 id="-4"><a class="anchorShortcut" href="#-4" aria-hidden="true"></a> &#x4EE4;&#x724C;&#x4FE1;&#x606F;</h3>
+<p>&#x5C06;&#x60A8;&#x7684;&#x7EC4;&#x7EC7;&#x7684;&#x4E3B;&#x8981;&#x8054;&#x7CFB;&#x4EBA;&#x7684;&#x4FE1;&#x606F;&#x653E;&#x7F6E;&#x5728; TOML &#x6587;&#x4EF6;&#x7684; <code>[[ CURRENCIES ]]</code> <a href="https://github.com/toml-lang/toml#array-of-tables">&#x8868;&#x5217;</a>&#x4E2D;&#x3002;&#x5982;&#x679C;&#x60A8;&#x53D1;&#x884C;&#x4E86;&#x591A;&#x79CD;&#x4EE4;&#x724C;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x5C06;&#x8FD9;&#x4E9B;&#x4EE4;&#x724C;&#x653E;&#x7F6E;&#x5728;&#x4E00;&#x4E2A; stellar.toml &#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x6BCF;&#x79CD;&#x4EE4;&#x724C;&#x90FD;&#x6709;&#x5355;&#x72EC;&#x7684;<code>[[CURRENCIES]]</code> &#x6761;&#x76EE;&#x3002;</p>
+<p><strong>&#x5FC5;&#x9700;&#x63D0;&#x4F9B;</strong>&#xFF1A;&#x6240;&#x6709;&#x7684;&#x53D1;&#x884C;&#x65B9;&#x90FD;&#x9700;&#x8981;&#x4E3A;&#x5B83;&#x4EEC;&#x53D1;&#x884C;&#x7684;&#x4EE4;&#x724C;&#x63D0;&#x4F9B;&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x8D44;&#x4EA7;&#x4EE3;&#x7801;(<code>code</code>)&#x3002;&#x8FD9;&#x662F;&#x8BC6;&#x522B;&#x4EE4;&#x724C;&#x7684;&#x4E24;&#x4E2A;&#x5173;&#x952E;&#x4FE1;&#x606F;&#x4E4B;&#x4E00;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5B83;&#xFF0C;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x5C31;&#x4E0D;&#x80FD;&#x5728;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#x5217;&#x51FA;&#x3002;</p>
+</li>
+<li>
+<p>&#x53D1;&#x884C;&#x8D26;&#x6237;&#x7684; Stellar &#x516C;&#x94A5; (<code>issuer</code>)&#x3002;&#x8FD9;&#x662F;&#x8BC6;&#x522B;&#x4EE4;&#x724C;&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x5173;&#x952E;&#x4FE1;&#x606F;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5B83;&#xFF0C;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x5C31;&#x4E0D;&#x80FD;&#x5728;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#x5217;&#x51FA;&#x3002;</p>
+</li>
+<li>
+<p>&#x4EE4;&#x724C;&#x7684;&#x72B6;&#x6001;(<code>status</code>)&#xFF1A;<em>live(&#x5B58;&#x6D3B;)</em>&#x3001;*dead(&#x6B7B;&#x4EA1;)*&#x6216; <em>test(&#x6D4B;&#x8BD5;)</em>&#x3002;&#x5982;&#x679C;&#x60A8;&#x5DF2;&#x7ECF;&#x51C6;&#x5907;&#x597D;&#x4E86;&#x5C06;&#x5B83;&#x5728;&#x4EA4;&#x6613;&#x6240;&#x4E2D;&#x4E0A;&#x5E02;&#xFF0C;&#x90A3;&#x60A8;&#x9700;&#x8981;&#x5C06;&#x5B83;&#x7684;&#x72B6;&#x6001;&#x8BBE;&#x7F6E;&#x4E3A; <em>live</em>&#x3002;&#x5982;&#x679C;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x5DF2;&#x51C6;&#x5907;&#x597D;&#x4EA4;&#x6613;&#xFF0C;&#x800C;&#x60A8;&#x672A;&#x80FD;&#x8868;&#x660E;&#x5176;&#x72B6;&#x6001;&#xFF0C;&#x5219;&#x5B83;&#x53EF;&#x80FD;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x5728;&#x4EA4;&#x6613;&#x6240;&#x4E2D;&#x3002;</p>
+</li>
+<li>
+<p>&#x6307;&#x793A;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x662F;&#x662F;&#x5426;&#x662F;&#x951A;&#x5B9A;&#x8D44;&#x4EA7;(<code>is_asset_anchored</code>)&#xFF1A;&#x5982;&#x679C;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x53EF;&#x4EE5;&#x5728; Stellar &#x7F51;&#x7EDC;&#x4E4B;&#x5916;&#x8D4E;&#x56DE;&#x5176;&#x5B83;&#x8D44;&#x4EA7;&#xFF0C;&#x5219;&#x4E3A; <code>true</code>&#xFF1B;&#x5982;&#x679C;&#x4E0D;&#x80FD;&#xFF0C;&#x5219;&#x4E3A;<code>false</code>&#x3002;&#x4EA4;&#x6613;&#x6240;&#x4F7F;&#x7528;&#x6B64;&#x4FE1;&#x606F;&#x6309;&#x6E05;&#x5355;&#x4E2D;&#x7684;&#x7C7B;&#x578B;&#x5BF9;&#x4EE4;&#x724C;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x3002;&#x5982;&#x679C;&#x60A8;&#x672A;&#x80FD;&#x63D0;&#x4F9B;&#x5B83;&#xFF0C;&#x5219;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x53EF;&#x80FD;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x5728;&#x7B5B;&#x9009;&#x540E;&#x7684;&#x5E02;&#x573A;&#x89C6;&#x56FE;&#x4E2D;&#x3002;</p>
+</li>
+<li>
+<p>&#x5BA2;&#x6237;&#x7AEF;&#x663E;&#x793A;&#x8D27;&#x5E01;&#x4F59;&#x989D;&#x65F6;&#x5E94;&#x7CBE;&#x786E;&#x5230;&#x5C0F;&#x6570;&#x70B9;&#x540E;&#x51E0;&#x4F4D;(<code>display_decimals</code>)&#x3002;</p>
+</li>
+<li>
+<p>&#x4EE4;&#x724C;&#x7684;&#x7B80;&#x79F0;(<code>name</code>)&#x3002;&#x5982;&#x679C;&#x60A8;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x8BE5;&#x4FE1;&#x606F;&#xFF0C;&#x90A3;&#x4E48;&#x4EA4;&#x6613;&#x6240;&#x4E2D;&#x53EF;&#x80FD;&#x65E0;&#x6CD5;&#x6B63;&#x786E;&#x663E;&#x793A;&#x8BE5;&#x4EE4;&#x724C;&#x3002;</p>
+</li>
+</ul>
+<p>&#x60A8;&#x8FD8;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x586B;&#x5199;&#x4EE5;&#x4E0B;&#x4E92;&#x65A5;&#x5B57;&#x6BB5;&#x4E2D;&#x7684;<em>&#x4E00;&#x4E2A;</em>&#x6765;&#x63CF;&#x8FF0;&#x60A8;&#x7684;<strong>&#x4EE4;&#x724C;&#x53D1;&#x884C;&#x653F;&#x7B56;</strong>&#xFF1A;</p>
+<ul>
+<li>
+<p><code>fixed_number</code>&#xFF0C;&#x5982;&#x679C;&#x60A8;&#x4E00;&#x6B21;&#x6027;&#x53D1;&#x884C;&#x4E86;&#x4E00;&#x5B9A;&#x6570;&#x91CF;&#x7684;&#x4EE4;&#x724C;&#xFF0C;&#x4E14;&#x4E0D;&#x4F1A;&#x589E;&#x53D1;&#xFF0C;&#x90A3;&#x4E48;&#x60A8;&#x5E94;&#x8BE5;&#x914D;&#x7F6E;&#x8FD9;&#x4E2A;&#x503C;&#x3002;</p>
+</li>
+<li>
+<p><code>max_number</code>&#xFF0C;&#x5141;&#x8BB8;&#x53D1;&#x884C;&#x7684;&#x8D44;&#x4EA7;&#x6570;&#x91CF;&#x7684;&#x4E0A;&#x9650;&#x3002;</p>
+</li>
+<li>
+<p><code>is_unlimited</code>&#xFF0C;&#x8BE5;&#x8D44;&#x4EA7;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x589E;&#x53D1;&#x3002;</p>
+</li>
+</ul>
+<p><strong>&#x5EFA;&#x8BAE;&#x63D0;&#x4F9B;</strong>&#xFF1A;&#x63D0;&#x4F9B;&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#x53EF;&#x4EE5;&#x4F7F;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x66F4;&#x52A0;&#x88AB;&#x7528;&#x6237;&#x4FE1;&#x4EFB;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x60A8;&#x5E94;&#x8BE5;&#x4ECB;&#x7ECD;&#x60A8;&#x7684;&#x4EE4;&#x724C;(<code>desc</code>)&#xFF0C;&#x5305;&#x62EC;&#x5B83;&#x6709;&#x4EC0;&#x4E48;&#x7528;&#x5904;&#xFF0C;&#x4EBA;&#x4EEC;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x60F3;&#x8981;&#x62E5;&#x6709;&#x5B83;&#x3002;</p>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;&#x8BE5;&#x4EE4;&#x724C;&#x5728; Stellar &#x7F51;&#x7EDC;&#x4E4B;&#x5916;&#x8D4E;&#x56DE;&#x5176;&#x5B83;&#x8D44;&#x4EA7;&#x7684;&#x6761;&#x4EF6;(<code>conditions</code>)&#x3002;</p>
+</li>
+<li>
+<p>&#x8868;&#x793A;&#x8BE5;&#x4EE4;&#x724C;&#x7684;&#x56FE;&#x50CF;&#x7684; URL(<code>image</code>)&#x3002;&#x6CA1;&#x6709;&#x5B83;&#x7684;&#x8BDD;&#xFF0C;&#x5728;&#x8BB8;&#x591A;&#x4EA4;&#x6613;&#x6240;&#x4E2D;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x56FE;&#x6807;&#x5C06;&#x663E;&#x793A;&#x4E3A;&#x7A7A;&#x767D;&#x3002;</p>
+</li>
+</ul>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4EFD;&#x5B8C;&#x6574;&#x7684;&#x4EE4;&#x724C;&#x4FE1;&#x606F;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code>[[CURRENCIES]]
+code=&quot;GOAT&quot;
+issuer=&quot;GD5T6IPRNCKFOHQWT264YPKOZAWUMMZOLZBJ6BNQMUGPWGRLBK3U7ZNP&quot;
+status=&quot;live&quot;
+display_decimals=2
+name=&quot;goat share&quot;
+desc=&quot;1 GOAT token entitles you to a share of revenue from Elkins Goat Farm.&quot;
+conditions=&quot;There will only ever be 10,000 GOAT tokens in existence. We will distribute the revenue share annually on Jan. 15th&quot;
+image=&quot;https://pbs.twimg.com/profile_images/666921221410439168/iriHah4f.jpg&quot;
+fixed_number=10000
+</code></pre>
+<h3 id="-5"><a class="anchorShortcut" href="#-5" aria-hidden="true"></a> &#x951A;&#x5B9A;&#x4EE4;&#x724C;&#x7684;&#x8981;&#x6C42;&#xFF1A;</h3>
+<p>&#x951A;&#x5B9A;&#x4EE4;&#x724C;&#x662F; Stellar &#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x7279;&#x6B8A;&#x8D44;&#x4EA7;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x7F51;&#x7EDC;&#x5916;&#x90E8;&#x5151;&#x6362;&#x4E3A;&#x5176;&#x4ED6;&#x8D44;&#x4EA7;&#x3002;&#x5982;&#x679C;&#x60A8;&#x8981;&#x53D1;&#x5E03;&#x951A;&#x5B9A;&#x4EE4;&#x724C;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x63D0;&#x4F9B;&#x6709;&#x5173;&#x8FD9;&#x4E9B;&#x8D44;&#x4EA7;&#x7684;&#x9644;&#x52A0;&#x4FE1;&#x606F;&#xFF0C;&#x4EE5;&#x53CA;&#x4ECB;&#x7ECD;&#x5982;&#x4F55;&#x5C06;&#x8FD9;&#x4E9B;&#x4EE4;&#x724C;&#x5151;&#x6362;&#x4E3A;&#x5176;&#x5B83;&#x7684;&#x8D44;&#x4EA7;&#x3002;</p>
+<p>&#x9664;&#x4E0A;&#x9762;&#x6587;&#x6863;&#x4E2D;&#x63D0;&#x5230;&#x7684;&#x4FE1;&#x606F;&#x5916;&#xFF0C;&#x951A;&#x5B9A;&#x4EE4;&#x724C;&#x8FD8;<strong>&#x9700;&#x8981;</strong>&#x4EE5;&#x4E0B;&#x5B57;&#x6BB5;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x4EE4;&#x724C;&#x951A;&#x5B9A;&#x7684;&#x8D44;&#x4EA7;&#x7C7B;&#x578B;(<code>anchor_asset_type</code>)&#x3002;&#x53EF;&#x80FD;&#x7684;&#x7C7B;&#x522B;&#x662F;<em>&#x653F;&#x5E9C;&#x53D1;&#x884C;&#x7684;&#x8D27;&#x5E01;</em>&#xFF0C;<em>&#x6570;&#x5B57;&#x8D27;&#x5E01;</em>&#xFF0C;<em>&#x80A1;&#x7968;</em>&#xFF0C;<em>&#x503A;&#x5238;</em>&#xFF0C;<em>&#x5927;&#x5B97;&#x5546;&#x54C1;</em>&#xFF0C;<em>&#x623F;&#x5730;&#x4EA7;</em>&#x53CA;<em>&#x5176;&#x4ED6;</em>&#x3002;</p>
+</li>
+<li>
+<p>&#x951A;&#x5B9A;&#x7684;&#x8D44;&#x4EA7;(<code>anchor_asset</code>)&#x3002;</p>
+</li>
+<li>
+<p>&#x5151;&#x6362;&#x8FD9;&#x4E9B;&#x4EE4;&#x724C;&#x7684;&#x8BF4;&#x660E;(<code>redemption_instructions</code>)&#x3002;</p>
+</li>
+</ul>
+<p>&#x5982;&#x679C;&#x4EE4;&#x724C;&#x951A;&#x5B9A;&#x7684;&#x662F;&#x6570;&#x5B57;&#x8D27;&#x5E01;&#x7684;&#x8BDD;&#xFF0C;&#x5728;&#x4E0A;&#x5E02;&#x524D;&#x4EA4;&#x6613;&#x6240;&#x8FD8;&#x9700;&#x8981;<strong>&#x6838;&#x5B9E;</strong>&#x4EE5;&#x4E0B;&#x4FE1;&#x606F;&#xFF1A;</p>
+<ul>
+<li>
+<p>&#x6301;&#x6709;&#x951A;&#x5B9A;&#x7684;&#x6570;&#x5B57;&#x8D27;&#x5E01;&#x7684;&#x5730;&#x5740; (<code>collateral_addresses</code>)&#x3002;</p>
+</li>
+<li>
+<p>&#x8BC1;&#x660E;&#x60A8;&#x786E;&#x5B9E;&#x63A7;&#x5236;&#x8FD9;&#x8FD9;&#x4E9B;&#x5730;&#x5740; (<code>collateral_address_signatures</code>)&#xFF0C;<a href="https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md">SEP 0001</a> &#x5305;&#x542B;&#x4E86;&#x7B7E;&#x540D;&#x6570;&#x636E;&#x7684;&#x6A21;&#x677F;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x7684;&#x5B9E;&#x9645;&#x60C5;&#x51B5;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x6A21;&#x677F;&#x3002;</p>
+</li>
+</ul>
+<p>&#x4EA4;&#x6613;&#x6240;&#x4F7F;&#x7528; <code>collateral_address_signatures</code> &#x6765;&#x9A8C;&#x8BC1;&#x60A8;&#x786E;&#x5B9E;&#x6301;&#x6709; <code>collateral_addresses</code>&#xFF0C;&#x5B83;&#x8FD8;&#x4F1A;&#x68C0;&#x67E5;&#x8FD9;&#x4E9B;&#x5730;&#x5740;&#x4E2D;&#x7684;&#x4F59;&#x989D;&#xFF0C;&#x5982;&#x679C;&#x60A8;&#x4E0D;&#x80FD;&#x63D0;&#x4F9B; 100% &#x7684;&#x8D44;&#x91D1;&#x50A8;&#x5907;&#xFF0C;&#x5B83;&#x5C06;&#x4E0D;&#x4F1A;&#x5217;&#x51FA;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x3002;</p>
+<pre><code>[[CURRENCIES]]
+code=&quot;BTC&quot;
+issuer=&quot;GAOO3LWBC4XF6VWRP5ESJ6IBHAISVJMSBTALHOQM2EZG7Q477UWA6L7U&quot;
+status=&quot;live&quot;
+display_decimals=7
+name=&quot;Bitcoin&quot;
+desc=&quot;Organization promises to purchase each BTC token from any holder for the value of 1 Bitcoin&quot;
+conditions=&quot;Withdrawal fees apply&quot;
+image=&quot;https://domain.com/img/Bitcoin-100x100.png&quot;
+anchor_asset_type=&quot;crypto&quot;
+anchor_asset=&quot;BTC&quot;
+redemption_instructions=&quot;Use SEP6 with our federation server&quot;
+collateral_addresses=[&quot;2C1mCx3ukix1KfegAY5zgQJV7sanAciZpv&quot;]
+collateral_address_signatures=[&quot;304502206e21798a42fae0e854281abd38bacd1aeed3ee3738d9e1446618c4571d10&quot;]
+</code></pre>
+<h2 id="stellartoml-4"><a class="anchorShortcut" href="#stellartoml-4" aria-hidden="true"></a> &#x5982;&#x4F55;&#x90E8;&#x7F72;&#x60A8;&#x7684; stellar.toml &#x6587;&#x4EF6;</h2>
+<p>&#x6309;&#x7167;&#x4E0A;&#x9762;&#x7684;&#x6B65;&#x9AA4;&#x5B8C;&#x6210; stellar.toml &#x4E4B;&#x540E;&#xFF0C;&#x5C06;&#x5B83;&#x53D1;&#x5E03;&#x5230;&#x4EE5;&#x4E0B;&#x4F4D;&#x7F6E;&#xFF1A;</p>
+<ul>
+<li>https://YOUR_DOMAIN/.well-known/stellar.toml</li>
+</ul>
+<p>&#x542F;&#x7528; <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a> &#x4EE5;&#x4FBF;&#x4EBA;&#x4EEC;&#x53EF;&#x4EE5;&#x4ECE;&#x5176;&#x4ED6;&#x7AD9;&#x70B9;&#x8BBF;&#x95EE;&#x8BE5;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x4E3A; /.well-known/stellar.toml &#x6587;&#x4EF6;&#x8BF7;&#x6C42;&#x7684; HTTP &#x54CD;&#x5E94;&#x8BBE;&#x7F6E;&#x4EE5;&#x4E0B; HTTP &#x5934;&#x90E8;&#xFF1A;</p>
+<ul>
+<li>Access-Control-Allow-Origin: *</li>
+</ul>
+<p>&#x60A8;&#x5DF2;&#x7ECF;&#x5B8C;&#x6210;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x6B65;&#x9AA4;&#x4E86;&#x3002;&#x73B0;&#x5728;&#xFF0C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x548C;&#x4E70;&#x5BB6;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7B80;&#x5355;&#x7684; HTTP &#x8BF7;&#x6C42;&#x8BBF;&#x95EE;&#x60A8;&#x63D0;&#x4F9B;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;&#x3002;</p>
+<h3 id="stellartoml-stronghold"><a class="anchorShortcut" href="#stellartoml-stronghold" aria-hidden="true"></a> &#x4F18;&#x79C0;&#x7684; stellar.toml &#x793A;&#x4F8B;&#xFF1A;Stronghold</h3>
+<p>&#x5982;&#x679C;&#x60A8;&#x60F3;&#x8981;&#x4E00;&#x4E2A;&#x4F18;&#x79C0;&#x7684; stellar.toml &#x793A;&#x4F8B;&#x4F5C;&#x4E3A;&#x53C2;&#x8003;&#xFF0C;&#x90A3;&#x4E48;&#x53BB;&#x770B;&#x770B; <a href="https://stronghold.co/.well-known/stellar.toml">Stronghold</a> &#x7684;&#x5427;&#x3002;&#x60A8;&#x53EF;&#x4EE5;&#x8F7B;&#x677E;&#x627E;&#x5230;&#x6709;&#x5173;&#x516C;&#x53F8;&#x3001;Stellar &#x5E10;&#x6237;&#x3001;&#x8054;&#x7CFB;&#x4EBA;&#x53CA;&#x5176;&#x4EE4;&#x724C;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;&#xFF0C;&#x60A8;&#x4E5F;&#x53EF;&#x4EE5;&#x9A8C;&#x8BC1;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x60A8;&#x7684; stellar.toml &#x548C; Stronghold &#x7684;&#x4E00;&#x6837;&#x5B8C;&#x5584;&#xFF0C;&#x4EA4;&#x6613;&#x6240;&#x548C;&#x4E70;&#x5BB6;&#x5C06;&#x4F1A;&#x6CE8;&#x610F;&#x5230;&#x60A8;&#x7684;&#x4EE4;&#x724C;&#x3002;</p>
+<hr>
+
+      <br>
+      <a href="https://github.com/StellarCN/stellar-docs/blob/master/translations/zh-Hans/guides/walkthroughs/how-to-complete-stellar-toml.md" class="spu-color-neutral6">&#x5728; GitHub &#x4E0A;&#x7F16;&#x8F91;&#x6B64;&#x9875;&#x9762;</a>
+    </s-read-md>
+  
+  </div>
+</div>
+</div>
+
+<div class="so-back spu-borderTop-1 spu-borderColor-neutral7 spu-padTB-15">
+  <div class="so-chunk">
+    <div class="siteFooter">
+      <div class="siteFooter__list">
+        <a class="siteFooter__list__item" href="https://www.stellar.org/"><span class="graphic-backArrow-9"></span>&#xA0;&#xA0;Stellar.org</a>
+        <span class="siteFooter__list__sep">|</span>
+        <a class="siteFooter__list__item" href="https://www.stellar.org/bug-bounty-program/">Bug &#x60AC;&#x8D4F;</a>
+        <a class="siteFooter__list__item" href="/stellar-core/software/admin.html">&#x8FD0;&#x884C;&#x8282;&#x70B9;</a>
+        <a class="siteFooter__list__item" href="/guides/things-to-build.html">&#x6784;&#x5EFA;&#x5E94;&#x7528;</a>
+        <a class="siteFooter__list__item" href="https://github.com/stellar/">GitHub</a>
+        <a class="siteFooter__list__item" href="http://slack.stellar.org/">&#x6765;&#x793E;&#x533A;&#x7545;&#x8C08;</a>
+      </div>
+      <div class="siteFooter__list siteFooter__list--aux">
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/terms-of-service/">&#x670D;&#x52A1;&#x6761;&#x6B3E;</a>
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/privacy-policy/">&#x9690;&#x79C1;&#x653F;&#x7B56;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/js/app-9b8f1b0df3650f3a8dabc0e0b08ccab9.js"></script>
+<script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("U8cLXTFMPm");
+analytics.page()
+}}();
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5V3WNNP');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V3WNNP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</html>

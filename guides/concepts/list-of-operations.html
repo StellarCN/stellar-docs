@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+
+  Want to contribute to this site? Take a look at the GitHub repository for this
+  site: https://github.com/stellar/developers
+
+  -->
+  <title>&#x64CD;&#x4F5C;&#x6E05;&#x5355; | Stellar Developers</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="author" content="Stellar.org and contributors">
+
+  <meta property="og:title" content="&#x64CD;&#x4F5C;&#x6E05;&#x5355; | Stellar Developers">
+  <meta property="og:type" content="website">
+
+
+  <link rel="stylesheet" href="/styles/index-cff14d28bafbba60930f31b923b4e75b.css">
+
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/rocket-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/rocket-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/rocket-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicon/rocket-96x96.png" sizes="96x96">
+  <meta name="msapplication-TileImage" content="/images/favicon/rocket-144x144.png">
+
+  <script type="text/javascript">
+    var $mcGoal = {'settings':{'uuid':'c001d97369b7a10d224c23867','dc':'us9'}};
+    (function() {
+      var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+      sp.src = ('https:' == document.location.protocol ? 'https://s3.amazonaws.com/downloads.mailchimp.com' : 'http://downloads.mailchimp.com') + '/js/goal.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+    })();
+  </script>
+
+  <script>window.clientData = {};</script>
+
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0065/1320.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+</head>
+<body>
+<div class="header2016">
+  <div class="header2016__logo header2016__logo--spaced">
+    <div class="so-siteHeader">
+      <span class="so-logo">
+  <a href="https://www.stellar.org/" class="so-logo__main">Stellar</a><!--
+  --><span class="so-logo__separator"> </span><!--
+  --><a href="/" class="so-logo__subSite">developers</a>
+</span>
+    </div>
+  </div>
+  <nav class="header2016__nav mainNavMenu spu-padStart-30">
+    <a class="mainNavMenu__item is-currentItem" href="/guides/">&#x6307;&#x5357;</a>
+<a class="mainNavMenu__item " href="/reference/">API &#x53C2;&#x8003;&#x624B;&#x518C;</a>
+<a class="mainNavMenu__item " href="/software/">&#x8F6F;&#x4EF6;</a>
+<a class="mainNavMenu__item " href="/tools/">&#x5DE5;&#x5177;</a>
+  </nav>
+</div>
+
+<div class="S-flex-row">
+  <div class="siteSidebar pageNavListBounder">
+  <div class="mainSidebar">
+    <ul class="pageNavList">
+
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x5165;&#x95E8;</span>
+        <ol class="collapsibleListSet__list">
+                    <li class="pageNavList__item"><a href="/guides/get-started/index.html">Stellar &#x7F51;&#x7EDC;&#x6982;&#x89C8;</a></li>
+          <li class="pageNavList__item"><a href="/guides/get-started/create-account.html">&#x521B;&#x5EFA;&#x8D26;&#x6237;</a></li>
+  <li class="pageNavList__item"><a href="/guides/get-started/transactions.html">&#x4ED8;&#x6B3E;&#x548C;&#x6536;&#x6B3E;</a></li>
+
+        </ol>
+      </li>
+    
+
+
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x951A;&#x70B9;</span>
+        <ol class="collapsibleListSet__list">
+                    <li class="pageNavList__item"><a href="/guides/anchor/index.html">&#x67B6;&#x6784;</a></li>
+          <li class="pageNavList__item"><a href="/guides/anchor/2-bridge-server.html">&#x6865;&#x63A5;&#x670D;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/anchor/3-federation-server.html">&#x8054;&#x90A6;&#x670D;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/anchor/4-compliance-server.html">&#x5408;&#x89C4;&#x670D;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/anchor/5-conclusion.html">&#x4E0B;&#x4E00;&#x6B65;</a></li>
+
+        </ol>
+      </li>
+    
+      
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x6982;&#x5FF5;</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/guides/concepts/accounts.html">&#x8D26;&#x6237;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/assets.html">&#x8D44;&#x4EA7;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/exchange.html">&#x5206;&#x5E03;&#x5F0F;&#x4EA4;&#x6613;&#x6240;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/federation.html">&#x8054;&#x90A6;&#x534F;&#x8BAE;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/fees.html">&#x8D39;&#x7528;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/inflation.html">&#x901A;&#x8D27;&#x81A8;&#x80C0;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/ledger.html">&#x603B;&#x8D26;</a></li>
+  <li class="pageNavList__item is-currentItem"><a href="/guides/concepts/list-of-operations.html">&#x64CD;&#x4F5C;&#x6E05;&#x5355;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/multi-sig.html">&#x591A;&#x91CD;&#x7B7E;&#x540D;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/operations.html">&#x64CD;&#x4F5C;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/scp.html">Stellar &#x5171;&#x8BC6;&#x534F;&#x8BAE;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/stellar-toml.html">Stellar.toml</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/test-net.html">&#x6D4B;&#x8BD5;&#x7F51;&#x7EDC;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/transactions.html">&#x4E8B;&#x52A1;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/versioning.html">&#x7248;&#x672C;&#x4E0E;&#x5347;&#x7EA7;&#x7BA1;&#x7406;</a></li>
+  <li class="pageNavList__item"><a href="/guides/concepts/xdr.html">XDR</a></li>
+
+        </ul>
+      </li>
+    
+      
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">&#x6F14;&#x793A;</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/guides/walkthroughs/bifrost-server-setup.html">&#x914D;&#x7F6E;&#x8679;&#x6865;&#x670D;&#x52A1;&#x5668;</a></li>
+  <li class="pageNavList__item"><a href="/guides/walkthroughs/custom-assets.html">&#x81EA;&#x5B9A;&#x4E49;&#x8D44;&#x4EA7;</a></li>
+  <li class="pageNavList__item"><a href="/guides/walkthroughs/how-to-complete-stellar-toml.html">&#x5982;&#x4F55;&#x4EE5;&#x53CA;&#x4E3A;&#x4F55;&#x8BBE;&#x7F6E;&#x60A8;&#x7684; Stellar.toml</a></li>
+  <li class="pageNavList__item"><a href="/guides/walkthroughs/stellar-smart-contracts.html">Stellar &#x667A;&#x80FD;&#x5408;&#x7EA6;</a></li>
+
+        </ul>
+      </li>
+    
+        <li class="pageNavList__item"><a href="/guides/attachment.html">Stellar &#x9644;&#x4EF6;&#x516C;&#x7EA6;</a></li>
+  <li class="pageNavList__item"><a href="/guides/channels.html">&#x4FE1;&#x9053;</a></li>
+  <li class="pageNavList__item"><a href="/guides/compliance-protocol.html">&#x5408;&#x89C4;&#x534F;&#x8BAE;</a></li>
+  <li class="pageNavList__item"><a href="/guides/exchange.html">&#x5C06; Stellar &#x6DFB;&#x52A0;&#x5230;&#x60A8;&#x7684;&#x4EA4;&#x6613;&#x6240;&#x4E2D;</a></li>
+  <li class="pageNavList__item"><a href="/guides/hardware.html">&#x786C;&#x4EF6;&#x9700;&#x6C42;</a></li>
+  <li class="pageNavList__item"><a href="/guides/issuing-assets.html">&#x53D1;&#x884C;&#x8D44;&#x4EA7;</a></li>
+  <li class="pageNavList__item"><a href="/guides/nodes.html">&#x5DF2;&#x77E5;&#x7684;&#x9A8C;&#x8BC1;&#x8282;&#x70B9;</a></li>
+  <li class="pageNavList__item"><a href="/guides/security.html">&#x5B89;&#x5168;</a></li>
+  <li class="pageNavList__item"><a href="/guides/things-to-build.html">&#x6784;&#x5EFA; Stellar &#x5E94;&#x7528;&#x7A0B;&#x5E8F;</a></li>
+        <li class="pageNavList__item"><a href="/guides/contributing.html">&#x8D21;&#x732E;&#x6307;&#x5357;</a></li>
+    </ul>
+  </div>
+</div>
+  <div class="S-flexItem-share">
+  <div class="spu-padSE-30">
+    <h1 class="mainSectionTitle">
+      &#x64CD;&#x4F5C;&#x6E05;&#x5355;
+      
+    </h1>
+  </div>
+  <div class="S-flex-rowWrap spu-borderTop-1 spu-borderColor-neutral7">
+    <s-read-md class="S-flexItem-share mainContent s-read-md--capped spu-padSE-30 spu-padTB-20 documentRead" link-process-md>
+      <p>&#x5982;&#x679C;&#x60A8;&#x60F3;&#x8981;&#x77E5;&#x9053;&#x64CD;&#x4F5C;&#x662F;&#x5982;&#x4F55;&#x5728; Stellar &#x4E2D;&#x8FD0;&#x884C;&#x7684;&#xFF0C;&#x8BF7;&#x9605;&#x8BFB;<a href="./operations.html">&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;</a>&#x3002;</p>
+<p>&#x5982;&#x679C;&#x60A8;&#x60F3;&#x8981;&#x4E86;&#x89E3;&#x64CD;&#x4F5C;&#x7684;&#x534F;&#x8BAE;&#x89C4;&#x8303;&#xFF0C;&#x8BF7;&#x53C2;&#x9605; <a href="https://github.com/stellar/stellar-core/blob/master/src/xdr/Stellar-transaction.x">stellar-transactions.x</a>&#x3002;</p>
+<ul>
+<li><a href="#create-account">Create Account(&#x521B;&#x5EFA;&#x8D26;&#x6237;)</a></li>
+<li><a href="#payment">Payment(&#x4ED8;&#x6B3E;)</a></li>
+<li><a href="#path-payment">Path Payment(&#x8DEF;&#x5F84;&#x4ED8;&#x6B3E;)</a></li>
+<li><a href="#manage-offer">Manage Offer(&#x7BA1;&#x7406;&#x8BA2;&#x5355;)</a></li>
+<li><a href="#create-passive-offer">Create Passive Offer(&#x521B;&#x5EFA;&#x88AB;&#x52A8;&#x8BA2;&#x5355;)</a></li>
+<li><a href="#set-options">Set Options(&#x8BBE;&#x7F6E;&#x8D26;&#x6237;&#x9009;&#x9879;)</a></li>
+<li><a href="#change-trust">Change Trust(&#x4FEE;&#x6539;&#x4FE1;&#x4EFB;)</a></li>
+<li><a href="#allow-trust">Allow Trust(&#x5141;&#x8BB8;&#x4FE1;&#x4EFB;)</a></li>
+<li><a href="#account-merge">Account Merge(&#x8D26;&#x6237;&#x5408;&#x5E76;)</a></li>
+<li><a href="#inflation">Inflation(&#x901A;&#x8D27;&#x81A8;&#x80C0;)</a></li>
+<li><a href="#manage-data">Manage Data(&#x7BA1;&#x7406;&#x6570;&#x636E;&#x6761;&#x76EE;)</a></li>
+<li><a href="#bump-sequence">Bump Sequence(&#x589E;&#x5927;&#x5E8F;&#x5217;&#x53F7;)</a></li>
+</ul>
+<h2 id="create-account"><a class="anchorShortcut" href="#create-account" aria-hidden="true"></a> Create Account(&#x521B;&#x5EFA;&#x8D26;&#x6237;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.createAccount">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreateAccountOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#CreateAccountBuilder">Go</a></p>
+<p>&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x7ED9;&#x7279;&#x5B9A;&#x7684;&#x8D26;&#x6237;&#x53D1;&#x9001;&#x4E00;&#x5B9A;&#x6570;&#x91CF;&#x7684; Lumens &#x4EE5;&#x5728;&#x7F51;&#x7EDC;&#x4E2D;&#x521B;&#x5EFA;&#x8BE5;&#x8D26;&#x6237;&#x3002;</p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4E2D;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>CreateAccountResult</code></p>
+<p>&#x53C2;&#x6570;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Destination</td>
+<td>account ID</td>
+<td>&#x9700;&#x8981;&#x88AB;&#x6FC0;&#x6D3B;&#x7684;&#x8D26;&#x6237;&#x5730;&#x5740;&#x3002;</td>
+</tr>
+<tr>
+<td>Starting Balance</td>
+<td>integer</td>
+<td>&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x65B0;&#x8D26;&#x6237;&#x7684; XLM &#x7684;&#x6570;&#x91CF;&#xFF0C;&#x8FD9;&#x4E9B; XLM &#x5C06;&#x4ECE;&#x6E90;&#x8D26;&#x6237;&#x4E2D;&#x6263;&#x9664;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CREATE_ACCOUNT_MALFORMED</td>
+<td>-1</td>
+<td><code>destination</code> &#x65E0;&#x6548;&#x3002;</td>
+</tr>
+<tr>
+<td>CREATE_ACCOUNT_UNDERFUNDED</td>
+<td>-2</td>
+<td>&#x6E90;&#x8D26;&#x6237;&#x6CA1;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x8D44;&#x4EA7;&#x6765;&#x521B;&#x5EFA;&#x8FD9;&#x4E2A;&#x8D26;&#x6237;&#xFF0C;&#x6216;&#x662F;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x4F1A;&#x5BFC;&#x81F4;&#x8D26;&#x6237;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x5B83;&#x7684;&#x552E;&#x51FA;&#x8D1F;&#x503A;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x53D1;&#x9001; XLM &#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x786E;&#x4FDD;&#x53D1;&#x9001;&#x540E;&#x8D26;&#x6237;&#x4ECD;&#x7136;&#x6EE1;&#x8DB3;&#x8D26;&#x6237;&#x6700;&#x4F4E;&#x4F59;&#x989D;&#x7684;&#x8981;&#x6C42;&#x3002;</td>
+</tr>
+<tr>
+<td>CREATE_ACCOUNT_LOW_RESERVE</td>
+<td>-3</td>
+<td>&#x53D1;&#x9001;&#x7ED9; <code>destination</code> &#x8D26;&#x6237;&#x7684; XLM &#x6570;&#x76EE;&#x4E0D;&#x8DB3;&#x4EE5;&#x8BA9;&#x5B83;&#x6EE1;&#x8DB3;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x7684;&#x8981;&#x6C42;&#x3002;</td>
+</tr>
+<tr>
+<td>CREATE_ACCOUNT_ALREADY_EXIST</td>
+<td>-4</td>
+<td><code>destination</code> &#x8D26;&#x6237;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#xFF0C;&#x65E0;&#x9700;&#x91CD;&#x590D;&#x521B;&#x5EFA;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="payment"><a class="anchorShortcut" href="#payment" aria-hidden="true"></a> Payment(&#x4ED8;&#x6B3E;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.payment">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/PaymentOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#PaymentBuilder">Go</a></p>
+<p>&#x5C06;&#x7279;&#x5B9A;&#x6570;&#x91CF;&#x7684;&#x7279;&#x5B9A;&#x8D44;&#x4EA7;&#x53D1;&#x9001;&#x7ED9;&#x76EE;&#x6807;&#x8D26;&#x6237;&#x3002;</p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4E2D;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>PaymentResult</code></p>
+<p>&#x53C2;&#x6570;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Destination</td>
+<td>account ID</td>
+<td>&#x6536;&#x6B3E;&#x65B9;&#x7684;&#x8D26;&#x6237; ID&#x3002;</td>
+</tr>
+<tr>
+<td>Asset</td>
+<td>asset</td>
+<td>&#x53D1;&#x9001;&#x7684;&#x8D44;&#x4EA7;&#x7C7B;&#x578B;&#x3002;</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>integer</td>
+<td>&#x53D1;&#x9001;&#x7684;&#x6570;&#x989D;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PAYMENT_MALFORMED</td>
+<td>-1</td>
+<td>&#x8F93;&#x5165;&#x7684;&#x53C2;&#x6570;&#x4E0D;&#x6B63;&#x786E;&#x3002;</td>
+</tr>
+<tr>
+<td>PAYMENT_UNDERFUNDED</td>
+<td>-2</td>
+<td>&#x6E90;&#x8D26;&#x6237;(&#x53D1;&#x9001;&#x65B9;)&#x6CA1;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x8D44;&#x4EA7;&#x53BB;&#x5B8C;&#x6210;&#x8FD9;&#x7B14;&#x4ED8;&#x6B3E;&#xFF0C;&#x6216;&#x662F;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x4F1A;&#x5BFC;&#x81F4;&#x8D26;&#x6237;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x5B83;&#x7684;&#x552E;&#x51FA;&#x8D1F;&#x503A;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x53D1;&#x9001; XLM &#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x786E;&#x4FDD;&#x53D1;&#x9001;&#x540E;&#x8D26;&#x6237;&#x4ECD;&#x7136;&#x6EE1;&#x8DB3;&#x8D26;&#x6237;&#x6700;&#x4F4E;&#x4F59;&#x989D;&#x7684;&#x8981;&#x6C42;&#x3002;</td>
+</tr>
+<tr>
+<td>PAYMENT_SRC_NO_TRUST</td>
+<td>-3</td>
+<td>&#x6E90;&#x8D26;&#x6237;&#x6CA1;&#x6709;&#x4FE1;&#x4EFB;&#x4ED6;&#x6B63;&#x5728;&#x5C1D;&#x8BD5;&#x53D1;&#x9001;&#x7684;&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x3002;</td>
+</tr>
+<tr>
+<td>PAYMENT_SRC_NOT_AUTHORIZED</td>
+<td>-4</td>
+<td>&#x6E90;&#x8D26;&#x53F7;&#x65E0;&#x6743;&#x53D1;&#x9001;&#x8BE5;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>PAYMENT_NO_DESTINATION</td>
+<td>-5</td>
+<td>&#x63A5;&#x6536;&#x65B9;&#x7684;&#x8D26;&#x6237;&#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td>PAYMENT_NO_TRUST</td>
+<td>-6</td>
+<td>&#x63A5;&#x6536;&#x65B9;&#x6CA1;&#x6709;&#x4FE1;&#x4EFB;&#x5F85;&#x63A5;&#x6536;&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x3002;&#x8BF7;&#x901A;&#x8FC7;<a href="./assets.html">&#x8D44;&#x4EA7;</a>&#x7684;&#x6587;&#x6863;&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x3002;</td>
+</tr>
+<tr>
+<td>PAYMENT_NOT_AUTHORIZED</td>
+<td>-7</td>
+<td>&#x63A5;&#x6536;&#x65B9;&#x6CA1;&#x6709;&#x88AB;&#x8D44;&#x4EA7;&#x53D1;&#x884C;&#x65B9;&#x5141;&#x8BB8;&#x6301;&#x6709;&#x8BE5;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>PAYMENT_LINE_FULL</td>
+<td>-8</td>
+<td>&#x63A5;&#x6536;&#x8FD9;&#x7B14;&#x4ED8;&#x6B3E;&#x5C06;&#x4F1A;&#x5BFC;&#x81F4;&#x63A5;&#x6536;&#x65B9;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x8D2D;&#x4E70;&#x8D1F;&#x8F7D;&#x6216;&#x8D44;&#x4EA7;&#x6301;&#x6709;&#x6570;&#x91CF;&#x7684;&#x9650;&#x5236;&#x3002;</td>
+</tr>
+<tr>
+<td>PAYMENT_NO_ISSUER</td>
+<td>-9</td>
+<td>&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x65B9;&#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="path-payment"><a class="anchorShortcut" href="#path-payment" aria-hidden="true"></a> Path Payment(&#x8DEF;&#x5F84;&#x4ED8;&#x6B3E;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.pathPayment">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/PathPaymentOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#PayWithPath">Go</a></p>
+<p>&#x901A;&#x8FC7;&#x62A5;&#x4EF7;&#x8DEF;&#x5F84;&#x5C06;&#x7279;&#x5B9A;&#x6570;&#x76EE;&#x7684;&#x7279;&#x5B9A;&#x8D44;&#x4EA7;&#x53D1;&#x9001;&#x5230;&#x76EE;&#x6807;&#x8D26;&#x6237;&#x3002;&#x8FD9;&#x53EF;&#x4EE5;&#x4F7F;&#x53D1;&#x9001;&#x7684;&#x8D44;&#x4EA7;(&#x4F8B;&#x5982;&#xFF0C;450 XLM)&#x4E0D;&#x540C;&#x4E8E;&#x63A5;&#x6536;&#x7684;&#x8D44;&#x4EA7;(&#x4F8B;&#x5982;&#xFF0C;6 BTC)&#x3002;</p>
+<p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x51E0;&#x70B9;&#xFF1A;</p>
+<ul>
+<li>&#x8DEF;&#x5F84;&#x652F;&#x4ED8;&#x4E0D;&#x5141;&#x8BB8;&#x4E2D;&#x95F4;&#x62A5;&#x4EF7;&#x6765;&#x81EA;&#x6E90;&#x8D26;&#x6237;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4F1A;&#x4EA7;&#x751F;&#x6700;&#x5DEE;&#x7684;&#x6C47;&#x7387;&#x3002;&#x60A8;&#x9700;&#x8981;&#x5C06;&#x8DEF;&#x5F84;&#x4ED8;&#x6B3E;&#x62C6;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x652F;&#x4ED8;&#x6570;&#x76EE;&#x8F83;&#x5C0F;&#x7684;&#x8DEF;&#x5F84;&#x4ED8;&#x6B3E;&#xFF0C;&#x6216;&#x8005;&#x786E;&#x4FDD;&#x6E90;&#x8D26;&#x6237;&#x7684;&#x8BA2;&#x5355;&#x4E0D;&#x5728;&#x8BA2;&#x5355;&#x7C3F;&#x7684;&#x9876;&#x90E8;&#x3002;</li>
+<li>&#x53CC;&#x65B9;&#x7684;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x5728;&#x64CD;&#x4F5C;&#x7ED3;&#x675F;&#x662F;&#x8BA1;&#x7B97;&#x3002;
+<ul>
+<li>&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x70B9;&#x503C;&#x5F97;&#x4E00;&#x63D0;&#xFF0C;&#x5F53; <code>(&#x6536;&#x6B3E;&#x8D26;&#x6237;, &#x63A5;&#x6536;&#x7684;&#x8D44;&#x4EA7;) == (&#x53D1;&#x9001;&#x8D26;&#x6237;, &#x53D1;&#x9001;&#x7684;&#x8D44;&#x4EA7;)</code> &#x65F6;&#xFF0C;&#x8BE5;&#x8D26;&#x6237;&#x76F8;&#x5F53;&#x4E8E;&#x5728;&#x64CD;&#x4F5C;&#x6267;&#x884C;&#x671F;&#x95F4;&#x83B7;&#x5F97;&#x65E0;&#x606F;&#x8D37;&#x6B3E;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4E2D;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>PathPaymentResult</code></p>
+<p>&#x53C2;&#x6570;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Send asset</td>
+<td>asset</td>
+<td>&#x4ECE;&#x53D1;&#x9001;&#x8D26;&#x6237;&#x4E2D;&#x6263;&#x9664;&#x7684;&#x8D44;&#x4EA7;&#x7C7B;&#x578B;&#x3002;</td>
+</tr>
+<tr>
+<td>Send max</td>
+<td>integer</td>
+<td>&#x5141;&#x8BB8;&#x4ECE;&#x6E90;&#x8D26;&#x6237;&#x4E2D;&#x6263;&#x9664;&#x7684; <code>send asset</code> &#x7684;&#x6700;&#x5927;&#x6570;&#x989D;(&#x4E0D;&#x5305;&#x62EC;&#x624B;&#x7EED;&#x8D39;)&#x3002;</td>
+</tr>
+<tr>
+<td>Destination</td>
+<td>account ID</td>
+<td>&#x6536;&#x6B3E;&#x65B9;&#x7684;&#x8D26;&#x6237; ID&#x3002;</td>
+</tr>
+<tr>
+<td>Destination asset</td>
+<td>asset</td>
+<td>&#x63A5;&#x6536;&#x65B9;&#x6536;&#x5230;&#x7684;&#x8D44;&#x4EA7;&#x7C7B;&#x578B;&#x3002;</td>
+</tr>
+<tr>
+<td>Destination amount</td>
+<td>integer</td>
+<td>&#x63A5;&#x6536;&#x65B9;&#x6536;&#x5230;&#x7684; <code>destination asset</code> &#x7684;&#x6570;&#x76EE;&#x3002;</td>
+</tr>
+<tr>
+<td>Path</td>
+<td>list of assets</td>
+<td>&#x5151;&#x6362;&#x8DEF;&#x5F84;&#x4E2D;&#x4F7F;&#x7528;&#x5230;&#x7684;&#x4E2D;&#x95F4;&#x8D44;&#x4EA7;(<code>send asset</code> &#x548C; <code>destination asset</code> &#x4E0D;&#x5305;&#x542B;&#x5728;&#x8FD9;&#x91CC;&#x9762;)&#x3002;&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#xFF0C;&#x60A8;&#x627E;&#x5230;&#x4E86;&#x552F;&#x4E00;&#x4E00;&#x6761;&#x5C06; USD &#x5151;&#x6362;&#x4E3A; EUR &#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x8FD9;&#x6761;&#x8DEF;&#x5F84;&#x7ECF;&#x8FC7;&#x4E86; XLM &#x4E0E; BTC&#x3002;&#x8FD9;&#x6761;&#x8DEF;&#x5F84;&#x662F; USD -&gt; XLM -&gt; BTC -&gt; EUR&#xFF0C;&#x8BF7;&#x6CE8;&#x610F;  <code>path</code>  &#x4E2D;&#x5305;&#x542B;&#x4E86; XLM &#x548C; BTC&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PATH_PAYMENT_MALFORMED</td>
+<td>-1</td>
+<td>&#x8F93;&#x5165;&#x7684;&#x53C2;&#x6570;&#x4E0D;&#x6B63;&#x786E;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_UNDERFUNDED</td>
+<td>-2</td>
+<td>&#x6E90;&#x8D26;&#x6237;(&#x53D1;&#x9001;&#x65B9;)&#x6CA1;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x8D44;&#x4EA7;&#x53BB;&#x5B8C;&#x6210;&#x8FD9;&#x7B14;&#x4ED8;&#x6B3E;&#xFF0C;&#x6216;&#x662F;&#x8FD9;&#x7B14;&#x4ED8;&#x6B3E;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x8D26;&#x6237;&#x7684;&#x552E;&#x51FA;&#x8D1F;&#x503A;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x53D1;&#x9001; XLM &#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x786E;&#x4FDD;&#x53D1;&#x9001;&#x540E;&#x8D26;&#x6237;&#x4ECD;&#x7136;&#x6EE1;&#x8DB3;&#x8D26;&#x6237;&#x6700;&#x4F4E;&#x4F59;&#x989D;&#x7684;&#x8981;&#x6C42;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_SRC_NO_TRUST</td>
+<td>-3</td>
+<td>&#x6E90;&#x8D26;&#x6237;&#x6CA1;&#x6709;&#x4FE1;&#x4EFB;&#x4ED6;&#x6B63;&#x5728;&#x5C1D;&#x8BD5;&#x53D1;&#x9001;&#x7684;&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_SRC_NOT_AUTHORIZED</td>
+<td>-4</td>
+<td>&#x6E90;&#x8D26;&#x53F7;&#x65E0;&#x6743;&#x53D1;&#x9001;&#x8BE5;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_NO_DESTINATION</td>
+<td>-5</td>
+<td>&#x63A5;&#x6536;&#x65B9;&#x7684;&#x8D26;&#x6237;&#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_NO_TRUST</td>
+<td>-6</td>
+<td>&#x63A5;&#x6536;&#x65B9;&#x6CA1;&#x6709;&#x4FE1;&#x4EFB;&#x5F85;&#x63A5;&#x6536;&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x3002;&#x8BF7;&#x901A;&#x8FC7;<a href="./assets.html">&#x8D44;&#x4EA7;</a>&#x7684;&#x6587;&#x6863;&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_NOT_AUTHORIZED</td>
+<td>-7</td>
+<td>&#x63A5;&#x6536;&#x65B9;&#x6CA1;&#x6709;&#x88AB;&#x8D44;&#x4EA7;&#x53D1;&#x884C;&#x65B9;&#x5141;&#x8BB8;&#x6301;&#x6709;&#x8BE5;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_LINE_FULL</td>
+<td>-8</td>
+<td>&#x63A5;&#x6536;&#x8FD9;&#x7B14;&#x4ED8;&#x6B3E;&#x5C06;&#x4F1A;&#x5BFC;&#x81F4;&#x63A5;&#x6536;&#x65B9;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x8D2D;&#x4E70;&#x8D1F;&#x8F7D;&#x6216;&#x8D44;&#x4EA7;&#x6301;&#x6709;&#x6570;&#x91CF;&#x7684;&#x9650;&#x5236;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_NO_ISSUER</td>
+<td>-9</td>
+<td>&#x5176;&#x4E2D;&#x67D0;&#x4E2A;&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x65B9;&#x7F3A;&#x5931;&#x4E86;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_TOO_FEW_OFFERS</td>
+<td>-10</td>
+<td>&#x6CA1;&#x6709;&#x627E;&#x5230;&#x5151;&#x6362; <code>send asset</code> &#x4E0E;  <code>destination asset</code> &#x7684;&#x8DEF;&#x5F84;&#x3002;Stellar &#x67E5;&#x627E;&#x7684;&#x8DEF;&#x5F84;&#x6700;&#x591A;&#x53EA;&#x80FD;&#x62E5;&#x6709; 6 &#x4E2A;&#x8DC3;&#x70B9;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_OFFER_CROSS_SELF</td>
+<td>-11</td>
+<td>&#x8FD9;&#x7B14;&#x4ED8;&#x6B3E;&#x4F1A;&#x4F7F;&#x81EA;&#x5DF1;&#x7684;&#x8BA2;&#x5355;&#x6210;&#x4EA4;&#x3002;</td>
+</tr>
+<tr>
+<td>PATH_PAYMENT_OVER_SENDMAX</td>
+<td>-12</td>
+<td>&#x901A;&#x8FC7;&#x6B64;&#x8DEF;&#x5F84;&#x53D1;&#x9001;&#x7279;&#x5B9A;<code>&#x6570;&#x91CF;(destination amount)</code>&#x7684;<code>&#x76EE;&#x6807;&#x8D44;&#x4EA7;(destination asset)</code>&#x7684;&#x4F1A;&#x5BFC;&#x81F4;&#x8D85;&#x51FA;<code>&#x9650;&#x989D;(send max)</code>&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="manage-offer"><a class="anchorShortcut" href="#manage-offer" aria-hidden="true"></a> Manage Offer(&#x7BA1;&#x7406;&#x8BA2;&#x5355;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.manageOffer">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageOfferOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#ManageOfferBuilder">Go</a></p>
+<p>&#x521B;&#x5EFA;&#x3001;&#x66F4;&#x65B0;&#x6216;&#x5220;&#x9664;&#x8BA2;&#x5355;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8981;&#x521B;&#x5EFA;&#x65B0;&#x7684;&#x8BA2;&#x5355;&#xFF0C;&#x8BF7;&#x5C06; Offer ID &#x8BBE;&#x7F6E;&#x4E3A; <code>0</code>&#x3002;</p>
+<p>&#x5982;&#x679C;&#x60A8;&#x60F3;&#x66F4;&#x65B0;&#x4E00;&#x4E2A;&#x8BA2;&#x5355;&#xFF0C;&#x8BF7;&#x5C06; Offer ID &#x8BBE;&#x7F6E;&#x4E3A;&#x60A8;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x7684;&#x8BA2;&#x5355;&#x7684; Offer ID&#x3002;</p>
+<p>&#x5982;&#x679C;&#x60A8;&#x60F3;&#x5220;&#x9664;&#x4E00;&#x4E2A;&#x8BA2;&#x5355;&#xFF0C;&#x8BF7;&#x5C06; Offer ID &#x8BBE;&#x7F6E;&#x4E3A;&#x60A8;&#x9700;&#x8981;&#x5220;&#x9664;&#x7684;&#x8BA2;&#x5355;&#x7684; Offer ID&#xFF0C;&#x5E76;&#x5C06;&#x6570;&#x91CF;&#x8BBE;&#x7F6E;&#x4E3A;  <code>0</code>.</p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4E2D;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>ManageOfferResult</code></p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Selling</td>
+<td>asset</td>
+<td>&#x8BA2;&#x5355;&#x521B;&#x5EFA;&#x8005;&#x60F3;&#x51FA;&#x552E;&#x7684;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>Buying</td>
+<td>asset</td>
+<td>&#x8BA2;&#x5355;&#x521B;&#x5EFA;&#x8005;&#x60F3;&#x8D2D;&#x4E70;&#x7684;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>integer</td>
+<td>&#x9700;&#x8981;&#x552E;&#x51FA;&#x7684;&#x8D44;&#x4EA7;&#x7684;&#x6570;&#x76EE;&#x3002;&#x5F53;&#x60A8;&#x9700;&#x8981;&#x5220;&#x9664;&#x8BA2;&#x5355;&#x662F;&#x8BF7;&#x5C06;&#x8BE5;&#x503C;&#x8BBE;&#x7F6E;&#x4E3A; <code>0</code>&#xFF0C;</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>{numerator, denominator}</td>
+<td>Price &#x4EE3;&#x8868;&#x6BCF;&#x552E;&#x51FA;&#x4E00;&#x4E2A;&#x5F85;&#x552E;&#x8D44;&#x4EA7;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x591A;&#x5C11;&#x4E2A;&#x5F85;&#x8D2D;&#x8D44;&#x4EA7;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x60A8;&#x60F3;&#x901A;&#x8FC7;&#x5356;&#x51FA; 30 XLM &#x83B7;&#x5F97; 5 BTC&#xFF0C;&#x90A3;&#x4E48; Price &#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E3A; {5,30}&#x3002;</td>
+</tr>
+<tr>
+<td>Offer ID</td>
+<td>unsigned integer</td>
+<td>&#x8BA2;&#x5355;&#x7684; ID&#x3002; &#x9700;&#x8981;&#x65B0;&#x5EFA;&#x8BA2;&#x5355;&#x8BF7;&#x5C06;&#x8BE5;&#x503C;&#x8BBE;&#x7F6E;&#x4E3A; <code>0</code>&#xFF0C;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x548C;&#x5220;&#x9664;&#x67D0;&#x4E2A;&#x8BA2;&#x5355;&#xFF0C;&#x8BF7;&#x5C06;&#x8BE5;&#x503C;&#x8BBE;&#x7F6E;&#x4E3A;&#x76EE;&#x6807;&#x8BA2;&#x5355;&#x7684; Offer ID&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MANAGE_OFFER_MALFORMED</td>
+<td>-1</td>
+<td>&#x8F93;&#x5165;&#x7684;&#x53C2;&#x6570;&#x4E0D;&#x6B63;&#x786E;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_SELL_NO_TRUST</td>
+<td>-2</td>
+<td>&#x521B;&#x5EFA;&#x8BA2;&#x5355;&#x7684;&#x8D26;&#x6237;&#x5C1A;&#x672A;&#x4E3A;&#x610F;&#x56FE;&#x51FA;&#x552E;&#x7684;&#x8D44;&#x4EA7;&#x521B;&#x5EFA;&#x4FE1;&#x4EFB;&#x7EBF;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_BUY_NO_TRUST</td>
+<td>-3</td>
+<td>&#x521B;&#x5EFA;&#x8BA2;&#x5355;&#x7684;&#x8D26;&#x6237;&#x5C1A;&#x672A;&#x4E3A;&#x610F;&#x56FE;&#x8D2D;&#x4E70;&#x7684;&#x8D44;&#x4EA7;&#x521B;&#x5EFA;&#x4FE1;&#x4EFB;&#x7EBF;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_SELL_NOT_AUTHORIZED</td>
+<td>-4</td>
+<td>&#x521B;&#x5EFA;&#x8BA2;&#x5355;&#x7684;&#x8D26;&#x6237;&#x65E0;&#x6743;&#x51FA;&#x552E;&#x6B64;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_BUY_NOT_AUTHORIZED</td>
+<td>-5</td>
+<td>&#x521B;&#x5EFA;&#x8BA2;&#x5355;&#x7684;&#x8D26;&#x6237;&#x65E0;&#x6743;&#x8D2D;&#x4E70;&#x6B64;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_LINE_FULL</td>
+<td>-6</td>
+<td>&#x521B;&#x5EFA;&#x6B64;&#x8BA2;&#x5355;&#x4F1A;&#x5BFC;&#x81F4;&#x8BE5;&#x8D26;&#x6237;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x8D2D;&#x4E70;&#x8D1F;&#x8F7D;&#x6216;&#x4E70;&#x5165;&#x8D44;&#x4EA7;&#x7684;&#x6301;&#x6709;&#x6570;&#x91CF;&#x7684;&#x9650;&#x5236;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_UNDERFUNDED</td>
+<td>-7</td>
+<td>&#x521B;&#x5EFA;&#x6B64;&#x8BA2;&#x5355;&#x4F1A;&#x5BFC;&#x81F4;&#x8BE5;&#x8D26;&#x6237;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x4E70;&#x5165;&#x7684;&#x8D44;&#x4EA7;&#x7684;&#x6301;&#x6709;&#x6570;&#x91CF;&#x7684;&#x9650;&#x5236;&#x6216;&#x552E;&#x51FA;&#x8D1F;&#x8F7D;&#x3002;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x9500;&#x552E; XLM &#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x6B64;&#x8D26;&#x6237;&#x5FC5;&#x987B;&#x4FDD;&#x8BC1;&#x6EE1;&#x8DB3;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x7684;&#x8981;&#x6C42;&#xFF0C;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x662F;&#x5047;&#x8BBE;&#x6B64;&#x8BA2;&#x5355;&#x4E0D;&#x4F1A;&#x7ACB;&#x5373;&#x5B8C;&#x5168;&#x6210;&#x4EA4;&#x800C;&#x8BA1;&#x7B97;&#x7684;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_CROSS_SELF</td>
+<td>-8</td>
+<td>&#x6B64;&#x8D26;&#x53F7;&#x6709;&#x7740;&#x7B49;&#x4EF7;&#x6216;&#x4EF7;&#x683C;&#x66F4;&#x4F4E;&#x7684;&#x5BF9;&#x624B;&#x8BA2;&#x5355;&#xFF0C;&#x5982;&#x679C;&#x521B;&#x5EFA;&#x6B64;&#x8BA2;&#x5355;&#x4F1A;&#x5BFC;&#x81F4;&#x81EA;&#x5DF1;&#x4E0E;&#x81EA;&#x5DF1;&#x4EA4;&#x6613;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_SELL_NO_ISSUER</td>
+<td>-9</td>
+<td>&#x51FA;&#x552E;&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_BUY_NO_ISSUER</td>
+<td>-10</td>
+<td>&#x4E70;&#x5165;&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_NOT_FOUND</td>
+<td>-11</td>
+<td>&#x63D0;&#x4F9B;&#x7684; <code>offerID</code> &#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_LOW_RESERVE</td>
+<td>-12</td>
+<td>&#x8BE5;&#x8D26;&#x6237;&#x7684; XLM &#x4F59;&#x989D;&#x6216;&#x552E;&#x51FA;&#x8D1F;&#x503A;&#x4E0D;&#x8DB3;&#x4EE5;&#x4F7F;&#x8BE5;&#x8D26;&#x6237;&#x80FD;&#x591F;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8BA2;&#x5355;&#x3002;&#x6BCF;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8BA2;&#x5355;&#x90FD;&#x4F1A;&#x589E;&#x52A0;&#x8D26;&#x6237;&#x9700;&#x8981;&#x6301;&#x6709;&#x7684;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create-passive-offer"><a class="anchorShortcut" href="#create-passive-offer" aria-hidden="true"></a> Create Passive Offer(&#x521B;&#x5EFA;&#x88AB;&#x52A8;&#x8BA2;&#x5355;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.createPassiveOffer">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/CreatePassiveOfferOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#ManageOfferBuilder">Go</a></p>
+<p>&#x88AB;&#x52A8;&#x8BA2;&#x5355;&#x662F;&#x4E00;&#x79CD;&#x4E0D;&#x4F1A;&#x5728;&#x76F8;&#x540C;&#x62A5;&#x4EF7;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x6210;&#x4EA4;&#x7684;&#x8BA2;&#x5355;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x62A5;&#x4EF7;&#x4E0D;&#x76F8;&#x7B49;&#x65F6;&#x624D;&#x4F1A;&#x6210;&#x4EA4;&#x3002;
+&#x4F8B;&#x5982;&#xFF0C;&#x4F7F;&#x7528; XLM &#x8D2D;&#x4E70; BTC &#x7684;&#x6700;&#x4F73;&#x4EF7;&#x683C;&#x4E3A; 6XLM/BTC&#xFF0C;&#x7136;&#x540E;&#x60A8;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x4EE5; 6XLM/BTC &#x7684;&#x4EF7;&#x683C;&#x552E;&#x51FA; BTC &#x7684;&#x88AB;&#x52A8;&#x8BA2;&#x5355;&#xFF0C;&#x60A8;&#x7684;&#x88AB;&#x52A8;&#x8BA2;&#x5355;&#x5C06;<em>&#x4E0D;&#x4F1A;</em>&#x7ACB;&#x523B;&#x6210;&#x4EA4;&#x3002;</p>
+<p>&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5728;&#x88AB;&#x52A8;&#x8BA2;&#x5355;&#x4E4B;&#x540E;&#x521B;&#x5EFA;&#x7684;&#x5E38;&#x89C4;&#x8BA2;&#x5355;&#x53EF;&#x4EE5;&#x4E0E;&#x8BE5;&#x88AB;&#x52A8;&#x8BA2;&#x5355;&#x6210;&#x4EA4;&#xFF0C;&#x5373;&#x4F7F;&#x4E24;&#x8005;&#x7684;&#x62A5;&#x4EF7;&#x76F8;&#x540C;&#x3002;</p>
+<p>&#x88AB;&#x52A8;&#x8BA2;&#x5355;&#x5141;&#x8BB8;&#x505A;&#x5E02;&#x5546;&#x6709;&#x96F6;&#x5229;&#x5DEE;&#x3002;&#x5982;&#x679C;&#x60A8;&#x60F3;&#x4EE5; 1:1 &#x7684;&#x4EF7;&#x683C;&#x76F8;&#x4E92;&#x5151;&#x6362;&#x7F8E;&#x5143;&#x548C;&#x6B27;&#x5143;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x4E24;&#x4E2A;&#x88AB;&#x52A8;&#x62A5;&#x4EF7;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x8BA2;&#x5355;&#x4E0D;&#x4F1A;&#x76F8;&#x4E92;&#x6EE1;&#x8DB3;&#x5E76;&#x6210;&#x4EA4;&#x3002;</p>
+<p>&#x4E00;&#x65E6;&#x88AB;&#x52A8;&#x62A5;&#x4EF7;&#x88AB;&#x521B;&#x5EFA;&#xFF0C;&#x60A8;&#x53EF;&#x4EE5;&#x50CF;&#x7BA1;&#x7406;&#x5176;&#x5B83;&#x7C7B;&#x578B;&#x7684;&#x62A5;&#x4EF7;&#x4E00;&#x6837;&#x4F7F;&#x7528; <a href="#manage-offer">manage offer</a> &#x64CD;&#x4F5C;&#x6765;&#x7BA1;&#x7406;&#x5B83;&#x3002;</p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4E2D;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>CreatePassiveOfferResult</code></p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Selling</td>
+<td>asset</td>
+<td>&#x8BA2;&#x5355;&#x521B;&#x5EFA;&#x8005;&#x60F3;&#x51FA;&#x552E;&#x7684;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>Buying</td>
+<td>asset</td>
+<td>&#x8BA2;&#x5355;&#x521B;&#x5EFA;&#x8005;&#x60F3;&#x8D2D;&#x4E70;&#x7684;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>Amount</td>
+<td>integer</td>
+<td>&#x9700;&#x8981;&#x552E;&#x51FA;&#x7684;&#x8D44;&#x4EA7;&#x7684;&#x6570;&#x76EE;&#x3002;</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>{numerator, denominator}</td>
+<td>Price &#x4EE3;&#x8868;&#x6BCF;&#x552E;&#x51FA;&#x4E00;&#x4E2A;&#x5F85;&#x552E;&#x8D44;&#x4EA7;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x591A;&#x5C11;&#x4E2A;&#x5F85;&#x8D2D;&#x8D44;&#x4EA7;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x60A8;&#x60F3;&#x901A;&#x8FC7;&#x5356;&#x51FA; 30 XLM &#x83B7;&#x5F97; 5 BTC&#xFF0C;&#x90A3;&#x4E48; Price &#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E3A; {5,30}&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MANAGE_OFFER_MALFORMED</td>
+<td>-1</td>
+<td>&#x8F93;&#x5165;&#x7684;&#x53C2;&#x6570;&#x4E0D;&#x6B63;&#x786E;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_SELL_NO_TRUST</td>
+<td>-2</td>
+<td>&#x521B;&#x5EFA;&#x8BA2;&#x5355;&#x7684;&#x8D26;&#x6237;&#x5C1A;&#x672A;&#x4E3A;&#x610F;&#x56FE;&#x51FA;&#x552E;&#x7684;&#x8D44;&#x4EA7;&#x521B;&#x5EFA;&#x4FE1;&#x4EFB;&#x7EBF;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_BUY_NO_TRUST</td>
+<td>-3</td>
+<td>&#x521B;&#x5EFA;&#x8BA2;&#x5355;&#x7684;&#x8D26;&#x6237;&#x5C1A;&#x672A;&#x4E3A;&#x610F;&#x56FE;&#x8D2D;&#x4E70;&#x7684;&#x8D44;&#x4EA7;&#x521B;&#x5EFA;&#x4FE1;&#x4EFB;&#x7EBF;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_SELL_NOT_AUTHORIZED</td>
+<td>-4</td>
+<td>&#x521B;&#x5EFA;&#x8BA2;&#x5355;&#x7684;&#x8D26;&#x6237;&#x65E0;&#x6743;&#x51FA;&#x552E;&#x6B64;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_BUY_NOT_AUTHORIZED</td>
+<td>-5</td>
+<td>&#x521B;&#x5EFA;&#x8BA2;&#x5355;&#x7684;&#x8D26;&#x6237;&#x65E0;&#x6743;&#x8D2D;&#x4E70;&#x6B64;&#x8D44;&#x4EA7;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_LINE_FULL</td>
+<td>-6</td>
+<td>&#x521B;&#x5EFA;&#x6B64;&#x8BA2;&#x5355;&#x4F1A;&#x5BFC;&#x81F4;&#x8BE5;&#x8D26;&#x6237;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x8D2D;&#x4E70;&#x8D1F;&#x8F7D;&#x6216;&#x4E70;&#x5165;&#x8D44;&#x4EA7;&#x7684;&#x6301;&#x6709;&#x6570;&#x91CF;&#x7684;&#x9650;&#x5236;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_UNDERFUNDED</td>
+<td>-7</td>
+<td>&#x521B;&#x5EFA;&#x6B64;&#x8BA2;&#x5355;&#x4F1A;&#x5BFC;&#x81F4;&#x8BE5;&#x8D26;&#x6237;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x4E70;&#x5165;&#x7684;&#x8D44;&#x4EA7;&#x7684;&#x6301;&#x6709;&#x6570;&#x91CF;&#x7684;&#x9650;&#x5236;&#x6216;&#x552E;&#x51FA;&#x8D1F;&#x8F7D;&#x3002;&#x8BF7;&#x6CE8;&#x610F;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x9500;&#x552E; XLM &#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x6B64;&#x8D26;&#x6237;&#x5FC5;&#x987B;&#x4FDD;&#x8BC1;&#x6EE1;&#x8DB3;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x7684;&#x8981;&#x6C42;&#xFF0C;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x662F;&#x5047;&#x8BBE;&#x6B64;&#x8BA2;&#x5355;&#x4E0D;&#x4F1A;&#x7ACB;&#x5373;&#x5B8C;&#x5168;&#x6210;&#x4EA4;&#x800C;&#x8BA1;&#x7B97;&#x7684;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_CROSS_SELF</td>
+<td>-8</td>
+<td>&#x6B64;&#x8D26;&#x53F7;&#x6709;&#x7740;&#x7B49;&#x4EF7;&#x6216;&#x4EF7;&#x683C;&#x66F4;&#x4F4E;&#x7684;&#x5BF9;&#x624B;&#x8BA2;&#x5355;&#xFF0C;&#x5982;&#x679C;&#x521B;&#x5EFA;&#x6B64;&#x8BA2;&#x5355;&#x4F1A;&#x5BFC;&#x81F4;&#x81EA;&#x5DF1;&#x4E0E;&#x81EA;&#x5DF1;&#x4EA4;&#x6613;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_SELL_NO_ISSUER</td>
+<td>-9</td>
+<td>&#x51FA;&#x552E;&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_BUY_NO_ISSUER</td>
+<td>-10</td>
+<td>&#x4E70;&#x5165;&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_NOT_FOUND</td>
+<td>-11</td>
+<td>&#x63D0;&#x4F9B;&#x7684; <code>offerID</code> &#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_OFFER_LOW_RESERVE</td>
+<td>-12</td>
+<td>&#x8BE5;&#x8D26;&#x6237;&#x7684; XLM &#x4F59;&#x989D;&#x6216;&#x552E;&#x51FA;&#x8D1F;&#x503A;&#x4E0D;&#x8DB3;&#x4EE5;&#x4F7F;&#x8BE5;&#x8D26;&#x6237;&#x80FD;&#x591F;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8BA2;&#x5355;&#x3002;&#x6BCF;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8BA2;&#x5355;&#x90FD;&#x4F1A;&#x589E;&#x52A0;&#x8D26;&#x6237;&#x9700;&#x8981;&#x6301;&#x6709;&#x7684;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="set-options"><a class="anchorShortcut" href="#set-options" aria-hidden="true"></a> Set Options(&#x8BBE;&#x7F6E;&#x8D26;&#x6237;&#x9009;&#x9879;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.setOptions">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/SetOptionsOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#SetOptionsBuilder">Go</a></p>
+<p>&#x6B64;&#x64CD;&#x4F5C;&#x8BBE;&#x7F6E;&#x8D26;&#x6237;&#x7684;&#x5404;&#x79CD;&#x9009;&#x9879;&#x3002;</p>
+<p>&#x6709;&#x5173;&#x8BBE;&#x7F6E;&#x7B7E;&#x540D;&#x7684;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x53C2;&#x9605;<a href="https://stellar-docs.overcat.me/guides/concepts/multi-sig.html">&#x591A;&#x91CD;&#x7B7E;&#x540D;</a>&#x3002;</p>
+<p>&#x5F53;&#x8BBE;&#x7F6E;&#x7B7E;&#x540D;&#x8005;&#x6216;&#x9608;&#x503C;&#x65F6;&#xFF0C;&#x6B64;&#x64CD;&#x4F5C;&#x7684;&#x9608;&#x503C;&#x7B49;&#x7EA7;&#x4E3A;&#x9AD8;&#x3002;</p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4E2D;&#x6216;&#x9AD8;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>SetOptionsResult</code></p>
+<p>&#x53C2;&#x6570;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inflation Destination</td>
+<td>account ID</td>
+<td>&#x901A;&#x8D27;&#x81A8;&#x80C0;&#x7684;&#x76EE;&#x6807;&#x8D26;&#x6237;&#x3002;</td>
+</tr>
+<tr>
+<td>Clear flags</td>
+<td>integer</td>
+<td>&#x6307;&#x5B9A;&#x60A8;&#x60F3;&#x8981;&#x6E05;&#x9664;&#x7684;&#x6807;&#x8BC6;&#x4F4D;&#x3002;&#x60F3;&#x8981;&#x8BE6;&#x7EC6;&#x4E86;&#x89E3;&#x6807;&#x8BC6;&#x4F4D;&#xFF0C;&#x8BF7;&#x53C2;&#x9605;<a href="./accounts.html">&#x8D26;&#x6237;&#x6587;&#x6863;</a>&#x3002;&#x4F4D;&#x63A9;&#x7801;&#x6574;&#x6570;&#x4ECE;&#x8D26;&#x6237;&#x7684;&#x73B0;&#x6709;&#x6807;&#x8BC6;&#x4E2D;&#x51CF;&#x53BB;&#x3002;&#x8FD9;&#x5141;&#x8BB8;&#x5728;&#x4E0D;&#x77E5;&#x9053;&#x73B0;&#x6709;&#x6807;&#x5FD7;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x8BBE;&#x7F6E;&#x7279;&#x5B9A;&#x6807;&#x8BC6;&#x4F4D;&#x3002;</td>
+</tr>
+<tr>
+<td>Set flags</td>
+<td>integer</td>
+<td>&#x6307;&#x5B9A;&#x60A8;&#x60F3;&#x8981;&#x8BBE;&#x7F6E;&#x7684;&#x6807;&#x8BC6;&#x4F4D;&#x3002;&#x60F3;&#x8981;&#x8BE6;&#x7EC6;&#x4E86;&#x89E3;&#x6807;&#x8BC6;&#x4F4D;&#xFF0C;&#x8BF7;&#x53C2;&#x9605;<a href="./accounts.html">&#x8D26;&#x6237;&#x6587;&#x6863;</a>&#x3002;&#x4F4D;&#x63A9;&#x7801;&#x6574;&#x6570;&#x6DFB;&#x52A0;&#x5230;&#x8D26;&#x6237;&#x7684;&#x73B0;&#x6709;&#x6807;&#x8BC6;&#x4E0A;&#x3002;&#x8FD9;&#x5141;&#x8BB8;&#x5728;&#x4E0D;&#x77E5;&#x9053;&#x73B0;&#x6709;&#x6807;&#x5FD7;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x8BBE;&#x7F6E;&#x7279;&#x5B9A;&#x6807;&#x8BC6;&#x4F4D;&#x3002;</td>
+</tr>
+<tr>
+<td>Master weight</td>
+<td>integer</td>
+<td>&#x4E3B;&#x5BC6;&#x94A5;&#x7684;&#x6743;&#x91CD;&#x3002;&#x6B64;&#x8D26;&#x6237;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>signer</code> &#x53C2;&#x6570;&#x6DFB;&#x52A0;&#x7528;&#x4E8E;&#x7B7E;&#x7F72;&#x4E8B;&#x52A1;&#x7684;&#x5176;&#x4ED6;&#x5BC6;&#x94A5;&#x3002;</td>
+</tr>
+<tr>
+<td>Low threshold</td>
+<td>integer</td>
+<td>0-255&#x4E4B;&#x95F4;&#x7684;&#x6570;&#x5B57;&#xFF0C;&#x8868;&#x793A;&#x6B64;&#x8D26;&#x6237;&#x5728;&#x5176;&#x6267;&#x884C;&#x7684;&#x5177;&#x6709;<a href="https://stellar-docs.overcat.me/guides/concepts/multi-sig.html">&#x4F4E;&#x7B49;&#x9608;&#x503C;&#x7684;</a>&#x64CD;&#x4F5C;&#x6240;&#x9700;&#x8981;&#x7684;<a href="https://stellar-docs.overcat.me/guides/concepts/multi-sig.md">&#x9608;&#x503C;</a>&#x3002;</td>
+</tr>
+<tr>
+<td>Medium threshold</td>
+<td>integer</td>
+<td>0-255&#x4E4B;&#x95F4;&#x7684;&#x6570;&#x5B57;&#xFF0C;&#x8868;&#x793A;&#x6B64;&#x8D26;&#x6237;&#x5728;&#x5176;&#x6267;&#x884C;&#x7684;&#x5177;&#x6709;<a href="https://stellar-docs.overcat.me/guides/concepts/multi-sig.html">&#x4E2D;&#x7B49;&#x9608;&#x503C;&#x7684;</a>&#x64CD;&#x4F5C;&#x6240;&#x9700;&#x8981;&#x7684;<a href="https://stellar-docs.overcat.me/guides/concepts/multi-sig.md">&#x9608;&#x503C;</a>&#x3002;</td>
+</tr>
+<tr>
+<td>High threshold</td>
+<td>integer</td>
+<td>0-255&#x4E4B;&#x95F4;&#x7684;&#x6570;&#x5B57;&#xFF0C;&#x8868;&#x793A;&#x6B64;&#x8D26;&#x6237;&#x5728;&#x5176;&#x6267;&#x884C;&#x7684;&#x5177;&#x6709;<a href="https://stellar-docs.overcat.me/guides/concepts/multi-sig.html">&#x9AD8;&#x7B49;&#x9608;&#x503C;&#x7684;</a>&#x64CD;&#x4F5C;&#x6240;&#x9700;&#x8981;&#x7684;<a href="https://stellar-docs.overcat.me/guides/concepts/multi-sig.md">&#x9608;&#x503C;</a>&#x3002;</td>
+</tr>
+<tr>
+<td>Home domain</td>
+<td>string</td>
+<td>&#x4E3A;&#x8D26;&#x6237;&#x8BBE;&#x7F6E;&#x4E3B;&#x57DF;&#x540D;&#x3002;&#x8BF7;&#x53C2;&#x9605;<a href="./federation.html">&#x8054;&#x90A6;&#x670D;&#x52A1;</a>&#x3002;</td>
+</tr>
+<tr>
+<td>Signer</td>
+<td>{Public Key, weight}</td>
+<td>&#x4E3A;&#x8D26;&#x6237;&#x6DFB;&#x52A0;&#xFF0C;&#x66F4;&#x65B0;&#x6216;&#x5220;&#x9664;&#x7B7E;&#x540D;&#x8005;&#x3002;&#x5982;&#x679C;&#x5C06;&#x6743;&#x91CD;&#x8BBE;&#x4E3A; 0 &#x7684;&#x8BDD;&#xFF0C;&#x5219;&#x5220;&#x9664;&#x7B7E;&#x540D;&#x8005;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SET_OPTIONS_LOW_RESERVE</td>
+<td>-1</td>
+<td>&#x8BE5;&#x8D26;&#x6237;&#x7684; XLM &#x4F59;&#x989D;&#x6216;&#x552E;&#x51FA;&#x8D1F;&#x503A;&#x4E0D;&#x8DB3;&#x4EE5;&#x4F7F;&#x8BE5;&#x8D26;&#x6237;&#x80FD;&#x591F;&#x65B0;&#x589E;&#x4E00;&#x4E2A;&#x5B50;&#x6761;&#x76EE;&#x3002;&#x6BCF;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7B7E;&#x540D;&#x8005;&#x90FD;&#x4F1A;&#x589E;&#x52A0;&#x8D26;&#x6237;&#x9700;&#x8981;&#x6301;&#x6709;&#x7684;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x3002;</td>
+</tr>
+<tr>
+<td>SET_OPTIONS_TOO_MANY_SIGNERS</td>
+<td>-2</td>
+<td>&#x8D26;&#x6237;&#x6700;&#x591A;&#x53EF;&#x62E5;&#x6709; 20 &#x4E2A;&#x7B7E;&#x540D;&#x8005;&#xFF0C;&#x5F53;&#x6DFB;&#x52A0;&#x7684;&#x7B7E;&#x540D;&#x8005;&#x8D85;&#x8FC7;&#x8FD9;&#x4E2A;&#x9650;&#x5236;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x5931;&#x8D25;&#x3002;</td>
+</tr>
+<tr>
+<td>SET_OPTIONS_BAD_FLAGS</td>
+<td>-3</td>
+<td>&#x6DFB;&#x52A0;/&#x6E05;&#x9664;&#x7684;&#x5355;&#x4E2A;&#x6807;&#x5FD7;&#x6216;&#x7EC4;&#x5408;&#x65E0;&#x6548;&#x3002;</td>
+</tr>
+<tr>
+<td>SET_OPTIONS_INVALID_INFLATION</td>
+<td>-4</td>
+<td><code>inflation</code> &#x5B57;&#x6BB5;&#x4E2D;&#x8BBE;&#x7F6E;&#x7684;&#x76EE;&#x6807;&#x8D26;&#x6237;&#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td>SET_OPTIONS_CANT_CHANGE</td>
+<td>-5</td>
+<td>&#x8BE5;&#x8D26;&#x6237;&#x6B63;&#x5728;&#x5C1D;&#x8BD5;&#x66F4;&#x6539;&#x65E0;&#x6CD5;&#x518D;&#x88AB;&#x66F4;&#x6539;&#x7684;&#x8BBE;&#x7F6E;&#x9879;&#x3002;</td>
+</tr>
+<tr>
+<td>SET_OPTIONS_UNKNOWN_FLAG</td>
+<td>-6</td>
+<td>&#x8BE5;&#x8D26;&#x6237;&#x6B63;&#x5728;&#x5C1D;&#x8BD5;&#x8BBE;&#x7F6E;&#x672A;&#x77E5;&#x7684;&#x6807;&#x5FD7;&#x3002;</td>
+</tr>
+<tr>
+<td>SET_OPTIONS_THRESHOLD_OUT_OF_RANGE</td>
+<td>-7</td>
+<td>&#x9608;&#x503C;&#x6216;&#x4E3A;&#x7B7E;&#x540D;&#x8005;&#x8BBE;&#x7F6E;&#x7684;&#x6743;&#x91CD;&#x4E0D;&#x5408;&#x7406;&#x3002;</td>
+</tr>
+<tr>
+<td>SET_OPTIONS_BAD_SIGNER</td>
+<td>-8</td>
+<td>&#x4E3B;&#x5BC6;&#x94A5;&#x4E0D;&#x80FD;&#x4F5C;&#x4E3A;&#x989D;&#x5916;&#x7684;&#x7B7E;&#x540D;&#x8005;&#x6DFB;&#x52A0;&#x5230;&#x8D26;&#x6237;&#x4E2D;&#x3002;</td>
+</tr>
+<tr>
+<td>SET_OPTIONS_INVALID_HOME_DOMAIN</td>
+<td>-9</td>
+<td>&#x4E3B;&#x57DF;&#x540D;&#x53C2;&#x6570;&#x4E0D;&#x6B63;&#x786E;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="change-trust"><a class="anchorShortcut" href="#change-trust" aria-hidden="true"></a> Change Trust(&#x4FEE;&#x6539;&#x4FE1;&#x4EFB;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.changeTrust">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ChangeTrustOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#ChangeTrustBuilder">Go</a></p>
+<p>&#x521B;&#x5EFA;&#xFF0C;&#x66F4;&#x65B0;&#x6216;&#x5220;&#x9664;&#x4FE1;&#x4EFB;&#x7EBF;&#x3002;&#x6709;&#x5173;&#x4FE1;&#x4EFB;&#x7EBF;&#x7684;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x53C2;&#x9605;<a href="https://stellar-docs.overcat.me/guides/concepts/assets.html">&#x8D44;&#x4EA7;&#x6587;&#x6863;</a>&#x3002;</p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4E2D;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>ChangeTrustResult</code></p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Line</td>
+<td>asset</td>
+<td>&#x67D0;&#x9879;&#x8D44;&#x4EA7;&#x7684;&#x4FE1;&#x4EFB;&#x7EBF;&#x3002;&#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#xFF0C;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x65B0;&#x5EFA;&#x4E86;&#x4E00;&#x6761;&#x4FE1;&#x4EFB;&#x7EBF;&#xFF0C;&#x5141;&#x8BB8;&#x6700;&#x591A;&#x6301;&#x6709; 200 &#x4E2A;&#x951A;&#x70B9;&#x53D1;&#x884C;&#x7684; USD&#xFF0C;&#x5219; <code>line</code> &#x5E94;&#x8BE5;&#x8BBE;&#x7F6E;&#x4E3A;&#xFF1A;USD:anchor&#x3002;</td>
+</tr>
+<tr>
+<td>Limit</td>
+<td>integer</td>
+<td>&#x6301;&#x6709;&#x7684;&#x8BE5;&#x8D44;&#x4EA7;&#x7684;&#x6570;&#x91CF;&#x7684;&#x9650;&#x5236;&#x3002;&#x4EE5;&#x4E0A;&#x4E2A;&#x4F8B;&#x5B50;&#x4E3A;&#x4F8B;&#xFF0C;<code>limit</code> &#x5E94;&#x8BE5;&#x8BBE;&#x7F6E;&#x4E3A; 200&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CHANGE_TRUST_MALFORMED</td>
+<td>-1</td>
+<td>&#x8F93;&#x5165;&#x7684;&#x53C2;&#x6570;&#x4E0D;&#x6B63;&#x786E;&#x3002;</td>
+</tr>
+<tr>
+<td>CHANGE_TRUST_NO_ISSUER</td>
+<td>-2</td>
+<td>&#x65E0;&#x6CD5;&#x627E;&#x5230;&#x8D44;&#x4EA7;&#x7684;&#x53D1;&#x884C;&#x4EBA;&#x3002;</td>
+</tr>
+<tr>
+<td>CHANGE_TRUST_INVALID_LIMIT</td>
+<td>-3</td>
+<td>&#x5C06; <code>limit</code> &#x8BBE;&#x7F6E;&#x4E3A;&#x8BE5;&#x503C;&#x4F1A;&#x5BFC;&#x81F4;&#x8BE5;&#x8D26;&#x6237;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x8D2D;&#x4E70;&#x8D1F;&#x8F7D;&#x6216;&#x73B0;&#x6709;&#x8D44;&#x4EA7;&#x7684;&#x6301;&#x6709;&#x6570;&#x91CF;&#x7684;&#x9650;&#x5236;&#x3002;</td>
+</tr>
+<tr>
+<td>CHANGE_TRUST_LOW_RESERVE</td>
+<td>-4</td>
+<td>&#x8BE5;&#x8D26;&#x6237;&#x7684; XLM &#x4F59;&#x989D;&#x6216;&#x552E;&#x51FA;&#x8D1F;&#x503A;&#x4E0D;&#x8DB3;&#x4EE5;&#x4F7F;&#x8BE5;&#x8D26;&#x6237;&#x80FD;&#x591F;&#x65B0;&#x589E;&#x4E00;&#x4E2A;&#x5B50;&#x6761;&#x76EE;&#x3002;&#x6BCF;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x4FE1;&#x4EFB;&#x7EBF;&#x90FD;&#x4F1A;&#x589E;&#x52A0;&#x8D26;&#x6237;&#x9700;&#x8981;&#x6301;&#x6709;&#x7684;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="allow-trust"><a class="anchorShortcut" href="#allow-trust" aria-hidden="true"></a> Allow Trust(&#x5141;&#x8BB8;&#x4FE1;&#x4EFB;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.allowTrust">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/AllowTrustOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#AllowTrustBuilder">Go</a></p>
+<p>&#x8BBE;&#x7F6E;&#x73B0;&#x6709;&#x4FE1;&#x4EFB;&#x7EBF;&#x7684;&#x6388;&#x6743;(<code>authorized</code>)&#x6807;&#x5FD7;&#x3002;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x53EA;&#x80FD;&#x7531;&#x4FE1;&#x4EFB;&#x7EBF;&#x4E2D;&#x7684;<a href="./assets.html">&#x8D44;&#x4EA7;</a>&#x7684;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x8C03;&#x7528;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x6709;&#x5728;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x4E0A;&#x542F;&#x7528;&#x4E86; <code>AUTHORIZATION REQUIRED</code> &#x65F6;(&#x6700;&#x5C11;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x8FD9;&#x4E2A;&#x8981;&#x6C42;)&#x624D;&#x80FD;&#x8C03;&#x7528;&#x3002;</p>
+<p>&#x53D1;&#x884C;&#x8D26;&#x6237;&#x53EA;&#x6709;&#x5728;&#x542F;&#x7528;&#x4E86; <code>AUTH_REVOCABLE_FLAG</code> &#x6807;&#x8BC6;&#x540E;&#x624D;&#x80FD;&#x6E05;&#x9664;&#x5176;&#x5B83;&#x7528;&#x6237;&#x7684;  <code>authorized</code> &#x6807;&#x8BC6;&#xFF0C;&#x5426;&#x8005;&#x53EA;&#x80FD;&#x542F;&#x7528;&#x5176;&#x5B83;&#x7528;&#x6237;&#x7684; <code>authorized</code> &#x6807;&#x8BC6;</p>
+<p>&#x5982;&#x679C;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x6E05;&#x9664;&#x4E86; <code>Trustor</code> &#x7684; <code>authorized</code> &#xFF0C;&#x5219;&#x7531; <code>trustor</code> &#x53D1;&#x8D77;&#x7684;&#x6240;&#x6709;&#x5305;&#x542B;&#x8BE5;&#x8D44;&#x4EA7;&#x7684;&#x8BA2;&#x5355;&#x90FD;&#x4F1A;&#x88AB;&#x5220;&#x9664;&#x3002;<em>(&#x534F;&#x8BAE;&#x7248;&#x672C; 10 &#x53CA;&#x4EE5;&#x4E0A;)</em></p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4F4E;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>AllowTrustResult</code></p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trustor</td>
+<td>account ID</td>
+<td>&#x8BBE;&#x7F6E;&#x4E86;&#x8BE5;&#x4FE1;&#x4EFB;&#x7EBF;&#x7684;&#x76EE;&#x6807;&#x8D26;&#x6237;&#x3002;</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>asset</td>
+<td>&#x4FE1;&#x4EFB;&#x7EBF;&#x4E2D;&#x7684;&#x8D44;&#x4EA7;&#x7C7B;&#x578B;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x951A;&#x70B9;&#x5E0C;&#x671B;&#x5141;&#x8BB8;&#x53E6;&#x4E00;&#x4E2A;&#x8D26;&#x6237;&#x6301;&#x6709;&#x5176;&#x7F8E;&#x5143;&#x8D44;&#x4EA7;&#xFF0C;&#x5219; <code>Type</code> &#x5E94;&#x8BE5;&#x8BBE;&#x7F6E;&#x4E3A; USD:anchor&#x3002;</td>
+</tr>
+<tr>
+<td>Authorize</td>
+<td>boolean</td>
+<td>&#x8BE5;&#x4FE1;&#x4EFB;&#x7EBF;&#x662F;&#x5426;&#x5F97;&#x5230;&#x4E86;&#x6388;&#x6743;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ALLOW_TRUST_MALFORMED</td>
+<td>-1</td>
+<td>&#x6307;&#x5B9A;&#x8D44;&#x4EA7;&#x7C7B;&#x578B;&#x7684; <code>Type</code> &#x53C2;&#x6570;&#x975E;&#x6CD5;&#x3002;</td>
+</tr>
+<tr>
+<td>ALLOW_TRUST_NO_TRUST_LINE</td>
+<td>-2</td>
+<td><code>trustor</code> &#x5E76;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x5305;&#x542B;&#x6B64;&#x53D1;&#x884C;&#x8D26;&#x6237;&#x7684;&#x4FE1;&#x4EFB;&#x7EBF;&#x3002;</td>
+</tr>
+<tr>
+<td>ALLOW_TRUST_TRUST_NOT_REQUIRED</td>
+<td>-3</td>
+<td>&#x6E90;&#x8D26;&#x6237;(&#x6267;&#x884C;&#x6B64;&#x64CD;&#x4F5C;&#x7684;&#x53D1;&#x884C;&#x8D26;&#x6237;)&#x4E0D;&#x9700;&#x8981;&#x6267;&#x884C;&#x4FE1;&#x4EFB;&#x64CD;&#x4F5C;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6E90;&#x8D26;&#x6237;&#x5E76;&#x6CA1;&#x6709;&#x542F;&#x7528; `AUTH_REQUIRED_FLAG &#x6807;&#x8BC6;&#x3002;</td>
+</tr>
+<tr>
+<td>ALLOW_TRUST_CANT_REVOKE</td>
+<td>-4</td>
+<td>&#x6E90;&#x8D26;&#x6237;&#x6B63;&#x8BD5;&#x56FE;&#x64A4;&#x6D88;&#x5BF9; <code>trustor</code> &#x7684;&#x4FE1;&#x4EFB;&#x7EBF;&#x7684;&#x6388;&#x6743;&#xFF0C;&#x4F46;&#x5B83;&#x4E0D;&#x80FD;&#x8FD9;&#x6837;&#x505A;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="account-merge"><a class="anchorShortcut" href="#account-merge" aria-hidden="true"></a> Account Merge(&#x8D26;&#x6237;&#x5408;&#x5E76;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.accountMerge">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/AccountMergeOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#AccountMergeBuilder">Go</a></p>
+<p>&#x5C06;&#x6E90;&#x8D26;&#x6237;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x539F;&#x751F;&#x8D44;&#x4EA7;(&#x5373;&#x6E90;&#x8D26;&#x6237;&#x6301;&#x6709;&#x7684; XLM)&#x8F6C;&#x79FB;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x8D26;&#x6237;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;&#x6E90;&#x8D26;&#x6237;&#x4ECE;&#x603B;&#x8D26;&#x4E2D;&#x79FB;&#x9664;&#x3002;</p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x9AD8;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>AccountMergeResult</code></p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Destination</td>
+<td>account ID</td>
+<td>&#x8BE5;&#x8D26;&#x6237;&#x5C06;&#x4F1A;&#x6536;&#x5230;&#x6E90;&#x8D26;&#x6237;&#x7684;&#x6240;&#x6709; XLM&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACCOUNT_MERGE_MALFORMED</td>
+<td>-1</td>
+<td>&#x8BE5;&#x64CD;&#x4F5C;&#x683C;&#x5F0F;&#x4E0D;&#x6B63;&#x786E;&#xFF0C;&#x56E0;&#x4E3A;&#x6E90;&#x8D26;&#x6237;&#x65E0;&#x6CD5;&#x4E0E;&#x81EA;&#x8EAB;&#x5408;&#x5E76;&#x3002; <code>destination</code> &#x4E0D;&#x80FD;&#x662F;&#x6E90;&#x8D26;&#x6237;&#x3002;</td>
+</tr>
+<tr>
+<td>ACCOUNT_MERGE_NO_ACCOUNT</td>
+<td>-2</td>
+<td><code>destination</code> &#x8D26;&#x6237;&#x4E0D;&#x5B58;&#x5728;&#x3002;</td>
+</tr>
+<tr>
+<td>ACCOUNT_MERGE_IMMUTABLE_SET</td>
+<td>-3</td>
+<td>&#x6E90;&#x8D26;&#x6237;&#x542F;&#x7528;&#x4E86; <code>AUTH_IMMUTABLE</code> &#x6807;&#x8BC6;&#x3002;</td>
+</tr>
+<tr>
+<td>ACCOUNT_MERGE_HAS_SUB_ENTRIES</td>
+<td>-4</td>
+<td>&#x6E90;&#x8D26;&#x6237;&#x6709;&#x4FE1;&#x4EFB;&#x7EBF;&#x6216;&#x8BA2;&#x5355;&#x3002;</td>
+</tr>
+<tr>
+<td>ACCOUNT_MERGE_SEQNUM_TOO_FAR</td>
+<td>-5</td>
+<td>&#x6E90;&#x8D26;&#x6237;&#x7684;&#x5E8F;&#x5217;&#x53F7;&#x8FC7;&#x5927;&#x3002;&#x5B83;&#x5FC5;&#x987B;&#x5C0F;&#x4E8E; <code>(ledgerSeq &lt;&lt; 32) = (ledgerSeq * 0x100000000)</code>&#x3002;<em>(&#x534F;&#x8BAE;&#x7248;&#x672C; 10 &#x53CA;&#x4EE5;&#x4E0A;)</em></td>
+</tr>
+<tr>
+<td>ACCOUNT_MERGE_DEST_FULL</td>
+<td>-6</td>
+<td><code>destination</code> &#x6536;&#x5230;&#x6E90;&#x8D26;&#x6237;&#x7684;&#x8D44;&#x4EA7;&#x540E;&#x5C06;&#x65E0;&#x6CD5;&#x6EE1;&#x8DB3;&#x81EA;&#x8EAB;&#x7684; Lumens &#x8D2D;&#x4E70;&#x8D1F;&#x503A;&#x3002;(&#x534F;&#x8BAE;&#x7248;&#x672C; 10 &#x53CA;&#x4EE5;&#x4E0A;)*</td>
+</tr>
+</tbody>
+</table>
+<h2 id="inflation"><a class="anchorShortcut" href="#inflation" aria-hidden="true"></a> Inflation(&#x901A;&#x8D27;&#x81A8;&#x80C0;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.inflation">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/InflationOperation.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#InflationBuilder">Go</a></p>
+<p>&#x901A;&#x8FC7;&#x8BE5;&#x64CD;&#x4F5C;&#x6267;&#x884C;&#x901A;&#x80C0;&#x3002;</p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4F4E;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>InflationResult</code></p>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INFLATION_NOT_TIME</td>
+<td>-1</td>
+<td>&#x6BCF;&#x5468;&#x53EA;&#x80FD;&#x6267;&#x884C;&#x4E00;&#x6B21;&#x901A;&#x80C0;&#xFF0C;&#x8FD9;&#x4E2A;&#x9519;&#x8BEF;&#x610F;&#x5473;&#x7740;&#x8FD8;&#x672A;&#x5230;&#x6267;&#x884C;&#x65B0;&#x4E00;&#x8F6E;&#x901A;&#x80C0;&#x7684;&#x65F6;&#x95F4;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="manage-data"><a class="anchorShortcut" href="#manage-data" aria-hidden="true"></a> Manage Data(&#x7BA1;&#x7406;&#x6570;&#x636E;&#x6761;&#x76EE;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.manageData">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/ManageDataOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#ManageDataBuilder">Go</a></p>
+<p>&#x5141;&#x8BB8;&#x60A8;&#x8BBE;&#x7F6E;&#x3001;&#x4FEE;&#x6539;&#x6216;&#x5220;&#x9664;&#x7279;&#x5B9A;&#x8D26;&#x6237;&#x4E0A;&#x7684;&#x6570;&#x636E;&#x6761;&#x76EE;(&#x952E;/&#x503C;&#x5BF9;)&#x3002;&#x4E00;&#x4E2A;&#x8D26;&#x6237;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4EFB;&#x610F;&#x6570;&#x91CF;&#x7684;&#x6570;&#x636E;&#x6761;&#x76EE;&#x3002;&#x6BCF;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#x90FD;&#x4F1A;&#x589E;&#x52A0;&#x8D26;&#x6237;&#x9700;&#x8981;&#x6301;&#x6709;&#x7684;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x3002;</p>
+<p>&#x6570;&#x636E;&#x5BF9;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x5404;&#x79CD;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E2D;&#xFF0C;&#x4F46;&#x5B83;&#x4EEC;&#x5E76;&#x4E0D;&#x88AB; Stellar &#x7684;&#x6838;&#x5FC3;&#x534F;&#x8BAE;&#x6240;&#x4F7F;&#x7528;&#x3002;</p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4E2D;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>ManageDataResult</code></p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>string</td>
+<td>&#x957F;&#x5EA6;&#x6700;&#x591A;&#x4E3A; 64 bytes &#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x5982;&#x679C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x952E;(Name)&#xFF0C;&#x5B83;&#x5C06;&#x5411;&#x8D26;&#x6237;&#x6DFB;&#x52A0;&#x7ED9;&#x5B9A;&#x7684;&#x6570;&#x636E;&#x6761;&#x76EE;&#x3002;&#x5982;&#x679C;&#x6B64;&#x952E;(Name)&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#xFF0C;&#x5219;&#x5C06;&#x4FEE;&#x6539;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>binary data</td>
+<td>(&#x53EF;&#x9009;) &#x5982;&#x679C;&#x8BE5;&#x503C;&#x4E3A;&#x7A7A;&#x7684;&#x8BDD;&#xFF0C;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#x4F1A;&#x88AB;&#x5220;&#x9664;&#x3002;&#x5982;&#x679C;&#x5B58;&#x5728;&#x7684;&#x8BDD;&#xFF0C;&#x5219;&#x4F1A;&#x4F5C;&#x4E3A;&#x503C;&#x8BBE;&#x7F6E;&#x5728;&#x6570;&#x636E;&#x6761;&#x76EE;&#x4E2D;&#x3002;&#x8BE5;&#x503C;&#x6700;&#x957F;&#x4E3A; 64 bytes&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MANAGE_DATA_NOT_SUPPORTED_YET</td>
+<td>-1</td>
+<td>&#x5F53;&#x524D;&#x7F51;&#x7EDC;&#x5C1A;&#x672A;&#x5347;&#x7EA7;&#x534F;&#x8BAE;&#x3002;&#x8FD9;&#x4E2A;&#x5931;&#x8D25;&#x610F;&#x5473;&#x5F53;&#x524D;&#x7F51;&#x7EDC;&#x5C1A;&#x4E0D;&#x652F;&#x6301;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_DATA_NAME_NOT_FOUND</td>
+<td>-2</td>
+<td>&#x8BD5;&#x56FE;&#x5220;&#x9664;&#x4E00;&#x4E2A;&#x4E0D;&#x5B58;&#x5728;&#x6570;&#x636E;&#x6761;&#x76EE;&#x3002;&#x5982;&#x679C;&#x60A8;&#x5C06;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#x7684;&#x503C;&#x8BBE;&#x4E3A;&#x7A7A;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x8D26;&#x6237;&#x4E2D;&#x5E76;&#x4E0D;&#x5B58;&#x5728;&#x8BE5;&#x952E;(Name)&#x4FBF;&#x4F1A;&#x53D1;&#x9001;&#x8FD9;&#x6837;&#x7684;&#x9519;&#x8BEF;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_DATA_LOW_RESERVE</td>
+<td>-3</td>
+<td>&#x8BE5;&#x8D26;&#x6237;&#x7684; XLM &#x4F59;&#x989D;&#x6216;&#x552E;&#x51FA;&#x8D1F;&#x503A;&#x4E0D;&#x8DB3;&#x4EE5;&#x4F7F;&#x8BE5;&#x8D26;&#x6237;&#x80FD;&#x591F;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#x3002;&#x6BCF;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x6761;&#x76EE;&#x90FD;&#x4F1A;&#x589E;&#x52A0;&#x5E10;&#x6237;&#x9700;&#x8981;&#x6301;&#x6709;&#x7684;&#x6700;&#x4F4E;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x3002;</td>
+</tr>
+<tr>
+<td>MANAGE_DATA_INVALID_NAME</td>
+<td>-4</td>
+<td>&#x952E;(Name)&#x662F;&#x65E0;&#x6548;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="bump-sequence"><a class="anchorShortcut" href="#bump-sequence" aria-hidden="true"></a> Bump Sequence(&#x589E;&#x5927;&#x5E8F;&#x5217;&#x53F7;)</h2>
+<p><a href="http://stellar.github.io/js-stellar-sdk/Operation.html#.bumpSequence">JavaScript</a> | <a href="http://stellar.github.io/java-stellar-sdk/org/stellar/sdk/BumpSequenceOperation.Builder.html">Java</a> | <a href="https://godoc.org/github.com/stellar/go/build#BumpSequenceBuilder">Go</a></p>
+<p><em>&#x4EC5;&#x5728;&#x534F;&#x8BAE;&#x7248;&#x672C; 10 &#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#x4E2D;&#x53EF;&#x7528;</em></p>
+<p>Bump sequence &#x64CD;&#x4F5C;&#x5141;&#x8BB8;&#x6E90;&#x8D26;&#x6237;&#x589E;&#x5927;&#x81EA;&#x5DF1;&#x7684;&#x5E8F;&#x5217;&#x53F7;&#xFF0C;&#x901A;&#x8FC7;&#x8BE5;&#x64CD;&#x4F5C;&#x60A8;&#x53EF;&#x4EE5;&#x4F7F;&#x5E8F;&#x5217;&#x53F7;&#x5C0F;&#x4E8E;&#x65B0;&#x5E8F;&#x5217;&#x53F7;&#x7684;&#x6240;&#x6709;&#x4E8B;&#x52A1;&#x5931;&#x6548;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6307;&#x5B9A;&#x7684; <code>bumpTo</code> &#x5E8F;&#x5217;&#x53F7;&#x5927;&#x4E8E;&#x6E90;&#x8D26;&#x6237;&#x7684;&#x5E8F;&#x5217;&#x53F7;&#xFF0C;&#x5219;&#x7CFB;&#x7EDF;&#x4F1A;&#x4F7F;&#x7528;&#x8BE5;&#x503C;&#x66F4;&#x65B0;&#x8D26;&#x6237;&#x7684;&#x5E8F;&#x5217;&#x53F7;&#xFF0C;&#x5426;&#x5219;&#x4E0D;&#x4F1A;&#x4FEE;&#x6539;&#x3002;</p>
+<p>&#x9608;&#x503C;&#x7B49;&#x7EA7;&#xFF1A;&#x4F4E;</p>
+<p>&#x7ED3;&#x679C;&#xFF1A;<code>BumpSequenceResult</code></p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bumpTo</td>
+<td>SequenceNumber</td>
+<td>&#x60A8;&#x60F3;&#x8981;&#x5C06;&#x64CD;&#x4F5C;&#x7684;&#x6E90;&#x8D26;&#x6237;&#x7684;&#x5E8F;&#x5217;&#x53F7;&#x66F4;&#x6539;&#x4E3A;&#x8BE5;&#x503C;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x53EF;&#x80FD;&#x53D1;&#x9001;&#x7684;&#x9519;&#x8BEF;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9519;&#x8BEF;&#x4EE3;&#x7801;</th>
+<th>&#x7F16;&#x53F7;</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BUMP_SEQUENCE_BAD_SEQ</td>
+<td>-1</td>
+<td>&#x63D0;&#x4F9B;&#x7684; <code>bumpTo</code> &#x5E8F;&#x5217;&#x53F7;&#x65E0;&#x6548;&#x3002;&#x8BE5;&#x503C;&#x5FC5;&#x987B;&#x5728; 0 &#x5230; <code>INT64_MAX</code> (INT64_MAX &#x7B49;&#x4E8E; 9223372036854775807 &#x6216; 0x7fffffffffffffff) &#x4E4B;&#x95F4;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+
+      <br>
+      <a href="https://github.com/StellarCN/stellar-docs/blob/master/translations/zh-Hans/guides/concepts/list-of-operations.md" class="spu-color-neutral6">&#x5728; GitHub &#x4E0A;&#x7F16;&#x8F91;&#x6B64;&#x9875;&#x9762;</a>
+    </s-read-md>
+  
+  </div>
+</div>
+</div>
+
+<div class="so-back spu-borderTop-1 spu-borderColor-neutral7 spu-padTB-15">
+  <div class="so-chunk">
+    <div class="siteFooter">
+      <div class="siteFooter__list">
+        <a class="siteFooter__list__item" href="https://www.stellar.org/"><span class="graphic-backArrow-9"></span>&#xA0;&#xA0;Stellar.org</a>
+        <span class="siteFooter__list__sep">|</span>
+        <a class="siteFooter__list__item" href="https://www.stellar.org/bug-bounty-program/">Bug &#x60AC;&#x8D4F;</a>
+        <a class="siteFooter__list__item" href="/stellar-core/software/admin.html">&#x8FD0;&#x884C;&#x8282;&#x70B9;</a>
+        <a class="siteFooter__list__item" href="/guides/things-to-build.html">&#x6784;&#x5EFA;&#x5E94;&#x7528;</a>
+        <a class="siteFooter__list__item" href="https://github.com/stellar/">GitHub</a>
+        <a class="siteFooter__list__item" href="http://slack.stellar.org/">&#x6765;&#x793E;&#x533A;&#x7545;&#x8C08;</a>
+      </div>
+      <div class="siteFooter__list siteFooter__list--aux">
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/terms-of-service/">&#x670D;&#x52A1;&#x6761;&#x6B3E;</a>
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/privacy-policy/">&#x9690;&#x79C1;&#x653F;&#x7B56;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/js/app-9b8f1b0df3650f3a8dabc0e0b08ccab9.js"></script>
+<script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("U8cLXTFMPm");
+analytics.page()
+}}();
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5V3WNNP');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V3WNNP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</html>

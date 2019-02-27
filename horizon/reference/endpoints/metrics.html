@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!--
+
+  Want to contribute to this site? Take a look at the GitHub repository for this
+  site: https://github.com/stellar/developers
+
+  -->
+  <title>Metrics - Go SDK | Stellar Developers</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="author" content="Stellar.org and contributors">
+
+  <meta property="og:title" content="Metrics - Go SDK | Stellar Developers">
+  <meta property="og:type" content="website">
+
+
+  <link rel="stylesheet" href="/styles/index-cff14d28bafbba60930f31b923b4e75b.css">
+
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/rocket-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/rocket-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/rocket-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicon/rocket-96x96.png" sizes="96x96">
+  <meta name="msapplication-TileImage" content="/images/favicon/rocket-144x144.png">
+
+  <script type="text/javascript">
+    var $mcGoal = {'settings':{'uuid':'c001d97369b7a10d224c23867','dc':'us9'}};
+    (function() {
+      var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+      sp.src = ('https:' == document.location.protocol ? 'https://s3.amazonaws.com/downloads.mailchimp.com' : 'http://downloads.mailchimp.com') + '/js/goal.min.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+    })();
+  </script>
+
+  <script>window.clientData = {};</script>
+
+  <script type="text/javascript">
+  setTimeout(function(){var a=document.createElement("script");
+  var b=document.getElementsByTagName("script")[0];
+  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0065/1320.js?"+Math.floor(new Date().getTime()/3600000);
+  a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+  </script>
+</head>
+<body>
+<div class="header2016">
+  <div class="header2016__logo header2016__logo--spaced">
+    <div class="so-siteHeader">
+      <span class="so-logo">
+  <a href="https://www.stellar.org/" class="so-logo__main">Stellar</a><!--
+  --><span class="so-logo__separator"> </span><!--
+  --><a href="/" class="so-logo__subSite">developers</a>
+</span>
+    </div>
+  </div>
+  <nav class="header2016__nav mainNavMenu spu-padStart-30">
+    <a class="mainNavMenu__item " href="/guides/">&#x6307;&#x5357;</a>
+<a class="mainNavMenu__item is-currentItem" href="/reference/">API &#x53C2;&#x8003;&#x624B;&#x518C;</a>
+<a class="mainNavMenu__item " href="/software/">&#x8F6F;&#x4EF6;</a>
+<a class="mainNavMenu__item " href="/tools/">&#x5DE5;&#x5177;</a>
+  </nav>
+</div>
+
+<div class="S-flex-row">
+  <div class="siteSidebar pageNavListBounder">
+  <div class="mainSidebar">
+    <ul class="pageNavList">
+
+
+      <li class="pageNavList__subList collapsibleListSet js-collapsibleListSet">
+        <span class="pageNavList__title collapsibleListSet__label js-collapsibleListSet__label">REST API</span>
+        <ul class="collapsibleListSet__list js-collapsibleListSet__list is-collapsed">
+                    <li class="pageNavList__item"><a href="/horizon/reference/index.html">Overview</a></li>
+          <li class="pageNavList__item"><a href="/horizon/reference/errors.html">Errors</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/paging.html">Paging</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/rate-limiting.html">Rate Limiting</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/responses.html">Response Format</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/streaming.html">Streaming</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/xdr.html">XDR</a></li>
+        
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Tutorials</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/tutorials/follow-received-payments.html">Follow Received Payments</a></li>
+
+        </ul>
+      </li>
+            
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Endpoints</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/endpoints/accounts-single.html">Account Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/assets-all.html">All Assets</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/data-for-account.html">Data for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-all.html">All Effects</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-account.html">Effects for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-ledger.html">Effects for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-operation.html">Effects for Operation</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/effects-for-transaction.html">Effects for Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/fee-stats.html">Fee Stats</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/ledgers-all.html">All Ledgers</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/ledgers-single.html">Ledger Details</a></li>
+  <li class="pageNavList__item is-currentItem"><a href="/horizon/reference/endpoints/metrics.html">Metrics</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/offers-for-account.html">Offers for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-all.html">All Operations</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-for-account.html">Operations for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-for-ledger.html">Operations for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-for-transaction.html">Operations for Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/operations-single.html">Operation Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/orderbook-details.html">Orderbook Details</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/path-finding.html">Find Payment Paths</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-all.html">All Payments</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-for-account.html">Payments for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-for-ledger.html">Payments for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/payments-for-transaction.html">Payments for Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trade_aggregations.html">Trade Aggregations</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trades-for-account.html">Trades for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trades-for-offer.html">Trades for Offer</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/trades.html">Trades</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-all.html">All Transactions</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-create.html">Post Transaction</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-for-account.html">Transactions for Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-for-ledger.html">Transactions for Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/endpoints/transactions-single.html">Transaction Details</a></li>
+
+        </ul>
+      </li>
+            
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Resources</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/resources/account.html">Account</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/asset.html">Asset</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/data.html">Data</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/effect.html">Effect</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/ledger.html">Ledger</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/offer.html">Offer</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/operation.html">Operation</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/orderbook.html">Orderbook</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/page.html">Page</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/path.html">Payment Path</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/trade.html">Trade</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/trade_aggregation.html">Trade Aggregation</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/resources/transaction.html">Transaction</a></li>
+
+        </ul>
+      </li>
+            
+      <li class="pageNavList__subList">
+        <span class="pageNavList__title">Errors</span>
+        <ul class="collapsibleListSet__list">
+              <li class="pageNavList__item"><a href="/horizon/reference/errors/bad-request.html">Bad Request</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/before-history.html">Before History</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/forbidden.html">Forbidden</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/not-acceptable.html">Not Acceptable</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/not-found.html">Not Found</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/not-implemented.html">Not Implemented</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/rate-limit-exceeded.html">Rate Limit Exceeded</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/server-error.html">Internal Server Error</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/stale-history.html">Stale History</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/timeout.html">Timeout</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/transaction-failed.html">Transaction Failed</a></li>
+  <li class="pageNavList__item"><a href="/horizon/reference/errors/transaction-malformed.html">Transaction Malformed</a></li>
+
+        </ul>
+      </li>
+    
+        </ul>
+      </li>
+    
+
+      <li class="pageNavList__subList collapsibleListSet js-collapsibleListSet">
+        <span class="pageNavList__title collapsibleListSet__label js-collapsibleListSet__label">JavaScript SDK</span>
+        <ul class="collapsibleListSet__list js-collapsibleListSet__list is-collapsed">
+                    <li class="pageNavList__item"><a href="/js-stellar-sdk/reference/index.html">Overview</a></li>
+          <li class="pageNavList__item"><a href="/js-stellar-base/reference/base-examples.html">Transaction Examples</a></li>
+  <li class="pageNavList__item"><a href="/js-stellar-base/reference/building-transactions.html">Building Transactions</a></li>
+          <li class="pageNavList__item"><a href="/js-stellar-sdk/reference/examples.html">Basic Examples</a></li>
+        <li class="pageNavList__item"><a href="https://stellar.github.io/js-stellar-sdk/" target="_blank" rel="noopener noreferrer">API Reference <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+
+        </ul>
+      </li>
+    
+
+      <li class="pageNavList__subList collapsibleListSet js-collapsibleListSet">
+        <span class="pageNavList__title collapsibleListSet__label js-collapsibleListSet__label">Go SDK</span>
+        <ul class="collapsibleListSet__list js-collapsibleListSet__list is-collapsed">
+                    <li class="pageNavList__item"><a href="/go/reference/index.html">Overview</a></li>
+          <li class="pageNavList__item"><a href="/go/reference/examples.html">Basic Examples</a></li>
+        <li class="pageNavList__item"><a href="https://godoc.org/github.com/stellar/go" target="_blank">Godoc <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+
+        </ul>
+      </li>
+    
+
+      <li class="pageNavList__item"><a href="https://github.com/stellar/java-stellar-sdk" target="_blank" rel="noopener noreferrer">Java SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+      <li class="pageNavList__item"><a href="https://github.com/stellar/ruby-stellar-sdk" target="_blank" rel="noopener noreferrer">Ruby SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+      <li class="pageNavList__item"><a href="https://github.com/StellarCN/py-stellar-base" target="_blank" rel="noopener noreferrer">Python SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+      <li class="pageNavList__item"><a href="https://github.com/QuantozTechnology/csharp-stellar-base" target="_blank" rel="noopener noreferrer">C# SDK <span class="icon-faSvg icon-faSvg--small icon-faSvg-external-neutral5"></span></a></li>
+
+    </ul>
+  </div>
+</div>
+  <div class="S-flexItem-share">
+  <div class="spu-padSE-30">
+    <h1 class="mainSectionTitle">
+      Metrics
+      &#xA0;<span class="spu-color-neutral6">[Go SDK]</span>
+    </h1>
+  </div>
+  <div class="S-flex-rowWrap spu-borderTop-1 spu-borderColor-neutral7">
+    <s-read-md class="S-flexItem-share mainContent s-read-md--capped spu-padSE-30 spu-padTB-20 documentRead" link-process-md>
+      <p>The metrics endpoint returns a host of useful data points for monitoring the health of the underlying Horizon process.</p>
+<h2 id="request"><a class="anchorShortcut" href="#request" aria-hidden="true"></a> Request</h2>
+<pre><code>GET /metrics
+</code></pre>
+<h3 id="curl-example-request"><a class="anchorShortcut" href="#curl-example-request" aria-hidden="true"></a> curl Example Request</h3>
+<pre><code class="language-sh">curl &quot;https://horizon-testnet.stellar.org/metrics&quot;
+</code></pre>
+<h2 id="response"><a class="anchorShortcut" href="#response" aria-hidden="true"></a> Response</h2>
+<p>The <code>/metrics</code> endpoint returns a typical json response. Below, each section of related data points are grouped together and annotated (<em><strong>note</strong>: this endpoint returns ALL this data in one respons</em>e).</p>
+<h4 id="links"><a class="anchorShortcut" href="#links" aria-hidden="true"></a> Links</h4>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td><code>/metrics</code></td>
+<td>Link to self.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="example-response"><a class="anchorShortcut" href="#example-response" aria-hidden="true"></a> <em>Example Response:</em></h5>
+<pre><code class="language-shell">&quot;_links&quot;: {
+  &quot;self&quot;: {
+    &quot;href&quot;: &quot;/metrics&quot;
+  }
+}
+</code></pre>
+<h4 id="goroutines"><a class="anchorShortcut" href="#goroutines" aria-hidden="true"></a> Goroutines</h4>
+<p>Horizon utilizes Go&#x2019;s built in concurrency primitives (<a href="https://gobyexample.com/goroutines">goroutines</a> and <a href="https://gobyexample.com/channels">channels</a>). This metric monitors the number of currently running goroutines on this Horizon&#x2019;s process.</p>
+<h5 id="example-response-2"><a class="anchorShortcut" href="#example-response-2" aria-hidden="true"></a> <em>Example Response:</em></h5>
+<pre><code class="language-shell">&quot;goroutines&quot;: {
+  &quot;value&quot;: 3193
+},
+</code></pre>
+<h4 id="history"><a class="anchorShortcut" href="#history" aria-hidden="true"></a> History</h4>
+<p>Horizon maintains its own database (postgres), a verbose and user friendly account of activity on the Stellar network.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>elder_ledger</td>
+<td>The sequence number of the oldest ledger recorded in Horizon&#x2019;s database.</td>
+</tr>
+<tr>
+<td>latest_ledger</td>
+<td>The sequence number of the youngest (most recent) ledger recorded in Horizon&#x2019;s database.</td>
+</tr>
+<tr>
+<td>open_connections</td>
+<td>The number of open connections to the Horizon database.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="example-response-3"><a class="anchorShortcut" href="#example-response-3" aria-hidden="true"></a> <em>Example Response:</em></h5>
+<pre><code class="language-shell">&quot;history.elder_ledger&quot;: {
+  &quot;value&quot;: 1
+},
+&quot;history.latest_ledger&quot;: {
+  &quot;value&quot;: 19203710
+},
+&quot;history.open_connections&quot;: {
+  &quot;value&quot;: 4
+},
+</code></pre>
+<h4 id="ingester"><a class="anchorShortcut" href="#ingester" aria-hidden="true"></a> Ingester</h4>
+<p>Ingester represents metrics specific to Horizon&#x2019;s <a href="https://github.com/stellar/go/blob/master/services/horizon/internal/docs/reference/admin.md#ingesting-stellar-core-data">ingestion</a> process, or the process by which Horizon consumes transaction results from a connected Stellar Core instance.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clear_ledger</td>
+<td>The count and rate of clearing (per ledger) for this Horizon process.</td>
+</tr>
+<tr>
+<td>ingest_ledger</td>
+<td>The count and rate of ingestion (per ledger)  for this Horizon process.</td>
+</tr>
+</tbody>
+</table>
+<p>These metrics contain useful <a href="#sub-metrics">sub metrics</a>.</p>
+<pre><code class="language-shell">&quot;ingester.clear_ledger&quot;: {
+  &quot;15m.rate&quot;: 0,
+  &quot;1m.rate&quot;: 0,
+  &quot;5m.rate&quot;: 0,
+  &quot;75%&quot;: 0,
+  &quot;95%&quot;: 0,
+  &quot;99%&quot;: 0,
+  &quot;99.9%&quot;: 0,
+  &quot;count&quot;: 0,
+  &quot;max&quot;: 0,
+  &quot;mean&quot;: 0,
+  &quot;mean.rate&quot;: 0,
+  &quot;median&quot;: 0,
+  &quot;min&quot;: 0,
+  &quot;stddev&quot;: 0
+},
+&quot;ingester.ingest_ledger&quot;: {
+  &quot;15m.rate&quot;: 0.20015746469980858,
+  &quot;1m.rate&quot;: 0.20369424731639432,
+  &quot;5m.rate&quot;: 0.20048643236880492,
+  &quot;75%&quot;: 13843204,
+  &quot;95%&quot;: 33225286.699999996,
+  &quot;99%&quot;: 55083311.51000008,
+  &quot;99.9%&quot;: 169331014.0600002,
+  &quot;count&quot;: 73796,
+  &quot;max&quot;: 171032904,
+  &quot;mean&quot;: 9263325.741245136,
+  &quot;mean.rate&quot;: 0.1999594297254709,
+  &quot;median&quot;: 3646103,
+  &quot;min&quot;: 17686,
+  &quot;stddev&quot;: 13151784.696390135
+},
+</code></pre>
+<h4 id="logging"><a class="anchorShortcut" href="#logging" aria-hidden="true"></a> Logging</h4>
+<p>Horizon utilizes the standard <code>debug</code>, <code>error</code>, etc. levels of logging. This metric outputs stats for each level of log message produced, useful for a high-level monitoring of &#x201C;is my Horizon instance functioning properly?&#x201D; In order of increasing severity:</p>
+<ul>
+<li>debug</li>
+<li>info</li>
+<li>warning</li>
+<li>error</li>
+<li>panic</li>
+</ul>
+<p>These metrics contain useful <a href="#sub-metrics">sub metrics</a>.</p>
+<h5 id="example-response-4"><a class="anchorShortcut" href="#example-response-4" aria-hidden="true"></a> <em>Example Response:</em></h5>
+<pre><code class="language-shell">&quot;logging.debug&quot;: {
+  &quot;15m.rate&quot;: 0,
+  &quot;1m.rate&quot;: 0,
+  &quot;5m.rate&quot;: 0,
+  &quot;count&quot;: 0,
+  &quot;mean.rate&quot;: 0
+},
+&quot;logging.error&quot;: {
+  &quot;15m.rate&quot;: 1.2400751801386238e-53,
+  &quot;1m.rate&quot;: 2.964393875e-314,
+  &quot;5m.rate&quot;: 4.6339748288133364e-153,
+  &quot;count&quot;: 10,
+  &quot;mean.rate&quot;: 0.000027096232281212114
+},
+&quot;logging.info&quot;: {
+  &quot;15m.rate&quot;: 236.778108287207,
+  &quot;1m.rate&quot;: 244.72112725997695,
+  &quot;5m.rate&quot;: 241.17582109786107,
+  &quot;count&quot;: 91818969,
+  &quot;mean.rate&quot;: 248.79427989406037
+},
+&quot;logging.panic&quot;: {
+  &quot;15m.rate&quot;: 0,
+  &quot;1m.rate&quot;: 0,
+  &quot;5m.rate&quot;: 0,
+  &quot;count&quot;: 0,
+  &quot;mean.rate&quot;: 0
+},
+&quot;logging.warning&quot;: {
+  &quot;15m.rate&quot;: 0,
+  &quot;1m.rate&quot;: 0,
+  &quot;5m.rate&quot;: 0,
+  &quot;count&quot;: 0,
+  &quot;mean.rate&quot;: 0
+},
+</code></pre>
+<h4 id="requests"><a class="anchorShortcut" href="#requests" aria-hidden="true"></a> Requests</h4>
+<p>Requests represents an overview of Horizon&#x2019;s incoming traffic.</p>
+<p>These metrics contain useful <a href="#sub-metrics">sub metrics</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>failed</td>
+<td>Failed requests are those that return a status code in [400, 600).</td>
+</tr>
+<tr>
+<td>succeeded</td>
+<td>Successful requests are those that return a status code in [200, 400).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of received requests.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="example-response-5"><a class="anchorShortcut" href="#example-response-5" aria-hidden="true"></a> <em>Example Response:</em></h5>
+<pre><code class="language-shell">&quot;requests.failed&quot;: {
+  &quot;15m.rate&quot;: 22.419448554871114,
+  &quot;1m.rate&quot;: 33.09974656989629,
+  &quot;5m.rate&quot;: 26.745898323150673,
+  &quot;count&quot;: 8998213,
+  &quot;mean.rate&quot;: 24.38172358144542
+},
+&quot;requests.succeeded&quot;: {
+  &quot;15m.rate&quot;: 76.81566860149793,
+  &quot;1m.rate&quot;: 78.85014329639597,
+  &quot;5m.rate&quot;: 77.96890869538107,
+  &quot;count&quot;: 29565299,
+  &quot;mean.rate&quot;: 80.11065378819903
+},
+&quot;requests.total&quot;: {
+  &quot;15m.rate&quot;: 118.62183027832366,
+  &quot;1m.rate&quot;: 122.02995392023216,
+  &quot;5m.rate&quot;: 121.08103024256366,
+  &quot;75%&quot;: 8460442211,
+  &quot;95%&quot;: 59512053388.35,
+  &quot;99%&quot;: 59967007994.07,
+  &quot;99.9%&quot;: 121499506095.66623,
+  &quot;count&quot;: 45873213,
+  &quot;max&quot;: 123330396447,
+  &quot;mean&quot;: 7448679208.666343,
+  &quot;mean.rate&quot;: 124.2988641791271,
+  &quot;median&quot;: 13832639.5,
+  &quot;min&quot;: 20264,
+  &quot;stddev&quot;: 16825540184.214636
+},
+</code></pre>
+<h4 id="stellar-core"><a class="anchorShortcut" href="#stellar-core" aria-hidden="true"></a> Stellar Core</h4>
+<p>As noted above, Horizon relies on Stellar Core to stay in sync with the Stellar network. These metrics are specific to the underlying Stellar Core instance.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>latest_ledger</td>
+<td>The sequence number of the latest (most recent) ledger recorded in Stellar Core&#x2019;s database.</td>
+</tr>
+<tr>
+<td>open_connections</td>
+<td>The number of open connections to the Stellar Core postgres database.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="example-response-6"><a class="anchorShortcut" href="#example-response-6" aria-hidden="true"></a> <em>Example Response:</em></h5>
+<pre><code class="language-shell">&quot;stellar_core.latest_ledger&quot;: {
+  &quot;value&quot;: 19203710
+},
+&quot;stellar_core.open_connections&quot;: {
+  &quot;value&quot;: 4
+},
+</code></pre>
+<h4 id="transaction-submission"><a class="anchorShortcut" href="#transaction-submission" aria-hidden="true"></a> Transaction Submission</h4>
+<p>Horizon does not submit transactions directly to the Stellar network. Instead, it sequences transactions and sends the base64 encoded, XDR serialized blob to its connected Stellar Core instance.</p>
+<h5 id="horizon-transaction-sequencing-and-submission"><a class="anchorShortcut" href="#horizon-transaction-sequencing-and-submission" aria-hidden="true"></a> Horizon Transaction Sequencing and Submission</h5>
+<p>The following is a simplified version of the transaction submission process that glosses over the finer details. To dive deeper, check out the <a href="https://github.com/stellar/go/tree/master/services/horizon/internal/txsub">source code</a>.</p>
+<p>Horizon&#x2019;s sequencing mechanism consists of a <a href="https://github.com/stellar/go/blob/master/services/horizon/internal/txsub/sequence/manager.go">manager</a> that keeps track of <a href="https://github.com/stellar/go/blob/master/services/horizon/internal/txsub/sequence/queue.go">submission queues</a> for a set of addresses. A submission queue is a  priority queue, prioritized by minimum transaction sequence number, that holds a set of pending transactions for an account. A pending transaction is represented as an object with a sequence number and a channel. Periodically, this queue is updated, popping off finished transactions, sending down the transaction&#x2019;s channel a successful/failure response.</p>
+<p>These metrics contain useful <a href="#sub-metrics">sub metrics</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buffered</td>
+<td>The count of submissions buffered behind this Horizon&#x2019;s submission queue.</td>
+</tr>
+<tr>
+<td>failed</td>
+<td>The rate of failed transactions that have been submitted to this Horizon.</td>
+</tr>
+<tr>
+<td>open</td>
+<td>The count of &#x201C;open&#x201D; submissions (i.e.) submissions whose transactions haven&#x2019;t been confirmed successful or failed.</td>
+</tr>
+<tr>
+<td>succeeded</td>
+<td>The rate of successful transactions that have been submitted to this Horizon.</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Both the rate and count of all transactions submitted to this Horizon.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="example-response-7"><a class="anchorShortcut" href="#example-response-7" aria-hidden="true"></a> <em>Example Response:</em></h5>
+<pre><code class="language-shell">&quot;txsub.buffered&quot;: {
+  &quot;value&quot;: 0
+},
+&quot;txsub.failed&quot;: {
+  &quot;15m.rate&quot;: 0.02617642409672995,
+  &quot;1m.rate&quot;: 0.030745796597772223,
+  &quot;5m.rate&quot;: 0.02768989245087351,
+  &quot;count&quot;: 8091,
+  &quot;mean.rate&quot;: 0.021923569654356184
+},
+&quot;txsub.open&quot;: {
+  &quot;value&quot;: 1
+},
+&quot;txsub.succeeded&quot;: {
+  &quot;15m.rate&quot;: 0.4530627633404272,
+  &quot;1m.rate&quot;: 0.5703741067858975,
+  &quot;5m.rate&quot;: 0.4981318318429001,
+  &quot;count&quot;: 194145,
+  &quot;mean.rate&quot;: 0.5260599963594831
+},
+&quot;txsub.total&quot;: {
+  &quot;15m.rate&quot;: 0.47923918743715727,
+  &quot;1m.rate&quot;: 0.6011199033836697,
+  &quot;5m.rate&quot;: 0.5258217242937737,
+  &quot;75%&quot;: 44230960,
+  &quot;95%&quot;: 93582192.49999997,
+  &quot;99%&quot;: 288280173.0500002,
+  &quot;99.9%&quot;: 1413075508.2000008,
+  &quot;count&quot;: 202236,
+  &quot;max&quot;: 1418386864,
+  &quot;mean&quot;: 40583370.680933855,
+  &quot;mean.rate&quot;: 0.5479835660141416,
+  &quot;median&quot;: 20234100.5,
+  &quot;min&quot;: 3936410,
+  &quot;stddev&quot;: 95227916.95851417
+}
+</code></pre>
+<h3 id="sub-metrics"><a class="anchorShortcut" href="#sub-metrics" aria-hidden="true"></a> Sub Metrics</h3>
+<p>Various sub metrics related to a certain metric&#x2019;s performance.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1m.rate</code>, <code>5min.rate</code>, <code>etc.</code></td>
+<td>The per-minute moving average rate of events per second at the given time interval.</td>
+</tr>
+<tr>
+<td><code>75%</code>, <code>95%</code>, <code>etc.</code></td>
+<td>Counts at different percentiles.</td>
+</tr>
+<tr>
+<td><code>count</code></td>
+<td>Sum total of a certain metric value.</td>
+</tr>
+<tr>
+<td><code>max</code>, <code>mean</code>, <code>etc.</code></td>
+<td>Common statistic calculations.</td>
+</tr>
+</tbody>
+</table>
+
+      <br>
+      <a href="https://github.com/stellar/go/blob/master/services/horizon/internal/docs/reference/endpoints/metrics.md" class="spu-color-neutral6">&#x5728; GitHub &#x4E0A;&#x7F16;&#x8F91;&#x6B64;&#x9875;&#x9762;</a>
+    </s-read-md>
+    <s-read-md class="endpointRef-exampleBar spu-background-neutral2 spu-color-neutral9 js-endpointRef-exampleBar">
+      <nav class="s-buttonList js-endpointRef-menu"></nav>
+
+      <div class="endpointRef-exampleRequest spu-padTop-20 js-endpointRef-exampleRequest"></div>
+      <div class="endpointRef-exampleResponse spu-padTop-20 js-endpointRef-exampleResponse"></div>
+    </s-read-md>
+  
+  </div>
+</div>
+</div>
+
+<div class="so-back spu-borderTop-1 spu-borderColor-neutral7 spu-padTB-15">
+  <div class="so-chunk">
+    <div class="siteFooter">
+      <div class="siteFooter__list">
+        <a class="siteFooter__list__item" href="https://www.stellar.org/"><span class="graphic-backArrow-9"></span>&#xA0;&#xA0;Stellar.org</a>
+        <span class="siteFooter__list__sep">|</span>
+        <a class="siteFooter__list__item" href="https://www.stellar.org/bug-bounty-program/">Bug &#x60AC;&#x8D4F;</a>
+        <a class="siteFooter__list__item" href="/stellar-core/software/admin.html">&#x8FD0;&#x884C;&#x8282;&#x70B9;</a>
+        <a class="siteFooter__list__item" href="/guides/things-to-build.html">&#x6784;&#x5EFA;&#x5E94;&#x7528;</a>
+        <a class="siteFooter__list__item" href="https://github.com/stellar/">GitHub</a>
+        <a class="siteFooter__list__item" href="http://slack.stellar.org/">&#x6765;&#x793E;&#x533A;&#x7545;&#x8C08;</a>
+      </div>
+      <div class="siteFooter__list siteFooter__list--aux">
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/terms-of-service/">&#x670D;&#x52A1;&#x6761;&#x6B3E;</a>
+        <a class="siteFooter__list__item siteFooter__list__item--aux" href="https://www.stellar.org/privacy-policy/">&#x9690;&#x79C1;&#x653F;&#x7B56;</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/js/app-9b8f1b0df3650f3a8dabc0e0b08ccab9.js"></script>
+<script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("U8cLXTFMPm");
+analytics.page()
+}}();
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5V3WNNP');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V3WNNP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</html>
