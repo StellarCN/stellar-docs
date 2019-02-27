@@ -124,8 +124,6 @@ func main () {
 		panic(err)
 	}
 
-	passphrase := network.TestNetworkPassphrase
-
 	tx, err := build.Transaction(
 		build.TestNetwork,
 		build.SourceAccount{source},
@@ -244,12 +242,12 @@ func main () {
 
     ```go
     tx, err := build.Transaction(
-    	build.Network{passphrase},
-    	build.SourceAccount{from},
+        build.TestNetwork,
+	build.SourceAccount{source},
     	build.AutoSequence{horizon.DefaultTestNetClient},
     	build.MemoText{"Test Transaction"},
     	build.Payment(
-    		build.Destination{to},
+    		build.Destination{destination},
     		build.NativeAmount{"10"},
     	),
     )
@@ -290,7 +288,8 @@ func main () {
     ```
 
     ```go
-    txe, err := tx.Sign(from)
+    txe, err := tx.Sign(source)
+    txeB64, err := txe.Base64()
     ```
 
     </code-example>

@@ -15,7 +15,7 @@ title: 创建账户
 ```js
 // 创建一个全新且独一无二的密钥对。
 // 通过以下链接了解 KeyPair 对象：https://stellar.github.io/js-stellar-sdk/Keypair.html
-var pair = StellarSdk.Keypair.random();
+const pair = StellarSdk.Keypair.random();
 
 pair.secret();
 // SAV76USXIJOBMEQXPANUOQM6F5LIOTLPDIDVRJBFFE2MDJXG24TAPUU7
@@ -67,19 +67,17 @@ func main() {
 
 ```js
 // 该 SDK 无法帮助您在测试网络中创建账户，所以您需要自己发起 HTTP 请求。
-var request = require('request');
-request.get({
-  url: 'https://friendbot.stellar.org',
-  qs: { addr: pair.publicKey() },
-  json: true
-}, function(error, response, body) {
-  if (error || response.statusCode !== 200) {
-    console.error('ERROR!', error || body);
-  }
-  else {
-    console.log('SUCCESS! You have a new account :)\n', body);
-  }
-});
+// 如果您正在使用Node，请安装 `node-fetch` 库并打开下列注释:
+// const fetch = require('node-fetch');
+try {
+  const response = await fetch(
+    `https://friendbot.stellar.org?addr=${encodeURIComponent(pair.publicKey())}`
+  );
+  const responseJSON = await response.json();
+  console.log("SUCCESS! You have a new account :)\n", responseJSON);
+} catch (e) {
+  console.error("ERROR!", e);
+}
 ```
 
 ```java
@@ -130,14 +128,13 @@ func main() {
 <code-example name="获取账户详情">
 
 ```js
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+const server = new StellarSdk.Server("https://horizon-testnet.stellar.org");
 
 // JS SDK 使用 Promise 来处理大部分操作，比如检索一个账户
-server.loadAccount(pair.publicKey()).then(function(account) {
-  console.log('Balances for account: ' + pair.publicKey());
-  account.balances.forEach(function(balance) {
-    console.log('Type:', balance.asset_type, ', Balance:', balance.balance);
-  });
+const account = await server.loadAccount(pair.publicKey());
+console.log("Balances for account: " + pair.publicKey());
+account.balances.forEach(function(balance) {
+  console.log("Type:", balance.asset_type, ", Balance:", balance.balance);
 });
 ```
 
@@ -191,9 +188,6 @@ func main() {
 </div>
 
 
-
 [^1]: 私钥仍用于加密数据和签署事务。 使用种子创建 `KeyPair` 对象时，会立即生成私钥并在保存在程序内。
-
 [^2]: Stellar 的一些其它特征，比如[信任线](../concepts/assets.md#trustlines), 需要更高的最低余额。 有关最低余额的更多信息，请参见[费用](../concepts/fees.md#minimum-account-balance)
-
 [^3]: CoinMarketCap 维护了一份出售 Lumen 的交易所清单： http://coinmarketcap.com/currencies/stellar/#markets
