@@ -49,8 +49,8 @@ Name | COINQVEST
 -----|--------
 Description | https://www.coinqvest.com/.well-known/stellar.toml
 Contact | service[at]coinqvest.com
-NodeID | GADLA6BJK6VK33EM2IDQM37L5KGVCY5MSHSHVJA4SCNGNUIEOTCR6J5T <br /> GD6SZQV3WEJUH352NTVLKEV2JM2RH266VPEM7EH5QLLI7ZZAALMLNUVN
-Peer |  finland.stellar.coinqvest.com (Finland) <br/> germany.stellar.coinqvest.com	(Germany)
+NodeID | GADLA6BJK6VK33EM2IDQM37L5KGVCY5MSHSHVJA4SCNGNUIEOTCR6J5T <br /> GD6SZQV3WEJUH352NTVLKEV2JM2RH266VPEM7EH5QLLI7ZZAALMLNUVN <br /> GAZ437J46SCFPZEDLVGDMKZPLFO77XJ4QVAURSJVRZK2T5S7XUFHXI2Z
+Peer |  finland.stellar.coinqvest.com (Finland) <br/> germany.stellar.coinqvest.com	(Germany) <br/> hongkong.stellar.coinqvest.com	(Hong Kong)
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 -----
@@ -177,12 +177,12 @@ NodeID | GAE72U4C4MWPG6WAB2XW2EEHPQE3VMG7WRSET5FFDUAMBFR7P462QBC4
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 -----
-Name | localstellarassets.com
+Name | tradedirect.io
 -----|--------
-Description | https://www.localstellarassets.com
+Description | https://www.tradedirect.io
 Contact | hatter (slack) hatter@paywith.glass
 NodeID | GA4UHKRQNTYNOI7TMP6ZK2I52UEIBBHAW3LVLBUTSKVRTGDEDTJVKLI3
-Peer |  localstellarassets.com
+Peer |  tradedirect.io
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
 
 ------
@@ -365,6 +365,17 @@ Contact | xaviablaza (slack), xlablaza@gmail.com (email)
 Node 1 | GCEFOV5PD54MX2BS4Q5EQNE6L7JRTDYKEFT7XYBRBWXI3HL47N5U7TSU
 Peer | xaviablaza.com
 Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
+------
+Name | Wirex
+-----|--------
+Description | https://wirexapp.com
+Contact | devops@wirexapp.com
+UK | Public key: GBBQQT3EIUSXRJC6TGUCGVA3FVPXVZLGG3OJYACWBEWYBHU46WJLWXEU<br/>Peer: uk.stellar.wirexapp.com
+SG (Singapore) | Public key: GAB3GZIE6XAYWXGZUDM4GMFFLJBFMLE2JDPUCWUZXMOMT3NHXDHEWXAS<br/>Peer: sg.stellar.wirexapp.com
+US | Public key: GDXUKFGG76WJC7ACEH3JUPLKM5N5S76QSMNDBONREUXPCZYVPOLFWXUS<br/>Peer: us.stellar.wirexapp.com
+Status | ![Online](https://img.shields.io/badge/status-online-brightgreen.svg)
+
 
 ------
 # Offline servers
